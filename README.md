@@ -85,6 +85,7 @@ epm-set-site --sites sites.conf --apply --rebuild
 | [07-security.md](docs/07-security.md) | Секреты, периметр, что не сделано |
 | [08-changes-from-draft.md](docs/08-changes-from-draft.md) | Что исправлено против черновика |
 | [09-epm-integration.md](docs/09-epm-integration.md) | OSS Endpoint Manager: failover через штатный провижининг |
+| [10-production-hardening.md](docs/10-production-hardening.md) | Аудит боевой АТС, усиление, приёмка перед вводом |
 
 ## Состав
 
@@ -101,6 +102,7 @@ scripts/
   healthcheck.sh         состояние узла, метрики Prometheus
   galera-recover.sh      восстановление кворума
   epm-set-site.py        привязка телефонов Endpoint Manager к площадкам
+  harden.sh              журнал безопасности, fail2ban, ограничение AMI
   lint.sh                статические проверки
 
 tools/
@@ -161,8 +163,12 @@ FreePBX **не заполняет** таблицы `ps_*` сам — он рен
 
 ## Статус
 
-Комплект собран и проверен статически; развёртывание на живом железе —
-следующий шаг. Перед боем обязательно пройдите чек-лист приёмки из
-[docs/02-lab-deploy.md](docs/02-lab-deploy.md) и список
-«что осталось нерешённым» в
+Комплект собран, проверен статически и тестами; на живом железе не
+разворачивался. Порядок ввода в эксплуатацию, аудит существующей АТС и
+чек-лист приёмки — в
+[docs/10-production-hardening.md](docs/10-production-hardening.md).
+
+Что осознанно осталось за рамками (мастер как единственная точка
+управления, локальные транки на площадках, TLS/SRTP, шифрование
+репликации) — перечислено там же и в
 [docs/08-changes-from-draft.md](docs/08-changes-from-draft.md).
