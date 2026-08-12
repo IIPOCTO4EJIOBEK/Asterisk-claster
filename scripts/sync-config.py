@@ -27,10 +27,14 @@ secondary-узлы не видят ни одного абонента.
     ./sync-config.py --apply         # применить
     ./sync-config.py --apply --quiet # для cron/systemd
 
-Таблицы ps_endpoints, ps_aors, ps_auths, ps_endpoint_id_ips, ps_registrations
-считаются целиком принадлежащими этому скрипту: строки, исчезнувшие из
-конфигурации FreePBX, из них удаляются. ps_contacts НЕ ТРОГАЕТСЯ никогда —
-это живые регистрации телефонов.
+Таблицы ps_endpoints, ps_aors, ps_auths и ps_endpoint_id_ips считаются
+целиком принадлежащими этому скрипту: строки, исчезнувшие из конфигурации
+FreePBX, из них удаляются.
+
+Две таблицы не трогаются никогда:
+  ps_contacts      — живые регистрации телефонов, ими управляет Asterisk;
+  ps_registrations — регистрации на транки провайдеров, они у каждой
+                     площадки свои (docs/11-local-trunks.md).
 """
 
 import argparse
@@ -55,8 +59,18 @@ SOURCES = [
     ("pjsip.aor.conf", "ps_aors", "aor"),
     ("pjsip.auth.conf", "ps_auths", "auth"),
     ("pjsip.identify.conf", "ps_endpoint_id_ips", "identify"),
-    ("pjsip.registration.conf", "ps_registrations", "registration"),
 ]
+
+# Регистрации на транки провайдеров НЕ переносятся в общую БД.
+#
+# ps_registrations — таблица без признака узла: положив туда транк, вы
+# заставите регистрироваться на него все площадки сразу одним аккаунтом.
+# Регистрации у оператора расходуются впустую, а входящий вызов приходит
+# на случайный узел вместо того, чей это номер.
+#
+# У каждой площадки транк свой и описывается локально —
+# scripts/setup-local-trunk.sh, см. docs/11-local-trunks.md.
+REGISTRATION_SOURCE = ("pjsip.registration.conf", "ps_registrations", "registration")
 
 # Опции, которые могут повторяться и склеиваются в одну строку через запятую.
 MULTI_VALUE = {"allow", "disallow", "match", "aors", "auth", "outbound_auth", "contact"}
@@ -236,13 +250,23 @@ def main():
                          "secondary-узлов (там работает кластерная маршрутизация)")
     ap.add_argument("--keep-context", action="store_true",
                     help="не переписывать context, оставить как у FreePBX")
+    ap.add_argument("--include-registrations", action="store_true",
+                    help="перенести и регистрации на транки. По умолчанию "
+                         "выключено: транки у площадок свои, а таблица общая "
+                         "(см. docs/11-local-trunks.md)")
     args = ap.parse_args()
+
+    sources = list(SOURCES)
+    if args.include_registrations:
+        sources.append(REGISTRATION_SOURCE)
+        warn("Регистрации транков переносятся в общую БД: все узлы будут "
+             "регистрироваться одним аккаунтом. Убедитесь, что это осознанно.")
 
     if not args.db_pass:
         sys.exit("Не задан пароль БД: --db-pass или RT_PASS в /etc/asterisk-cluster/cluster.env")
 
     collected = {}
-    for filename, table, wanted_type in SOURCES:
+    for filename, table, wanted_type in sources:
         path = os.path.join(args.asterisk_dir, filename)
         custom = os.path.join(args.asterisk_dir, filename.replace(".conf", "_custom.conf"))
 
@@ -284,7 +308,7 @@ def main():
     total = [0, 0, 0]
     try:
         with conn.cursor() as cur:
-            for _filename, table, _t in SOURCES:
+            for _filename, table, _t in sources:
                 ins, upd, dele = sync_table(
                     cur, args.db_name, table, collected.get(table, {}),
                     args.apply, args.quiet, unknown_seen)

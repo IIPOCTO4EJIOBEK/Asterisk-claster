@@ -86,6 +86,7 @@ epm-set-site --sites sites.conf --apply --rebuild
 | [08-changes-from-draft.md](docs/08-changes-from-draft.md) | Что исправлено против черновика |
 | [09-epm-integration.md](docs/09-epm-integration.md) | OSS Endpoint Manager: failover через штатный провижининг |
 | [10-production-hardening.md](docs/10-production-hardening.md) | Аудит боевой АТС, усиление, приёмка перед вводом |
+| [11-local-trunks.md](docs/11-local-trunks.md) | Свой транк провайдера на каждой площадке |
 
 ## Состав
 
@@ -103,6 +104,7 @@ scripts/
   galera-recover.sh      восстановление кворума
   epm-set-site.py        привязка телефонов Endpoint Manager к площадкам
   harden.sh              журнал безопасности, fail2ban, ограничение AMI
+  setup-local-trunk.sh   транк провайдера на площадке + откат на мастер
   lint.sh                статические проверки
 
 tools/

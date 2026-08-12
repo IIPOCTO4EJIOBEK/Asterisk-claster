@@ -22,8 +22,19 @@ ps_contacts => odbc,asterisk-galera,ps_contacts
 ; Идентификация по IP (транки провайдеров и межузловые транки).
 ps_endpoint_id_ips => odbc,asterisk-galera,ps_endpoint_id_ips
 
-; Исходящие регистрации на транки провайдеров.
-ps_registrations => odbc,asterisk-galera,ps_registrations
+; ps_registrations в realtime СОЗНАТЕЛЬНО НЕ ВЫНОСИТСЯ.
+;
+; Таблица общая на кластер, а фильтра по узлу у неё нет. Если положить туда
+; транк провайдера, регистрироваться на него будут ВСЕ площадки сразу, одним
+; и тем же аккаунтом. Последствия:
+;   - расходуются регистрации (у операторов лимит, обычно до 10);
+;   - входящий вызов уходит на случайный узел, а не на тот, чьи это номера;
+;   - при отказе одного узла провайдер может продолжать слать вызовы на него.
+;
+; Транки у каждой площадки свои и описываются локально:
+;   /etc/asterisk/pjsip_local_trunk.conf  (scripts/setup-local-trunk.sh)
+;
+; См. docs/11-local-trunks.md
 
 ; Домены/алиасы — нужны, если абоненты регистрируются по FQDN площадки.
 ps_domain_aliases => odbc,asterisk-galera,ps_domain_aliases

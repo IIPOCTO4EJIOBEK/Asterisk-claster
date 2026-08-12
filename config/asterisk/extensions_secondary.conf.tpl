@@ -37,11 +37,26 @@ exten => _XXXX,1,Gosub(cluster-dial,${EXTEN},1)
 	same => n,Goto(unavail-handler,${EXTEN},1)
 	same => n(done),Hangup()
 
-; Всё, что длиннее внутреннего плана, — наружу через мастер.
-; Транки провайдеров держим на мастере, secondary отдаёт исходящие туда;
-; если мастер недоступен — звонок не проходит, и это осознанный компромисс
-; лабораторной схемы (см. docs/04-production-rollout.md про локальные транки).
-exten => _X.,1,NoOp(Outbound ${EXTEN} via master)
+; Внешние вызовы: сначала свой транк, при его недоступности — через мастер.
+;
+; Оператор допускает несколько точек подключения к виртуальной АТС, поэтому
+; у площадки есть собственная регистрация (setup-local-trunk.sh). Отказ
+; мастера при этом не оставляет площадку без внешней связи.
+;
+; Если LOCAL_TRUNK пуст, транка у площадки нет — сразу идём через мастер.
+exten => _X.,1,NoOp(Внешний вызов ${EXTEN}, локальный транк: ${LOCAL_TRUNK})
+	same => n,GotoIf($["${LOCAL_TRUNK}" = ""]?viamaster)
+
+	same => n,Dial(PJSIP/${EXTEN}@${LOCAL_TRUNK},60)
+	same => n,NoOp(Локальный транк вернул ${DIALSTATUS})
+	; Оператор недоступен или отверг вызов по перегрузке — пробуем мастер.
+	same => n,GotoIf($["${DIALSTATUS}" = "CHANUNAVAIL"]?viamaster)
+	same => n,GotoIf($["${DIALSTATUS}" = "CONGESTION"]?viamaster)
+	same => n,Hangup()
+
+	; BUSY и NOANSWER через мастер не повторяем: абонент на той стороне
+	; ответил отказом, и второй звонок ему же — это уже не отказоустойчивость.
+	same => n(viamaster),NoOp(Внешний вызов ${EXTEN} через мастер)
 	same => n,Dial(PJSIP/${EXTEN}@node-{{MASTER_NODE_NAME}},60)
 	same => n,Hangup()
 
