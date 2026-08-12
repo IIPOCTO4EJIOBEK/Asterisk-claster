@@ -31,7 +31,7 @@ while IFS= read -r f; do
     fail "$f"
     sed 's/^/         /' /tmp/lint.$$
   fi
-done < <(find scripts -name '*.sh' -type f | sort)
+done < <(find scripts tests -name "*.sh" -type f | sort)
 rm -f /tmp/lint.$$
 
 echo "== shellcheck =="
@@ -43,7 +43,7 @@ if command -v shellcheck >/dev/null 2>&1; then
       fail "$f"
       sed 's/^/         /' /tmp/sc.$$
     fi
-  done < <(find scripts -name '*.sh' -type f | sort)
+  done < <(find scripts tests -name "*.sh" -type f | sort)
   rm -f /tmp/sc.$$
 else
   skip "shellcheck не установлен (apt install shellcheck)"
@@ -58,7 +58,7 @@ if command -v php >/dev/null 2>&1; then
       fail "$f"
       sed 's/^/         /' /tmp/php.$$
     fi
-  done < <(find provisioning -name '*.php' -type f | sort)
+  done < <(find provisioning tests -name "*.php" -type f | sort)
   rm -f /tmp/php.$$
 else
   skip "php не установлен"
@@ -73,7 +73,7 @@ if command -v python3 >/dev/null 2>&1; then
       fail "$f"
       sed 's/^/         /' /tmp/py.$$
     fi
-  done < <(find scripts -name '*.py' -type f | sort)
+  done < <(find scripts tests -name "*.py" -type f | sort)
   rm -f /tmp/py.$$
   find . -name '__pycache__' -type d -exec rm -rf {} + 2>/dev/null
 else
