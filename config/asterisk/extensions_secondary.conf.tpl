@@ -27,12 +27,21 @@ include => cluster-diag
 ; После возврата из cluster-dial проверяем DIALSTATUS: без этой проверки
 ; абонент слышал бы «недоступен» даже после успешно завершённого разговора,
 ; потому что диалплан продолжается после того, как собеседник положил трубку.
+; Длины покрыты все, которые есть в плане нумерации: проверка дампа боевой
+; АТС показала 3-, 4- и 5-значные номера одновременно. Непокрытая длина
+; означала бы, что часть абонентов не находится на других площадках.
+; Свой набор длин: ./scripts/check-numbering.py --dump <сайт>=<дамп.sql>
 exten => _XXX,1,Gosub(cluster-dial,${EXTEN},1)
 	same => n,GotoIf($["${DIALSTATUS}" = "ANSWER"]?done)
 	same => n,Goto(unavail-handler,${EXTEN},1)
 	same => n(done),Hangup()
 
 exten => _XXXX,1,Gosub(cluster-dial,${EXTEN},1)
+	same => n,GotoIf($["${DIALSTATUS}" = "ANSWER"]?done)
+	same => n,Goto(unavail-handler,${EXTEN},1)
+	same => n(done),Hangup()
+
+exten => _XXXXX,1,Gosub(cluster-dial,${EXTEN},1)
 	same => n,GotoIf($["${DIALSTATUS}" = "ANSWER"]?done)
 	same => n,Goto(unavail-handler,${EXTEN},1)
 	same => n(done),Hangup()

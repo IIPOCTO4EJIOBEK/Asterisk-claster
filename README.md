@@ -105,6 +105,9 @@ scripts/
   epm-set-site.py        привязка телефонов Endpoint Manager к площадкам
   harden.sh              журнал безопасности, fail2ban, ограничение AMI
   setup-local-trunk.sh   транк провайдера на площадке + откат на мастер
+  check-numbering.py     конфликты нумерации между АТС до объединения
+  update-peers.sh        список узлов с проверкой кворума и ожиданием Synced
+  setup-standby-master.sh резервный мастер: prepare / status / promote / demote
   lint.sh                статические проверки
 
 tools/
