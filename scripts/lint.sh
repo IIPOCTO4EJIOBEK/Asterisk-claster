@@ -14,7 +14,9 @@
 set -uo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$REPO_ROOT"
+# Без set -e неудачный cd молча оставил бы нас в чужом каталоге, и проверки
+# прошли бы «успешно», ничего не проверив.
+cd "$REPO_ROOT" || { echo "Не удалось перейти в $REPO_ROOT"; exit 1; }
 
 RC=0
 pass() { printf '  [ok]   %s\n' "$*"; }

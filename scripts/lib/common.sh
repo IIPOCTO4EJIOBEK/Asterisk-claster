@@ -88,7 +88,10 @@ require_node_name() {
 backup_file() {
   local f="$1"
   [ -e "$f" ] || return 0
-  local bak="${f}.bak.$(date +%Y%m%d-%H%M%S)"
+  # Объявление и присваивание раздельно: иначе код возврата date теряется
+  # за успешным local (shellcheck SC2155).
+  local bak
+  bak="${f}.bak.$(date +%Y%m%d-%H%M%S)"
   cp -a "$f" "$bak"
   info "Бэкап: $bak"
 }
