@@ -1,0 +1,41 @@
+#!/bin/sh
+set -eu
+CACHE=/run/zabbix/asterisk_metrics.env
+TMP=/run/zabbix/asterisk_metrics.env.tmp
+mkdir -p /run/zabbix
+channels=$(asterisk -rx 'core show channels count' 2>/dev/null || true)
+active_channels=$(printf '%s
+' "$channels" | awk '/active channels/ {print $1; exit}'); active_channels=${active_channels:-0}
+active_calls=$(printf '%s
+' "$channels" | awk '/active calls/ {print $1; exit}'); active_calls=${active_calls:-0}
+processed_calls=$(printf '%s
+' "$channels" | awk '/calls processed/ {print $1; exit}'); processed_calls=${processed_calls:-0}
+regs=$(asterisk -rx 'pjsip show registrations' 2>/dev/null || true)
+chanconcise=$(asterisk -rx 'core show channels concise' 2>/dev/null || true)
+iaxpeers=$(asterisk -rx 'iax2 show peers' 2>/dev/null || true)
+trunks=$(fwconsole trunks --list 2>/dev/null | awk -F'|' '$0 ~ /^\|/ {tech=$3; trunk=$4; gsub(/^[ \t]+|[ \t]+$/,"",tech); gsub(/^[ \t]+|[ \t]+$/,"",trunk); if (tech ~ /^(pjsip|iax)$/ && trunk != "Channel ID" && trunk != "") print tech":"trunk}' | sort -u)
+{
+  printf 'active_channels=%s\n' "$active_channels"
+  printf 'active_calls=%s\n' "$active_calls"
+  printf 'processed_calls=%s\n' "$processed_calls"
+  printf 'trunks=%s\n' "'$(printf '%s' "$trunks" | tr '\n' ' ')'"
+  printf '%s\n' "$trunks" | while IFS=: read -r tech trunk; do
+    [ -n "${trunk:-}" ] || continue
+    safe=$(printf '%s' "$trunk" | tr '[:upper:]-' '[:lower:]_' | tr -cd 'a-z0-9_')
+    calls=$(printf '%s\n' "$chanconcise" | grep -c "^PJSIP/${trunk}-" || true)
+    status=0
+    case "$tech" in
+      pjsip)
+        if printf '%s\n' "$regs" | awk -v t="$trunk" '$0 ~ t && $0 ~ /Registered/ {found=1} END{exit !found}'; then status=1; fi
+        ;;
+      iax)
+        if printf '%s\n' "$iaxpeers" | awk -v t="$trunk" '$0 ~ t && $0 ~ /OK/ {found=1} END{exit !found}'; then status=1; fi
+        calls=$(printf '%s\n' "$chanconcise" | grep -c "^IAX2/${trunk}-" || true)
+        ;;
+    esac
+    printf 'trunk_%s_status=%s\n' "$safe" "$status"
+    printf 'trunk_%s_calls=%s\n' "$safe" "$calls"
+  done
+} > "$TMP"
+mv "$TMP" "$CACHE"
+chmod 0644 "$CACHE"

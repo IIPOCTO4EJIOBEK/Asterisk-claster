@@ -1,0 +1,36 @@
+#!/bin/sh
+set -eu
+metric="${1:-}"
+arg="${2:-}"
+CACHE=/run/zabbix/asterisk_metrics.env
+if [ ! -s "$CACHE" ] || [ $(( $(date +%s) - $(stat -c %Y "$CACHE" 2>/dev/null || echo 0) )) -gt 20 ]; then
+  /usr/local/bin/zabbix_asterisk_collect >/dev/null 2>&1 || true
+fi
+[ -s "$CACHE" ] && . "$CACHE"
+safe_trunk() { printf '%s' "$1" | tr '[:upper:]-' '[:lower:]_' | tr -cd 'a-z0-9_'; }
+json_discovery() {
+  first=1; printf '['
+  for pair in ${trunks:-}; do
+    tech=${pair%%:*}; trunk=${pair#*:}
+    [ $first -eq 0 ] && printf ','; first=0
+    printf '{"{#TRUNK}":"%s","{#TECH}":"%s"}' "$trunk" "$tech"
+  done
+  printf ']'
+}
+case "$metric" in
+  channels.active) echo "${active_channels:-0}" ;;
+  calls.active) echo "${active_calls:-0}" ;;
+  calls.processed) echo "${processed_calls:-0}" ;;
+  trunk.discovery2) json_discovery ;;
+  trunk.status) safe=$(safe_trunk "$arg"); eval "echo \${trunk_${safe}_status:-0}" ;;
+  trunk.active) safe=$(safe_trunk "$arg"); eval "echo \${trunk_${safe}_calls:-0}" ;;
+  trunk.mango) safe=$(safe_trunk 'SIP-MANGO'); eval "echo \${trunk_${safe}_status:-0}" ;;
+  trunk.rtk) safe=$(safe_trunk 'SIP-RTK'); eval "echo \${trunk_${safe}_status:-0}" ;;
+  trunk.sipnet) safe=$(safe_trunk 'SIP-sipnet'); eval "echo \${trunk_${safe}_status:-0}" ;;
+  trunk.rnd) safe=$(safe_trunk 'RND_peer'); eval "echo \${trunk_${safe}_status:-0}" ;;
+  trunk.mango.calls) safe=$(safe_trunk 'SIP-MANGO'); eval "echo \${trunk_${safe}_calls:-0}" ;;
+  trunk.rtk.calls) safe=$(safe_trunk 'SIP-RTK'); eval "echo \${trunk_${safe}_calls:-0}" ;;
+  trunk.sipnet.calls) safe=$(safe_trunk 'SIP-sipnet'); eval "echo \${trunk_${safe}_calls:-0}" ;;
+  trunk.rnd.calls) safe=$(safe_trunk 'RND_peer'); eval "echo \${trunk_${safe}_calls:-0}" ;;
+  *) echo 0 ;;
+esac

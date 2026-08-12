@@ -73,7 +73,7 @@ if command -v python3 >/dev/null 2>&1; then
       fail "$f"
       sed 's/^/         /' /tmp/py.$$
     fi
-  done < <(find scripts tests -name "*.py" -type f | sort)
+  done < <(find scripts tests tools -name "*.py" -type f | sort)
   rm -f /tmp/py.$$
   find . -name '__pycache__' -type d -exec rm -rf {} + 2>/dev/null
 else
