@@ -4,9 +4,12 @@
 регистрация абонентов с автоматическим переключением на мастер при отказе
 площадки.
 
-Всё бесплатное: MariaDB Galera, Asterisk/FreePBX community, собственный
-сервер автопровижининга. Без платного Endpoint Manager и облачных сервисов
-вендоров.
+Всё бесплатное: MariaDB Galera, Asterisk/FreePBX community, OSS PBX End
+Point Manager для автопровижининга. Без платного Sangoma Endpoint Manager и
+облачных RPS-сервисов вендоров.
+
+Существующая АТС не переустанавливается — она становится мастером как есть,
+вместе с номерами, диалпланом, транками и уже настроенным провижинингом.
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
@@ -30,34 +33,44 @@
 
 ## Быстрый старт
 
-Стенд из двух серверов на Debian 12:
+Два пути. Выбор зависит от того, есть ли уже работающая АТС.
+
+### А. У вас уже есть FreePBX (рекомендуется)
+
+Существующая АТС становится мастером **без переустановки**: номера, диалплан,
+транки, модули и OSS Endpoint Manager остаются на месте.
 
 ```bash
 git clone https://github.com/IIPOCTO4EJIOBEK/Asterisk-claster.git /opt/asterisk-cluster
 cd /opt/asterisk-cluster
 
-# 1. Проверка готовности (на обоих серверах, ничего не меняет)
-./scripts/preflight.sh --node-ip=10.10.10.11 --peers=10.10.10.11,10.10.10.12
+# 1. На существующей АТС — снимает бэкап, переводит БД в Galera, включает realtime
+./scripts/adopt-master.sh --node-name=rostov --node-ip=10.1.10.111 \
+    --peers=10.1.10.111,10.4.3.6 --cluster-name=asterisk_prod
 
-# 2. Мастер
-./scripts/install-master.sh --node-name=master --node-ip=10.10.10.11 \
-    --peers=10.10.10.11,10.10.10.12 --cluster-name=asterisk_lab
-
-# 3. Площадка (пароли — из вывода шага 2)
-./scripts/clone-node.sh --node-name=site-1 --node-ip=10.10.10.12 \
-    --master-ip=10.10.10.11 --master-node-name=master \
-    --peers=10.10.10.11,10.10.10.12 --cluster-name=asterisk_lab \
-    --asterisk-major=21 --sst-pass='...' --rt-pass='...'
-
-# 4. Межузловые транки — на обоих узлах
-./scripts/make-node-trunks.sh --peers-map=master=10.10.10.11,site-1=10.10.10.12
-
-# 5. Завести номера в FreePBX GUI, затем на мастере:
+# 2. Выгрузить номера в realtime, чтобы их увидели площадки
 asterisk-cluster-sync --apply
-asterisk-cluster-push-dialplan --nodes=site-1=10.10.10.12
+
+# 3. Площадка (пароли — из вывода шага 1)
+./scripts/clone-node.sh --node-name=voronezh --node-ip=10.4.3.6 \
+    --master-ip=10.1.10.111 --master-node-name=rostov \
+    --peers=10.1.10.111,10.4.3.6 --cluster-name=asterisk_prod \
+    --asterisk-major=18 --sst-pass='...' --rt-pass='...'
+
+# 4. Межузловые транки — на ВСЕХ узлах
+./scripts/make-node-trunks.sh --peers-map=rostov=10.1.10.111,voronezh=10.4.3.6
+
+# 5. Failover телефонов через ваш Endpoint Manager
+epm-set-site --sites sites.conf --apply --rebuild
 ```
 
-Подробно, с чек-листом приёмки: [docs/02-lab-deploy.md](docs/02-lab-deploy.md).
+Шаг 5 требует однократной правки шаблона — резервный сервер EPM из коробки
+не выдаёт: [docs/09-epm-integration.md](docs/09-epm-integration.md).
+
+### Б. Установка с нуля
+
+Для лабораторного стенда на чистых серверах Debian 12 — `install-master.sh`
+вместо шага 1, подробно в [docs/02-lab-deploy.md](docs/02-lab-deploy.md).
 
 ## Документация
 
@@ -71,13 +84,15 @@ asterisk-cluster-push-dialplan --nodes=site-1=10.10.10.12
 | [06-troubleshooting.md](docs/06-troubleshooting.md) | Разбор неполадок по симптомам |
 | [07-security.md](docs/07-security.md) | Секреты, периметр, что не сделано |
 | [08-changes-from-draft.md](docs/08-changes-from-draft.md) | Что исправлено против черновика |
+| [09-epm-integration.md](docs/09-epm-integration.md) | OSS Endpoint Manager: failover через штатный провижининг |
 
 ## Состав
 
 ```
 scripts/
   preflight.sh           проверка сервера до установки (RTT, ресурсы, порты)
-  install-master.sh      мастер: FreePBX + Galera + realtime + провижининг
+  adopt-master.sh        существующая АТС -> мастер кластера, без переустановки
+  install-master.sh      мастер с нуля: FreePBX + Galera + realtime
   clone-node.sh          площадка: join в Galera + headless Asterisk
   install-garbd.sh       арбитр кворума (на отдельном хосте)
   make-node-trunks.sh    межузловые транки, полная сетка
@@ -85,11 +100,16 @@ scripts/
   push-dialplan.sh       диалплан с мастера -> площадки
   healthcheck.sh         состояние узла, метрики Prometheus
   galera-recover.sh      восстановление кворума
+  epm-set-site.py        привязка телефонов Endpoint Manager к площадкам
   lint.sh                статические проверки
 
+tools/
+  mask-secrets.py        маскирование учётных данных в дампах боевых АТС
+
 config/                  шаблоны конфигураций (Galera, ODBC, PJSIP, диалплан)
-provisioning/            сервер автопровижининга: PHP + шаблоны вендоров
-sql/                     схема провижининга, аудит совместимости с Galera
+provisioning/            запасной сервер провижининга (если EPM не подходит)
+sql/                     схема провижининга, ps_contacts, аудит под Galera
+pbx1-10.1.10.111/        дамп боевой АТС для разработки (пароли замаскированы)
 ```
 
 ## Как конфигурация попадает на площадки
@@ -101,6 +121,7 @@ sql/                     схема провижининга, аудит сов�
 | Номера, учётки, AOR | realtime-таблицы `ps_*` | `asterisk-cluster-sync --apply` после Apply Config |
 | Диалплан, IVR, очереди | rsync файлов | `asterisk-cluster-push-dialplan` после Apply Config |
 | Регистрации телефонов | общая таблица `ps_contacts` | автоматически |
+| Основной/резервный сервер телефона | Endpoint Manager | `epm-set-site --apply --rebuild` |
 
 FreePBX **не заполняет** таблицы `ps_*` сам — он рендерит статические файлы.
 `sync-config.py` читает их и переносит в realtime. Это ключевой момент,
@@ -108,7 +129,10 @@ FreePBX **не заполняет** таблицы `ps_*` сам — он рен
 
 ## Требования
 
-- Debian 12 (bookworm) на всех узлах
+- **Мастер**: любая работающая связка FreePBX + Asterisk 18/20/21 на Debian
+  11 или 12. Переустановка не требуется — `adopt-master.sh` работает поверх.
+- **Площадки**: Debian 12 (bookworm), чистая установка. Мажорная версия
+  Asterisk обязана совпадать с мастером — скрипт это проверяет.
 - Мастер: 2 vCPU / 4 GB / 20 GB, площадка: 2 vCPU / 2 GB / 20 GB
 - RTT между площадками до 20 мс (до 50 мс терпимо) — Galera подтверждает
   запись синхронно, задержка входит в время транзакции
