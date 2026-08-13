@@ -1,4 +1,4 @@
-<title>26 недель до кластера</title>
+<title>Тринадцать недель до кластера</title>
 <style>
   :root{
     --bg:#F4F6F8; --surface:#FFFFFF; --surface-2:#EDF1F4;
@@ -159,31 +159,30 @@
   .stepno{fill:var(--accent);stroke:none}
   .stepno-t{fill:var(--surface);font-family:var(--sans);font-size:10.5px;font-weight:700}
 </style>
-
 <div class="wrap">
 
 <header class="hero">
-  <div class="kicker"><span class="dot"></span><span class="label">Asterisk-кластер · шесть регионов · один инженер</span></div>
-  <h1>26 недель до кластера</h1>
+  <div class="kicker"><span class="dot"></span><span class="label">Asterisk-кластер · пять узлов · 13 недель</span></div>
+  <h1>Тринадцать недель до кластера</h1>
   <p class="lede col">Двенадцать разрозненных станций и 1255 абонентов сводятся
-  в один кластер из восьми узлов. Каждый узел, кроме Ростова, появляется
-  клонированием мастера, а не установкой с нуля — поэтому план измеряется
-  неделями наблюдения, а не неделями монтажа.</p>
+  в один кластер из пяти узлов. Четыре площадки уже имеют свои серверы, докупается
+  один — под Москву. Каждый узел, кроме Ростова, появляется клонированием мастера,
+  а не установкой с нуля.</p>
   <nav class="toc">
     <a href="#gantt">Сводный график</a>
     <a href="#audit">Что показал аудит</a>
-    <a href="#topology">Целевая топология</a>
+    <a href="#topology">Пять узлов</a>
     <a href="#clone">Как разворачивается узел</a>
     <a href="#stages">Этапы по неделям</a>
-    <a href="#risks">Что сдвинет сроки</a>
+    <a href="#risks">Ресурсы и риски</a>
     <a href="#day1">Первый день</a>
   </nav>
   <div class="stats">
     <div class="stat"><b>1255</b><span>абонентов</span></div>
-    <div class="stat"><b>12&nbsp;→&nbsp;8</b><span>станций в узлы</span></div>
-    <div class="stat"><b>6</b><span>регионов</span></div>
-    <div class="stat"><b>26</b><span>недель</span></div>
-    <div class="stat"><b>9</b><span>голосов в кворуме</span></div>
+    <div class="stat"><b>12&nbsp;→&nbsp;5</b><span>станций в узлы</span></div>
+    <div class="stat"><b>13</b><span>недель</span></div>
+    <div class="stat"><b>85</b><span>человеко-дней</span></div>
+    <div class="stat"><b>1</b><span>сервер докупить</span></div>
   </div>
 </header>
 
@@ -191,40 +190,31 @@
 <section id="gantt">
   <div class="sec-head">
     <span class="label">Сводный график</span>
-    <h2>Девять потоков, две жёсткие остановки</h2>
+    <h2>Девять потоков, одна жёсткая остановка</h2>
   </div>
-  <p class="col">Потоки идут внахлёст, и это осознанно: перенумерация и консолидация
-  мелких станций тянутся месяцами, поэтому запускаются параллельно тиражированию,
-  а не после него. Останавливается план только в двух местах — там, где нельзя
-  идти дальше, не убедившись.</p>
+  <p class="col">Потоки идут внахлёст: перенумерация и консолидация мелких станций —
+  работа организационная, она запускается параллельно тиражированию, а не после него.
+  Останавливается план в одном месте — после первой площадки.</p>
 
   <figure>
     <svg viewBox="0 0 900 392" role="img"
-         aria-label="Диаграмма Ганта на 26 недель. Подготовка недели 1-3, безопасность 2-3, стенд 3-4, мастер неделя 5, Воронеж 6-8, тиражирование 9-15, резервный мастер 16, консолидация 12-20, перенумерация 6-26. Семь вех и контрольная точка после недели 8.">
+         aria-label="Диаграмма Ганта на 13 недель. Подготовка и безопасность недели 1-2, стенд неделя 3, мастер неделя 4, Воронеж 5-6, тиражирование 7-9, передача роли мастера 10, консолидация 6-12, перенумерация 5-13. Семь вех и контрольная точка после недели 6.">
       <defs>
         <marker id="ga" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
           <path d="M0,0 L10,5 L0,10 z" fill="var(--crit)"/></marker>
       </defs>
 
-      <!-- номера недель -->
-      <g class="t-n" text-anchor="middle">
-        <text x="171.75" y="15">1</text><text x="199.25" y="15">2</text>
-        <text x="226.75" y="15">3</text><text x="254.25" y="15">4</text>
-        <text x="281.75" y="15">5</text><text x="309.25" y="15">6</text>
-        <text x="336.75" y="15">7</text><text x="364.25" y="15">8</text>
-        <text x="391.75" y="15">9</text><text x="419.25" y="15">10</text>
-        <text x="446.75" y="15">11</text><text x="474.25" y="15">12</text>
-        <text x="501.75" y="15">13</text><text x="529.25" y="15">14</text>
-        <text x="556.75" y="15">15</text><text x="584.25" y="15">16</text>
-        <text x="611.75" y="15">17</text><text x="639.25" y="15">18</text>
-        <text x="666.75" y="15">19</text><text x="694.25" y="15">20</text>
-        <text x="721.75" y="15">21</text><text x="749.25" y="15">22</text>
-        <text x="776.75" y="15">23</text><text x="804.25" y="15">24</text>
-        <text x="831.75" y="15">25</text><text x="859.25" y="15">26</text>
+      <g class="t-n" text-anchor="middle" font-size="11">
+        <text x="185.5" y="15">1</text><text x="240.5" y="15">2</text>
+        <text x="295.5" y="15">3</text><text x="350.5" y="15">4</text>
+        <text x="405.5" y="15">5</text><text x="460.5" y="15">6</text>
+        <text x="515.5" y="15">7</text><text x="570.5" y="15">8</text>
+        <text x="625.5" y="15">9</text><text x="680.5" y="15">10</text>
+        <text x="735.5" y="15">11</text><text x="790.5" y="15">12</text>
+        <text x="845.5" y="15">13</text>
       </g>
       <text x="150" y="15" class="t-s" text-anchor="end">неделя</text>
 
-      <!-- сетка -->
       <g class="grid">
         <line x1="158" y1="46" x2="158" y2="348"/>
         <line x1="268" y1="46" x2="268" y2="348"/>
@@ -237,81 +227,80 @@
         <line x1="158" y1="348" x2="873" y2="348"/>
       </g>
 
-      <!-- вехи -->
       <g>
-        <path d="M254.25,26 l8,8 -8,8 -8,-8 z" class="ms"/><text x="254.25" y="37.5" class="ms-t" text-anchor="middle">1</text>
-        <path d="M281.75,26 l8,8 -8,8 -8,-8 z" class="ms"/><text x="281.75" y="37.5" class="ms-t" text-anchor="middle">2</text>
-        <path d="M364.25,26 l8,8 -8,8 -8,-8 z" class="ms" stroke="var(--crit)"/><text x="364.25" y="37.5" class="ms-t" fill="var(--crit)" text-anchor="middle">3</text>
-        <path d="M556.75,26 l8,8 -8,8 -8,-8 z" class="ms"/><text x="556.75" y="37.5" class="ms-t" text-anchor="middle">4</text>
-        <path d="M584.25,26 l8,8 -8,8 -8,-8 z" class="ms"/><text x="584.25" y="37.5" class="ms-t" text-anchor="middle">5</text>
-        <path d="M694.25,26 l8,8 -8,8 -8,-8 z" class="ms"/><text x="694.25" y="37.5" class="ms-t" text-anchor="middle">6</text>
-        <path d="M859.25,26 l8,8 -8,8 -8,-8 z" class="ms"/><text x="859.25" y="37.5" class="ms-t" text-anchor="middle">7</text>
+        <path d="M295.5,26 l8,8 -8,8 -8,-8 z" class="ms"/><text x="295.5" y="37.5" class="ms-t" text-anchor="middle">1</text>
+        <path d="M350.5,26 l8,8 -8,8 -8,-8 z" class="ms"/><text x="350.5" y="37.5" class="ms-t" text-anchor="middle">2</text>
+        <path d="M460.5,26 l8,8 -8,8 -8,-8 z" class="ms" stroke="var(--crit)"/><text x="460.5" y="37.5" class="ms-t" fill="var(--crit)" text-anchor="middle">3</text>
+        <path d="M625.5,26 l8,8 -8,8 -8,-8 z" class="ms"/><text x="625.5" y="37.5" class="ms-t" text-anchor="middle">4</text>
+        <path d="M680.5,26 l8,8 -8,8 -8,-8 z" class="ms"/><text x="680.5" y="37.5" class="ms-t" text-anchor="middle">5</text>
+        <path d="M790.5,26 l8,8 -8,8 -8,-8 z" class="ms"/><text x="790.5" y="37.5" class="ms-t" text-anchor="middle">6</text>
+        <path d="M845.5,26 l8,8 -8,8 -8,-8 z" class="ms"/><text x="845.5" y="37.5" class="ms-t" text-anchor="middle">7</text>
       </g>
       <text x="150" y="38" class="t-s" text-anchor="end">веха</text>
 
-      <!-- этап 0 -->
       <text x="150" y="73" class="t-b" text-anchor="end">Подготовка</text>
-      <rect x="158" y="60" width="82.5" height="16" rx="3" class="bx-a"/>
-      <!-- этап 1 -->
-      <text x="150" y="105" class="t-b" text-anchor="end">Безопасность</text>
-      <rect x="185.5" y="92" width="55" height="16" rx="3" class="bx-c"/>
-      <!-- этап 2 -->
-      <text x="150" y="137" class="t-b" text-anchor="end">Стенд</text>
-      <rect x="213" y="124" width="55" height="16" rx="3" class="bx-a"/>
-      <!-- этап 3 -->
-      <text x="150" y="169" class="t-b" text-anchor="end">Ростов → мастер</text>
-      <rect x="268" y="156" width="27.5" height="16" rx="3" class="bx-ok"/>
-      <rect x="295.5" y="156" width="27.5" height="16" rx="3" class="bx-d"/>
-      <text x="330" y="168" class="t-s">наблюдение</text>
-      <!-- этап 4 -->
-      <text x="150" y="201" class="t-b" text-anchor="end">Воронеж</text>
-      <rect x="295.5" y="188" width="27.5" height="16" rx="3" class="bx-ok"/>
-      <rect x="323" y="188" width="55" height="16" rx="3" class="bx-d"/>
-      <text x="386" y="200" class="t-s">две недели наблюдения — до контрольной точки</text>
-      <!-- этап 5 -->
-      <text x="150" y="233" class="t-b" text-anchor="end">Тиражирование</text>
-      <rect x="378" y="220" width="192.5" height="16" rx="3" class="bx-a"/>
-      <g class="grid" opacity=".8">
-        <line x1="405.5" y1="220" x2="405.5" y2="236"/>
-        <line x1="433" y1="220" x2="433" y2="236"/>
-        <line x1="460.5" y1="220" x2="460.5" y2="236"/>
-        <line x1="488" y1="220" x2="488" y2="236"/>
-        <line x1="543" y1="220" x2="543" y2="236"/>
-      </g>
-      <text x="578" y="232" class="t-s">по одной площадке</text>
-      <!-- этап 6 -->
-      <text x="150" y="265" class="t-b" text-anchor="end">Резервный мастер</text>
-      <rect x="570.5" y="252" width="27.5" height="16" rx="3" class="bx-ok"/>
-      <text x="606" y="264" class="t-s">учебное переключение</text>
-      <!-- этап 7 -->
-      <text x="150" y="297" class="t-b" text-anchor="end">Консолидация</text>
-      <rect x="460.5" y="284" width="247.5" height="16" rx="3" class="bx-w"/>
-      <text x="716" y="296" class="t-s">семь мелких АТС</text>
-      <!-- этап 8 -->
-      <text x="150" y="329" class="t-b" text-anchor="end">Перенумерация</text>
-      <rect x="295.5" y="316" width="577.5" height="16" rx="3" class="bx-w"/>
-      <text x="303" y="328" class="t-w">организационный поток, идёт параллельно всему</text>
+      <rect x="158" y="60" width="110" height="16" rx="3" class="bx-a"/>
+      <text x="276" y="72" class="t-s">сеть, сервер под Москву, учётки у операторов</text>
 
-      <!-- контрольная точка -->
-      <line x1="378" y1="46" x2="378" y2="360" class="ln-c" stroke-dasharray="5 4" marker-end="url(#ga)"/>
-      <text x="378" y="374" class="t-c" text-anchor="middle">контрольная точка: тиражирование не начинается, пока Воронеж не отработал две недели чисто</text>
+      <text x="150" y="105" class="t-b" text-anchor="end">Безопасность</text>
+      <rect x="158" y="92" width="110" height="16" rx="3" class="bx-c"/>
+      <text x="276" y="104" class="t-s">444 пароля, транки, AMI, проверка бэкапа</text>
+
+      <text x="150" y="137" class="t-b" text-anchor="end">Стенд</text>
+      <rect x="268" y="124" width="55" height="16" rx="3" class="bx-a"/>
+      <text x="331" y="136" class="t-s">клонирование и восстановление — руками</text>
+
+      <text x="150" y="169" class="t-b" text-anchor="end">Ростов → мастер</text>
+      <rect x="323" y="156" width="55" height="16" rx="3" class="bx-ok"/>
+      <text x="386" y="168" class="t-s">окно около часа</text>
+
+      <text x="150" y="201" class="t-b" text-anchor="end">Воронеж</text>
+      <rect x="378" y="188" width="55" height="16" rx="3" class="bx-ok"/>
+      <rect x="433" y="188" width="55" height="16" rx="3" class="bx-d"/>
+      <text x="496" y="200" class="t-s">неделя наблюдения — до контрольной точки</text>
+
+      <text x="150" y="233" class="t-b" text-anchor="end">Тиражирование</text>
+      <rect x="488" y="220" width="165" height="16" rx="3" class="bx-a"/>
+      <g class="grid" opacity=".9">
+        <line x1="543" y1="220" x2="543" y2="236"/>
+        <line x1="598" y1="220" x2="598" y2="236"/>
+      </g>
+      <text x="502" y="232" class="t-a" font-size="9.5">НН</text>
+      <text x="551" y="232" class="t-a" font-size="9.5">Славянск</text>
+      <text x="612" y="232" class="t-a" font-size="9.5">Мск</text>
+      <text x="661" y="232" class="t-s">по площадке в неделю</text>
+
+      <text x="150" y="265" class="t-b" text-anchor="end">Передача роли</text>
+      <rect x="653" y="252" width="55" height="16" rx="3" class="bx-ok"/>
+      <text x="716" y="264" class="t-s">учебно: мастер на рабочий узел и обратно</text>
+
+      <text x="150" y="297" class="t-b" text-anchor="end">Консолидация</text>
+      <rect x="433" y="284" width="385" height="16" rx="3" class="bx-w"/>
+      <text x="441" y="296" class="t-w">пять мелких АТС — второй исполнитель</text>
+
+      <text x="150" y="329" class="t-b" text-anchor="end">Перенумерация</text>
+      <rect x="378" y="316" width="495" height="16" rx="3" class="bx-w"/>
+      <text x="386" y="328" class="t-w">организационный поток — второй исполнитель</text>
+
+      <line x1="488" y1="46" x2="488" y2="360" class="ln-c" stroke-dasharray="5 4" marker-end="url(#ga)"/>
+      <text x="488" y="374" class="t-c" text-anchor="middle">контрольная точка: тиражирование не начинается, пока Воронеж не отработал неделю чисто</text>
     </svg>
     <figcaption>Сплошная заливка — работы, штриховка — наблюдение под нагрузкой.
-    Красная линия после недели 8 — единственное место в плане, где задержка обходится
-    дешевле спешки.</figcaption>
+    Жёлтым — потоки второго исполнителя. При сжатом сроке контрольная точка после
+    Воронежа остаётся единственным запасом: сдвиг здесь двигает весь график.</figcaption>
   </figure>
 
   <div class="tbl-wrap">
     <table>
       <thead><tr><th class="n">№</th><th>Веха</th><th class="n">Неделя</th><th>Что она означает</th></tr></thead>
       <tbody>
-        <tr><td class="n">1</td><td>Стенд пройден</td><td class="n">4</td><td class="wide">Восстановление кворума и переключение мастера сделаны руками, а не прочитаны</td></tr>
-        <tr><td class="n">2</td><td>Ростов работает как мастер</td><td class="n">5</td><td class="wide">Кластер из одного узла: безопасная точка, на которой можно постоять</td></tr>
-        <tr><td class="n">3</td><td>Решение о тиражировании</td><td class="n">8</td><td class="wide"><span class="chip c-crit">контрольная</span> Всё, что всплыло бы на пяти площадках, всплыло на одной</td></tr>
-        <tr><td class="n">4</td><td>Все шесть регионов в кластере</td><td class="n">15</td><td class="wide">Восемь узлов, арбитр, полная сетка межузловых транков</td></tr>
-        <tr><td class="n">5</td><td>Резерв мастера проверен</td><td class="n">16</td><td class="wide">Учебное переключение <code>--promote</code> / <code>--demote</code> в спокойной обстановке</td></tr>
-        <tr><td class="n">6</td><td>Мелкие АТС погашены</td><td class="n">20</td><td class="wide">156 абонентов семи станций переехали в региональные узлы</td></tr>
-        <tr><td class="n">7</td><td>Перенумерация завершена</td><td class="n">26</td><td class="wide">Переадресации со старых номеров сняты</td></tr>
+        <tr><td class="n">1</td><td>Стенд пройден</td><td class="n">3</td><td class="wide">Восстановление кворума и передача роли мастера сделаны руками, а не прочитаны</td></tr>
+        <tr><td class="n">2</td><td>Ростов работает как мастер</td><td class="n">4</td><td class="wide">Кластер из одного узла: работает как обычная АТС</td></tr>
+        <tr><td class="n">3</td><td>Решение о тиражировании</td><td class="n">6</td><td class="wide"><span class="chip c-crit">контрольная</span> Всё, что всплыло бы на трёх площадках, всплыло на одной</td></tr>
+        <tr><td class="n">4</td><td>Все пять узлов в кластере</td><td class="n">9</td><td class="wide">Кворум 5, нечётный — арбитр не нужен</td></tr>
+        <tr><td class="n">5</td><td>Передача роли мастера проверена</td><td class="n">10</td><td class="wide">Отдельной резервной машины нет, поэтому процедура отработана учебно</td></tr>
+        <tr><td class="n">6</td><td>Мелкие АТС погашены</td><td class="n">12</td><td class="wide">343 абонента пяти станций переехали на узлы</td></tr>
+        <tr><td class="n">7</td><td>Перенумерация завершена</td><td class="n">13</td><td class="wide">Переадресации со старых номеров сняты</td></tr>
       </tbody>
     </table>
   </div>
@@ -324,7 +313,7 @@
     <h2>Что показал аудит перед планированием</h2>
   </div>
   <p class="col">1255 абонентов на двенадцати станциях. Два числа в этой таблице
-  переворачивают весь план — они выделены.</p>
+  определяют, где узлы вообще не нужны.</p>
 
   <div class="tbl-wrap">
     <table>
@@ -340,23 +329,13 @@
     </table>
   </div>
 
-  <div class="note crit">
-    <span class="label">Вывод 1</span>
-    <p><b>У Ставрополя нет своей АТС.</b> Все 74 абонента зарегистрированы на
-    ростовском сервере. «Развернуть кластер в Ставрополе» здесь означает не
-    «принять существующую станцию», а поставить туда клон мастера и перевести на
-    него людей. То же наполовину верно для Москвы: 65 из 80 висят на Ростове.
-    Парадоксально, но эти две площадки — самые простые в плане: переносить в базу
-    нечего, их абоненты уже там.</p>
-  </div>
-
-  <div class="note warn">
-    <span class="label">Вывод 2</span>
-    <p><b>Двенадцать АТС не должны стать двенадцатью узлами Galera.</b> Синхронная
-    репликация подтверждает каждую запись всем кластером — чем больше узлов, тем
-    дороже запись и тем чаще ложные разрывы на плохих каналах. Семь мелких станций
-    (суммарно 156 абонентов) выгоднее консолидировать в региональные узлы, чем
-    тащить каждую в кластер.</p>
+  <div class="note ok">
+    <span class="label">Отсюда — пятый сервер, а не шестой</span>
+    <p><b>Ставрополь остаётся на ростовском сервере.</b> Его 74 абонента и сегодня
+    живут там же — при переходе на кластер для них не меняется ничего, кроме номера.
+    Отдельный узел под них стоил бы шестой машины и снова сделал бы число узлов
+    чётным, вернув необходимость в арбитре. Москва получает свой узел, потому что
+    там есть ещё и локальный PBX на 15 человек, который всё равно надо гасить.</p>
   </div>
 </section>
 
@@ -364,14 +343,14 @@
 <section id="topology">
   <div class="sec-head">
     <span class="label">Целевое состояние</span>
-    <h2>Двенадцать станций сводятся в восемь узлов</h2>
+    <h2>Двенадцать станций сводятся в пять узлов</h2>
   </div>
-  <p class="col">Восемь полноценных узлов плюс арбитр — девять голосов, нечётное
-  число. Кластер переживает потерю четырёх узлов и продолжает принимать записи.</p>
+  <p class="col">Пять узлов — число нечётное, поэтому отдельный арбитр не нужен.
+  Кластер сохраняет кворум при потере двух узлов из пяти.</p>
 
   <figure>
-    <svg viewBox="0 0 900 560" role="img"
-         aria-label="Схема консолидации: двенадцать существующих станций слева сводятся в семь узлов с абонентами справа, плюс резервный мастер и арбитр без абонентов. Ставрополь и Москва получают абонентов с ростовского сервера.">
+    <svg viewBox="0 0 900 500" role="img"
+         aria-label="Схема консолидации: двенадцать существующих станций слева сводятся в пять узлов справа. Ростов принимает свои мелкие станции и сохраняет ставропольских абонентов, Москва получает новый сервер.">
       <defs>
         <marker id="ca" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
           <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
@@ -381,10 +360,9 @@
 
       <text x="20" y="26" class="t-b">Сейчас — 12 станций</text>
       <text x="20" y="44" class="t-s">каждая со своей базой и своим планом номеров</text>
-      <text x="520" y="26" class="t-b">После — 8 узлов и арбитр</text>
+      <text x="520" y="26" class="t-b">После — 5 узлов, арбитр не нужен</text>
       <text x="520" y="44" class="t-s">одна база на всех, единая нумерация</text>
 
-      <!-- левая колонка -->
       <g>
         <rect x="20" y="64" width="230" height="24" rx="3" class="bx"/><text x="32" y="80" class="t">Ростов</text><text x="238" y="80" class="t-m" text-anchor="end">278</text>
         <rect x="20" y="94" width="230" height="24" rx="3" class="bx"/><text x="32" y="110" class="t">Манитек</text><text x="238" y="110" class="t-m" text-anchor="end">20</text>
@@ -392,80 +370,72 @@
         <rect x="20" y="154" width="230" height="24" rx="3" class="bx"/><text x="32" y="170" class="t">Цимлянский</text><text x="238" y="170" class="t-m" text-anchor="end">19</text>
         <rect x="20" y="184" width="230" height="24" rx="3" class="bx"/><text x="32" y="200" class="t">Приманыческий</text><text x="238" y="200" class="t-m" text-anchor="end">15</text>
         <rect x="20" y="214" width="230" height="24" rx="3" class="bx"/><text x="32" y="230" class="t">Воронеж</text><text x="238" y="230" class="t-m" text-anchor="end">229</text>
-        <rect x="20" y="244" width="230" height="24" rx="3" class="bx"/><text x="32" y="260" class="t">Калуга</text><text x="238" y="260" class="t-m" text-anchor="end">29</text>
-        <rect x="20" y="274" width="230" height="24" rx="3" class="bx"/><text x="32" y="290" class="t">Мясокомбинат</text><text x="238" y="290" class="t-m" text-anchor="end">187</text>
-        <rect x="20" y="304" width="230" height="24" rx="3" class="bx"/><text x="32" y="320" class="t">Славянск-на-Кубани</text><text x="238" y="320" class="t-m" text-anchor="end">136</text>
-        <rect x="20" y="334" width="230" height="24" rx="3" class="bx"/><text x="32" y="350" class="t">Нижний Новгород</text><text x="238" y="350" class="t-m" text-anchor="end">122</text>
-        <rect x="20" y="364" width="230" height="24" rx="3" class="bx"/><text x="32" y="380" class="t">ССЗ</text><text x="238" y="380" class="t-m" text-anchor="end">39</text>
+        <rect x="20" y="244" width="230" height="24" rx="3" class="bx"/><text x="32" y="260" class="t">Мясокомбинат</text><text x="238" y="260" class="t-m" text-anchor="end">187</text>
+        <rect x="20" y="274" width="230" height="24" rx="3" class="bx"/><text x="32" y="290" class="t">Калуга</text><text x="238" y="290" class="t-m" text-anchor="end">29</text>
+        <rect x="20" y="304" width="230" height="24" rx="3" class="bx"/><text x="32" y="320" class="t">Нижний Новгород</text><text x="238" y="320" class="t-m" text-anchor="end">122</text>
+        <rect x="20" y="334" width="230" height="24" rx="3" class="bx"/><text x="32" y="350" class="t">ССЗ</text><text x="238" y="350" class="t-m" text-anchor="end">39</text>
+        <rect x="20" y="364" width="230" height="24" rx="3" class="bx"/><text x="32" y="380" class="t">Славянск-на-Кубани</text><text x="238" y="380" class="t-m" text-anchor="end">136</text>
         <rect x="20" y="394" width="230" height="24" rx="3" class="bx"/><text x="32" y="410" class="t">PBX локальный</text><text x="238" y="410" class="t-m" text-anchor="end">15</text>
       </g>
 
-      <!-- скобки групп -->
       <g class="ln" opacity=".7">
         <path d="M250,76 H264 V196 H250 M264,136 H278"/>
-        <path d="M250,226 H264 V256 H250 M264,241 H278"/>
-        <path d="M250,346 H264 V376 H250 M264,361 H278"/>
+        <path d="M250,226 H264 V286 H250 M264,256 H278"/>
+        <path d="M250,316 H264 V346 H250 M264,331 H278"/>
       </g>
 
-      <!-- стрелки -->
       <g class="ln-a" marker-end="url(#ca)">
         <path d="M278,136 H512"/>
-        <path d="M278,241 H512"/>
-        <path d="M250,286 H512"/>
-        <path d="M250,316 H340 V316 M340,316 H512"/>
-        <path d="M278,361 H512"/>
-        <path d="M250,406 H400 V466 H512"/>
+        <path d="M278,256 H512"/>
+        <path d="M278,331 H512"/>
+        <path d="M250,376 H512"/>
+        <path d="M250,406 H400 V436 H512"/>
       </g>
 
-      <!-- переезды с Ростова -->
-      <g class="ln-c" marker-end="url(#cc)" stroke-dasharray="6 4">
-        <path d="M180,88 V436 H512"/>
-        <path d="M210,88 V466 H512"/>
-      </g>
-      <text x="188" y="430" class="t-c">74 переезжают на Ставрополь</text>
-      <text x="218" y="460" class="t-c">65 переезжают на Москву</text>
+      <path d="M200,88 V466 H512" class="ln-c" marker-end="url(#cc)" stroke-dasharray="6 4"/>
+      <text x="208" y="460" class="t-c">65 московских абонентов переезжают с Ростова</text>
 
-      <!-- правая колонка -->
       <g>
-        <rect x="516" y="122" width="336" height="30" rx="4" class="bx-ok"/>
-        <text x="530" y="141" class="t-b">Ростов — мастер, FreePBX, управление</text><text x="840" y="141" class="t-m" text-anchor="end">352</text>
-        <rect x="516" y="227" width="336" height="30" rx="4" class="bx-a"/>
-        <text x="530" y="246" class="t-b">Воронеж</text><text x="840" y="246" class="t-m" text-anchor="end">258</text>
-        <rect x="516" y="271" width="336" height="30" rx="4" class="bx-a"/>
-        <text x="530" y="290" class="t-b">Мясокомбинат</text><text x="840" y="290" class="t-m" text-anchor="end">187</text>
-        <rect x="516" y="301" width="336" height="30" rx="4" class="bx-a"/>
-        <text x="530" y="320" class="t-b">Славянск-на-Кубани</text><text x="762" y="320" class="t-s">Краснодар</text><text x="840" y="320" class="t-m" text-anchor="end">140</text>
-        <rect x="516" y="346" width="336" height="30" rx="4" class="bx-a"/>
-        <text x="530" y="365" class="t-b">Нижний Новгород</text><text x="840" y="365" class="t-m" text-anchor="end">164</text>
+        <rect x="516" y="121" width="336" height="30" rx="4" class="bx-ok"/>
+        <text x="530" y="140" class="t-b">Ростов — мастер, FreePBX</text><text x="840" y="140" class="t-m" text-anchor="end">426</text>
+        <text x="530" y="166" class="t-ok">включая 74 абонента Ставрополя — они и сейчас здесь</text>
+
+        <rect x="516" y="241" width="336" height="30" rx="4" class="bx-a"/>
+        <text x="530" y="260" class="t-b">Воронеж</text><text x="840" y="260" class="t-m" text-anchor="end">445</text>
+
+        <rect x="516" y="316" width="336" height="30" rx="4" class="bx-a"/>
+        <text x="530" y="335" class="t-b">Нижний Новгород</text><text x="840" y="335" class="t-m" text-anchor="end">164</text>
+
+        <rect x="516" y="361" width="336" height="30" rx="4" class="bx-a"/>
+        <text x="530" y="380" class="t-b">Славянск-на-Кубани</text><text x="762" y="380" class="t-s">Краснодар</text><text x="840" y="380" class="t-m" text-anchor="end">140</text>
+
         <rect x="516" y="421" width="336" height="30" rx="4" class="bx-c"/>
-        <text x="530" y="440" class="t-b">Ставрополь</text><text x="712" y="440" class="t-c">новый узел</text><text x="840" y="440" class="t-m" text-anchor="end">74</text>
-        <rect x="516" y="451" width="336" height="30" rx="4" class="bx-c"/>
-        <text x="530" y="470" class="t-b">Москва</text><text x="712" y="470" class="t-c">новый узел</text><text x="840" y="470" class="t-m" text-anchor="end">80</text>
+        <text x="530" y="440" class="t-b">Москва</text><text x="700" y="440" class="t-c">новый сервер</text><text x="840" y="440" class="t-m" text-anchor="end">80</text>
       </g>
 
-      <line x1="516" y1="497" x2="852" y2="497" class="grid"/>
-      <g>
-        <rect x="516" y="507" width="163" height="30" rx="4" class="bx-d"/>
-        <text x="530" y="526" class="t">Резервный мастер</text>
-        <rect x="689" y="507" width="163" height="30" rx="4" class="bx-d"/>
-        <text x="703" y="526" class="t">Арбитр <tspan class="t-m">garbd</tspan></text>
-      </g>
-      <text x="852" y="552" class="t-s" text-anchor="end">без абонентов · голос в кворуме</text>
-      <text x="20" y="450" class="t-s">Ростов сейчас обслуживает</text>
-      <text x="20" y="466" class="t-s">146 «чужих» абонентов —</text>
-      <text x="20" y="482" class="t-s">их и забирают новые узлы</text>
+      <line x1="516" y1="470" x2="852" y2="470" class="grid"/>
+      <text x="530" y="489" class="t-b">Итого 1255</text>
+      <text x="852" y="489" class="t-ok" text-anchor="end">5 голосов · кворум 3 · переживает потерю 2 узлов</text>
     </svg>
-    <figcaption>Сплошные стрелки — консолидация станций в узел, пунктирные красные —
-    абоненты, которые сегодня живут на ростовском сервере и переезжают на свои
-    площадки. Ставрополь и Москва не «принимают» станцию — они её заменяют.</figcaption>
+    <figcaption>Сплошные стрелки — консолидация станций в узел, пунктирная красная —
+    московские абоненты, которые сегодня живут на ростовском сервере. Ставрополь на
+    схеме не отдельной строкой: его абоненты остаются там, где и были.</figcaption>
   </figure>
+
+  <div class="note warn">
+    <span class="label">Чем платим за пятый сервер под Москву</span>
+    <p><b>Отдельной машины под резервный мастер нет.</b> По устройству схемы она и не
+    обязательна: каждый узел — клон мастера, FreePBX на нём уже установлен и только
+    отключён, поэтому роль мастера передаётся на любой рабочий узел включением
+    веб-интерфейса. Но процедура должна быть опробована заранее — на это выделена
+    неделя 10. Не опробованная в спокойной обстановке, в аварию она не сработает.</p>
+  </div>
 
   <div class="note warn">
     <span class="label">Проверить до старта</span>
     <p>Регион 5 в аудите назван «Москва, СПб, Новосибирск». Если абоненты
-    действительно в Новосибирске, задержка до Москвы превышает порог синхронной
-    репликации. Тогда Новосибирск в Galera не включается — он получает автономную
-    АТС с транком до кластера.</p>
+    действительно в Новосибирске, задержка превышает порог синхронной репликации.
+    Тогда Новосибирск в кластер не включается — он получает автономную АТС с транком.</p>
   </div>
 </section>
 
@@ -476,8 +446,7 @@
     <h2>Все узлы — клоны мастера</h2>
   </div>
   <p class="col">Каждый узел, кроме самого Ростова, разворачивается клонированием
-  виртуальной машины мастера, а не установкой с нуля. Это даёт три вещи, которые
-  иначе приходится обеспечивать вручную:</p>
+  виртуальной машины мастера. Это то, что позволяет уложить площадку в неделю:</p>
   <ul class="col">
     <li><b>Версия Asterisk гарантированно совпадает.</b> Расхождение мажорных версий
       ломает realtime-схему <code>ps_*</code> — самая дорогая из возможных ошибок
@@ -493,25 +462,18 @@
 
 <pre><code><span class="cmt"># на клоне, сразу после первого включения и смены IP</span>
 ./scripts/prepare-clone.sh \
-    --node-name=stavropol --node-ip=10.6.1.10 \
+    --node-name=moscow --node-ip=10.5.1.10 \
     --master-ip=10.1.10.111 --master-node-name=rostov \
     --peers=&lt;полный список&gt; --sst-pass='…' --rt-pass='…'</code></pre>
 
-  <p class="col" style="margin-top:1em">Скрипт меняет hostname, machine-id и ключи
-  SSH, переименовывает <code>systemname</code>, отключает второй веб-интерфейс
-  FreePBX, стирает унаследованные регистрации и журналы, сбрасывает состояние
-  Galera и настраивает realtime. Для резервного мастера — та же команда с
-  <code>--role=standby</code>: Asterisk остаётся выключенным, а FreePBX на клоне
-  уже готов принять управление.</p>
-
   <h3 style="margin-top:34px">Порядок работ по площадке</h3>
-  <p class="col">Он одинаков для всех и важен именно в этой последовательности:
+  <p class="col">Одинаков для всех и важен именно в этой последовательности:
   клон мастера знает только то, что есть в базе мастера, поэтому абоненты старой
   станции должны попасть туда <b>до</b> того, как клон её заменит.</p>
 
   <figure>
-    <svg viewBox="0 0 900 396" role="img"
-         aria-label="Три недели работ по одной площадке. Старая АТС работает всё это время. На мастере заводят абонентов и выгружают в realtime, затем клонируют виртуальную машину, расшивают клон, поднимают транки, переводят телефоны провижинингом и после недели наблюдения гасят старую станцию.">
+    <svg viewBox="0 0 900 350" role="img"
+         aria-label="Работы по одной площадке за неделю. Старая АТС работает всё это время. На мастере заводят абонентов и выгружают в realtime, затем клонируют виртуальную машину, расшивают клон, поднимают транки, переводят телефоны провижинингом и гасят старую станцию.">
       <defs>
         <marker id="sa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
           <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
@@ -521,133 +483,76 @@
           <path d="M0,0 L10,5 L0,10 z" fill="var(--dim)"/></marker>
       </defs>
 
-      <!-- недели -->
       <g class="grid">
-        <line x1="150" y1="34" x2="150" y2="356"/>
-        <line x1="400" y1="34" x2="400" y2="356"/>
-        <line x1="620" y1="34" x2="620" y2="356"/>
-        <line x1="880" y1="34" x2="880" y2="356"/>
+        <line x1="150" y1="34" x2="150" y2="316"/>
+        <line x1="880" y1="34" x2="880" y2="316"/>
       </g>
-      <text x="275" y="26" class="t-s" text-anchor="middle">неделя 1 — подготовка</text>
-      <text x="510" y="26" class="t-s" text-anchor="middle">неделя 2 — переключение</text>
-      <text x="750" y="26" class="t-s" text-anchor="middle">неделя 3 — наблюдение</text>
+      <text x="515" y="26" class="t-s" text-anchor="middle">одна неделя на площадку</text>
 
-      <!-- лейн: старая АТС -->
       <text x="140" y="72" class="t-b" text-anchor="end">Старая АТС</text>
-      <rect x="150" y="56" width="530" height="26" rx="3" class="bx"/>
+      <rect x="150" y="56" width="560" height="26" rx="3" class="bx"/>
       <text x="164" y="73" class="t-s">работает и принимает вызовы — её не трогают</text>
-      <rect x="680" y="56" width="200" height="26" rx="3" class="bx-d"/>
-      <text x="694" y="73" class="t-s">погашена после наблюдения</text>
+      <rect x="710" y="56" width="170" height="26" rx="3" class="bx-d"/>
+      <text x="724" y="73" class="t-s">погашена</text>
 
-      <!-- лейн: мастер -->
       <text x="140" y="130" class="t-b" text-anchor="end">Мастер (Ростов)</text>
       <text x="140" y="146" class="t-s" text-anchor="end">FreePBX + база</text>
       <circle cx="182" cy="132" r="11" class="stepno"/><text x="182" y="136" class="stepno-t" text-anchor="middle">1</text>
-      <rect x="199" y="118" width="150" height="28" rx="3" class="bx-a"/>
+      <rect x="199" y="118" width="160" height="28" rx="3" class="bx-a"/>
       <text x="211" y="130" class="t-b">Завести абонентов</text><text x="211" y="142" class="t-s">Bulk Handler из CSV</text>
-      <circle cx="367" cy="132" r="11" class="stepno"/><text x="367" y="136" class="stepno-t" text-anchor="middle">2</text>
-      <rect x="384" y="118" width="150" height="28" rx="3" class="bx-a"/>
-      <text x="396" y="130" class="t-b">Выгрузить в realtime</text><text x="396" y="142" class="t-m">cluster-sync --apply</text>
+      <circle cx="377" cy="132" r="11" class="stepno"/><text x="377" y="136" class="stepno-t" text-anchor="middle">2</text>
+      <rect x="394" y="118" width="160" height="28" rx="3" class="bx-a"/>
+      <text x="406" y="130" class="t-b">Выгрузить в realtime</text><text x="406" y="142" class="t-m">cluster-sync --apply</text>
 
-      <!-- лейн: новый узел -->
       <text x="140" y="212" class="t-b" text-anchor="end">Новый узел</text>
       <text x="140" y="228" class="t-s" text-anchor="end">клон ВМ мастера</text>
       <circle cx="182" cy="214" r="11" class="stepno"/><text x="182" y="218" class="stepno-t" text-anchor="middle">3</text>
-      <rect x="199" y="200" width="150" height="28" rx="3" class="bx-a"/>
+      <rect x="199" y="200" width="160" height="28" rx="3" class="bx-a"/>
       <text x="211" y="212" class="t-b">Клонировать ВМ</text><text x="211" y="224" class="t-s">поднять, сменить IP</text>
-      <circle cx="367" cy="214" r="11" class="stepno"/><text x="367" y="218" class="stepno-t" text-anchor="middle">4</text>
-      <rect x="384" y="200" width="150" height="28" rx="3" class="bx-a"/>
-      <text x="396" y="212" class="t-b">Расшить клон</text><text x="396" y="224" class="t-m">prepare-clone.sh</text>
-      <circle cx="552" cy="214" r="11" class="stepno"/><text x="552" y="218" class="stepno-t" text-anchor="middle">5</text>
-      <rect x="569" y="200" width="130" height="28" rx="3" class="bx-a"/>
-      <text x="581" y="212" class="t-b">Межузловые транки</text><text x="581" y="224" class="t-s">на всех узлах</text>
-      <circle cx="717" cy="214" r="11" class="stepno"/><text x="717" y="218" class="stepno-t" text-anchor="middle">6</text>
-      <rect x="734" y="200" width="130" height="28" rx="3" class="bx-a"/>
-      <text x="746" y="212" class="t-b">Выход в город</text><text x="746" y="224" class="t-s">транк оператора</text>
+      <circle cx="377" cy="214" r="11" class="stepno"/><text x="377" y="218" class="stepno-t" text-anchor="middle">4</text>
+      <rect x="394" y="200" width="160" height="28" rx="3" class="bx-a"/>
+      <text x="406" y="212" class="t-b">Расшить клон</text><text x="406" y="224" class="t-m">prepare-clone.sh</text>
+      <circle cx="572" cy="214" r="11" class="stepno"/><text x="572" y="218" class="stepno-t" text-anchor="middle">5</text>
+      <rect x="589" y="200" width="135" height="28" rx="3" class="bx-a"/>
+      <text x="601" y="212" class="t-b">Межузловые транки</text><text x="601" y="224" class="t-s">на всех узлах</text>
+      <circle cx="742" cy="214" r="11" class="stepno"/><text x="742" y="218" class="stepno-t" text-anchor="middle">6</text>
+      <rect x="759" y="200" width="121" height="28" rx="3" class="bx-a"/>
+      <text x="771" y="212" class="t-b">Выход в город</text><text x="771" y="224" class="t-s">транк оператора</text>
 
-      <!-- поток данных мастер -> клон -->
-      <path d="M274,150 V186" class="ln-a" marker-end="url(#sa)"/>
-      <text x="282" y="172" class="t-a">база уже содержит абонентов площадки</text>
+      <path d="M279,150 V186" class="ln-a" marker-end="url(#sa)"/>
+      <text x="287" y="172" class="t-a">база уже содержит абонентов площадки</text>
 
-      <!-- лейн: телефоны -->
       <text x="140" y="300" class="t-b" text-anchor="end">Телефоны</text>
-      <text x="140" y="316" class="t-s" text-anchor="end">445 аппаратов</text>
       <rect x="150" y="286" width="420" height="28" rx="3" class="bx"/>
       <text x="164" y="304" class="t-s">регистрируются на старой АТС</text>
       <circle cx="588" cy="300" r="11" class="stepno"/><text x="588" y="304" class="stepno-t" text-anchor="middle">7</text>
-      <rect x="605" y="286" width="150" height="28" rx="3" class="bx-ok"/>
+      <rect x="605" y="286" width="160" height="28" rx="3" class="bx-ok"/>
       <text x="617" y="298" class="t-b">Провижининг</text><text x="617" y="310" class="t-m">epm-set-site --apply</text>
-      <rect x="775" y="286" width="105" height="28" rx="3" class="bx-ok"/>
-      <text x="789" y="304" class="t-ok">на новом узле</text>
+      <rect x="785" y="286" width="95" height="28" rx="3" class="bx-ok"/>
+      <text x="799" y="304" class="t-ok">на узле</text>
 
-      <!-- телефоны -> узел -->
-      <path d="M680,286 V242" class="ln-ok" marker-end="url(#sk)"/>
-      <text x="688" y="262" class="t-ok">перерегистрация за 10–60 с</text>
+      <path d="M690,286 V242" class="ln-ok" marker-end="url(#sk)"/>
+      <text x="698" y="262" class="t-ok">перерегистрация за 10–60 с</text>
 
-      <!-- откат -->
-      <path d="M760,330 H400" class="ln-d" marker-end="url(#sd)" stroke-dasharray="6 5"/>
-      <text x="404" y="348" class="t-s">Откат бесплатный: вернуть прежний <tspan class="t-m">sites.conf</tspan>, пересобрать конфиги — телефоны уходят обратно</text>
-      <circle cx="775" cy="330" r="11" class="stepno" fill="var(--dim)"/><text x="775" y="334" class="stepno-t" text-anchor="middle">8</text>
-      <text x="792" y="334" class="t-s">неделя наблюдения</text>
+      <path d="M770,332 H400" class="ln-d" marker-end="url(#sd)" stroke-dasharray="6 5"/>
+      <text x="404" y="346" class="t-s">Откат бесплатный: вернуть прежний <tspan class="t-m">sites.conf</tspan>, пересобрать конфиги — телефоны уходят обратно</text>
     </svg>
     <figcaption>Старая станция работает всё время работ. Клон поднимается рядом, на
     новом адресе, и телефоны переезжают на него провижинингом — поэтому откат стоит
-    одной пересборки конфигов, а не восстановления из бэкапа.</figcaption>
+    одной пересборки конфигов, а не восстановления из бэкапа. Именно это позволяет
+    отвести на площадку неделю, а не три.</figcaption>
   </figure>
 
-  <h3 style="margin-top:34px">График тиражирования</h3>
-  <figure>
-    <svg viewBox="0 0 900 178" role="img"
-         aria-label="Недели с девятой по пятнадцатую: Мясокомбинат, арбитр garbd, Славянск-на-Кубани, Нижний Новгород, Ставрополь две недели, Москва.">
-      <text x="20" y="20" class="t-s">неделя</text>
-      <g class="t-n" text-anchor="middle">
-        <text x="80" y="20">9</text><text x="200" y="20">10</text><text x="320" y="20">11</text>
-        <text x="440" y="20">12</text><text x="620" y="20">13–14</text><text x="800" y="20">15</text>
-      </g>
-
-      <rect x="20" y="32" width="120" height="112" rx="5" class="bx-a"/>
-      <text x="80" y="60" class="t-b" text-anchor="middle">Мясокомбинат</text>
-      <text x="80" y="92" class="t-m" text-anchor="middle" font-size="20">187</text>
-      <text x="80" y="118" class="t-s" text-anchor="middle">тот же регион,</text>
-      <text x="80" y="132" class="t-s" text-anchor="middle">что Воронеж</text>
-
-      <rect x="140" y="32" width="120" height="112" rx="5" class="bx-w"/>
-      <text x="200" y="60" class="t-b" text-anchor="middle">Арбитр</text>
-      <text x="200" y="92" class="t-m" text-anchor="middle" font-size="15">garbd</text>
-      <text x="200" y="118" class="t-w" text-anchor="middle">до того, как узлов</text>
-      <text x="200" y="132" class="t-w" text-anchor="middle">станет чётное число</text>
-
-      <rect x="260" y="32" width="120" height="112" rx="5" class="bx-a"/>
-      <text x="320" y="54" class="t-b" text-anchor="middle">Славянск-</text>
-      <text x="320" y="69" class="t-b" text-anchor="middle">на-Кубани</text>
-      <text x="320" y="98" class="t-m" text-anchor="middle" font-size="20">140</text>
-      <text x="320" y="124" class="t-c" text-anchor="middle">нужен IP —</text>
-      <text x="320" y="138" class="t-c" text-anchor="middle">в аудите не указан</text>
-
-      <rect x="380" y="32" width="120" height="112" rx="5" class="bx-a"/>
-      <text x="440" y="54" class="t-b" text-anchor="middle">Нижний</text>
-      <text x="440" y="69" class="t-b" text-anchor="middle">Новгород</text>
-      <text x="440" y="98" class="t-m" text-anchor="middle" font-size="20">164</text>
-
-      <rect x="500" y="32" width="240" height="112" rx="5" class="bx-ok"/>
-      <text x="620" y="60" class="t-b" text-anchor="middle">Ставрополь</text>
-      <text x="620" y="92" class="t-m" text-anchor="middle" font-size="20">74</text>
-      <text x="620" y="118" class="t-ok" text-anchor="middle">старой АТС нет: шаги 1–2 не нужны,</text>
-      <text x="620" y="132" class="t-ok" text-anchor="middle">но 74 человека переезжают с Ростова</text>
-
-      <rect x="740" y="32" width="140" height="112" rx="5" class="bx-ok"/>
-      <text x="810" y="60" class="t-b" text-anchor="middle">Москва</text>
-      <text x="810" y="92" class="t-m" text-anchor="middle" font-size="20">80</text>
-      <text x="810" y="118" class="t-ok" text-anchor="middle">65 с Ростова,</text>
-      <text x="810" y="132" class="t-ok" text-anchor="middle">15 с локального PBX</text>
-
-      <text x="20" y="166" class="t-s">Перед каждой площадкой — обновление списка узлов на всех уже работающих, по одному, с ожиданием <tspan class="t-m">Synced</tspan>:</text>
-      <text x="640" y="166" class="t-m">update-peers.sh --peers=… --restart</text>
-    </svg>
-    <figcaption>Зелёным — площадки, где старой станции нет и переносить в базу нечего.
-    Они проще остальных, а не сложнее: работа сводится к клону, транку и переключению
-    телефонов.</figcaption>
-  </figure>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th class="n">Неделя</th><th>Площадка</th><th class="n">Абонентов</th><th>Особенность</th></tr></thead>
+      <tbody>
+        <tr><td class="wk">7</td><td>Нижний Новгород</td><td class="n">164</td><td class="wide">—</td></tr>
+        <tr><td class="wk">8</td><td>Славянск-на-Кубани</td><td class="n">140</td><td class="wide"><span class="chip c-crit">нужен IP</span> в аудите не указан</td></tr>
+        <tr><td class="wk">9</td><td>Москва</td><td class="n">80</td><td class="wide"><span class="chip c-ok">проще остальных</span> абоненты уже в базе мастера, шаги 1–2 не нужны</td></tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <!-- ============ ЭТАПЫ ============ -->
@@ -658,57 +563,52 @@
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>0</b>недели 1–3</div>
+    <div class="stage-no"><b>1</b>недели 1–2</div>
     <div class="stage-body">
       <h3>Подготовка</h3>
-      <p>Идёт параллельно с этапом 1. Ничего не разворачивается, но без этого
+      <p>Идёт параллельно с этапом 2. Ничего не разворачивается, но без этого
       остальное встанет.</p>
       <div class="tbl-wrap">
         <table>
           <thead><tr><th>Шаг</th><th>Кто</th><th class="n">Срок</th></tr></thead>
           <tbody>
-            <tr><td class="wide">Утвердить план нумерации, разослать людям их новые номера</td><td>руководство + ИТ</td><td class="wk">нед. 1</td></tr>
-            <tr><td class="wide">Сеть между шестью регионами: site-to-site VPN</td><td>сетевая служба</td><td class="wk">нед. 1–3</td></tr>
-            <tr><td class="wide">Замерить RTT и потери между всеми парами регионов</td><td>ИТ</td><td class="wk">нед. 3</td></tr>
+            <tr><td class="wide">Утвердить план нумерации, разослать людям новые номера</td><td>руководство + ИТ</td><td class="wk">нед. 1</td></tr>
+            <tr><td class="wide">Site-to-site VPN между площадками</td><td>сетевая служба</td><td class="wk">нед. 1–2</td></tr>
+            <tr><td class="wide">Замерить RTT и потери между всеми парами площадок</td><td>ИТ</td><td class="wk">нед. 2</td></tr>
             <tr><td class="wide">Получить IP для Славянска-на-Кубани и PBX локального</td><td>ИТ</td><td class="wk">нед. 1</td></tr>
-            <tr><td class="wide">Заказать серверы: Ставрополь, Москва, резервный мастер, арбитр</td><td>закупка</td><td class="wk">нед. 1–3</td></tr>
-            <tr><td class="wide">У операторов — по SIP-пользователю ВАТС на каждую площадку</td><td>ИТ + операторы</td><td class="wk">нед. 2–3</td></tr>
+            <tr><td class="wide">Подготовить сервер под московский узел</td><td>закупка</td><td class="wk">нед. 1–2</td></tr>
+            <tr><td class="wide">У операторов — SIP-пользователь ВАТС на каждую площадку</td><td>ИТ + операторы</td><td class="wk">нед. 1–2</td></tr>
           </tbody>
         </table>
       </div>
       <div class="note warn">
         <span class="label">Точка принятия решения</span>
-        <p>Замер RTT. Порог: до 20 мс хорошо, до 50 мс терпимо, выше — регион в
-        Galera не включается и получает автономную АТС с транком.</p>
+        <p>Замер RTT. Порог: до 20 мс хорошо, до 50 мс терпимо, выше — площадка в
+        кластер не включается и получает автономную АТС с транком.</p>
       </div>
-<pre><code>./scripts/preflight.sh --node-ip=&lt;этот&gt; --peers=&lt;все шесть&gt;</code></pre>
-      <p style="margin-top:1em"><b>Требования к серверам:</b> узел — 2 vCPU / 4 ГБ / 40 ГБ,
-      резервный мастер — столько же, арбитр — 1 vCPU / 512 МБ. Под узлы ОС не ставится:
-      это место под клон мастера, поэтому диск считается по его текущему размеру с
-      запасом, а не по минимуму для headless Asterisk. Если площадки на разных
-      гипервизорах, снимок мастера переносится файлом — это добавляет к работам по
-      площадке несколько часов.</p>
+<pre><code>./scripts/preflight.sh --node-ip=&lt;этот&gt; --peers=&lt;все пять&gt;</code></pre>
+      <p style="margin-top:1em">Московскому серверу нужно 2 vCPU / 4 ГБ, а диск
+      считается по текущему размеру мастера с запасом: это место под его клон,
+      а не под установку с нуля.</p>
     </div>
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>1</b>недели 2–3</div>
+    <div class="stage-no"><b>2</b>недели 1–2</div>
     <div class="stage-body">
-      <h3>Безопасность и ротация</h3>
+      <h3>Смена учётных данных и защита периметра</h3>
       <p>Делается до объединения. После объединения ошибка распространяется на все
       площадки сразу.</p>
       <div class="tbl-wrap">
         <table>
           <thead><tr><th>Шаг</th><th>Команда / где</th><th class="n">Срок</th></tr></thead>
           <tbody>
-            <tr><td class="wide">Журнал безопасности, fail2ban, ограничение AMI</td><td><code>harden.sh --apply</code></td><td class="wk">нед. 2</td></tr>
-            <tr><td class="wide">Порядок идентификации: <code>username,auth_username,ip</code></td><td>FreePBX → SIP Settings</td><td class="wk">нед. 2</td></tr>
-            <tr><td class="wide">Кодеки: alaw первым, видео отключить</td><td>FreePBX → Codecs</td><td class="wk">нед. 2</td></tr>
-            <tr><td class="wide">Смена 444 SIP-паролей</td><td>FreePBX → Bulk Handler</td><td class="wk">нед. 2–3</td></tr>
-            <tr><td class="wide">Смена учёток транков</td><td>кабинеты операторов</td><td class="wk">нед. 3</td></tr>
-            <tr><td class="wide">Смена AMI и пароля БД</td><td><code>manager.conf</code>, <code>res_odbc</code></td><td class="wk">нед. 3</td></tr>
-            <tr><td class="wide">Пересборка конфигов телефонов</td><td><code>fwconsole endpoint rebuildall</code></td><td class="wk">нед. 3</td></tr>
-            <tr><td class="wide"><b>Проверка восстановления из бэкапа</b></td><td>развернуть копию на тестовой VM</td><td class="wk">нед. 3</td></tr>
+            <tr><td class="wide">Журнал безопасности, fail2ban, ограничение AMI</td><td><code>harden.sh --apply</code></td><td class="wk">нед. 1</td></tr>
+            <tr><td class="wide">Порядок идентификации и перечень кодеков</td><td>FreePBX → SIP Settings</td><td class="wk">нед. 1</td></tr>
+            <tr><td class="wide">Смена 444 SIP-паролей</td><td>FreePBX → Bulk Handler</td><td class="wk">нед. 1–2</td></tr>
+            <tr><td class="wide">Смена учёток транков, AMI и пароля БД</td><td>кабинеты операторов, <code>manager.conf</code></td><td class="wk">нед. 2</td></tr>
+            <tr><td class="wide">Пересборка конфигов телефонов</td><td><code>fwconsole endpoint rebuildall</code></td><td class="wk">нед. 2</td></tr>
+            <tr><td class="wide"><b>Проверка восстановления из бэкапа</b></td><td>развернуть копию на тестовой VM</td><td class="wk">нед. 2</td></tr>
           </tbody>
         </table>
       </div>
@@ -720,23 +620,12 @@
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>2</b>недели 3–4</div>
+    <div class="stage-no"><b>3</b>неделя 3</div>
     <div class="stage-body">
-      <h3>Стенд</h3>
+      <h3>Испытательный стенд</h3>
       <p>Две виртуалки, полный прогон до касания продуктива. Стенд повторяет боевую
       схему <b>включая способ развёртывания</b>: узел получается клонированием
-      мастера, а не отдельной установкой. Иначе на стенде не проявятся именно те
-      проблемы, ради которых он и нужен.</p>
-<pre><code><span class="cmt"># 1. Клон боевого мастера (или его копии) как тестовый мастер</span>
-./scripts/adopt-master.sh --node-name=test-master --node-ip=10.10.10.11 \
-    --peers=10.10.10.11,10.10.10.12 --cluster-name=asterisk_lab
-
-<span class="cmt"># 2. Клонировать ВМ тестового мастера, сменить IP, затем на клоне:</span>
-./scripts/prepare-clone.sh --node-name=test-site --node-ip=10.10.10.12 \
-    --master-ip=10.10.10.11 --master-node-name=test-master \
-    --peers=10.10.10.11,10.10.10.12 --sst-pass='…' --rt-pass='…'</code></pre>
-      <p style="margin-top:1em">Отдельно проверить то, что ломается именно при
-      клонировании:</p>
+      мастера. Иначе на стенде не проявятся именно те проблемы, ради которых он нужен.</p>
       <ul>
         <li><code>SELECT reg_server, COUNT(*) FROM ps_contacts GROUP BY reg_server</code> —
           имена узлов различаются, задвоения нет;</li>
@@ -744,31 +633,27 @@
         <li>вступление в кластер прошло через IST, а не SST;</li>
         <li>если UUID кластера разошёлся — повтор с <code>--full-resync</code> отрабатывает.</li>
       </ul>
-      <p>Плюс то, что в аварию делают впервые: восстановление кворума
-      (<code>galera-recover.sh --promote</code>), переключение на резервный мастер и
-      обратно, возврат узла после суток простоя.</p>
-      <div class="note ok">
-        <span class="label">Выход этапа</span>
-        <p>Чек-лист пройден, процедуры восстановления опробованы руками, а не прочитаны.</p>
+      <div class="note crit">
+        <p>Плюс то, что в аварию делают впервые: восстановление кворума и
+        <b>передача роли мастера на рабочий узел</b>. При отсутствии отдельной
+        резервной машины это основная процедура восстановления управления —
+        отработать её на стенде обязательно.</p>
       </div>
     </div>
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>3</b>неделя 5</div>
+    <div class="stage-no"><b>4</b>неделя 4</div>
     <div class="stage-body">
       <h3>Ростов становится мастером</h3>
       <p>Одно окно, около часа. База перезапускается: активные разговоры не рвутся,
       новые вызовы не устанавливаются примерно минуту.</p>
 <pre><code>./scripts/adopt-master.sh --node-name=rostov --node-ip=10.1.10.111 \
-    --peers=&lt;все планируемые узлы&gt; --cluster-name=asterisk_prod
+    --peers=&lt;все пять узлов&gt; --cluster-name=asterisk_prod
 asterisk-cluster-sync --apply
 asterisk-cluster-health</code></pre>
       <p style="margin-top:1em">Скрипт сам снимает бэкап, конвертирует MyISAM в InnoDB,
       поднимает Galera поверх существующей базы и сверяет число добавочных до и после.</p>
-      <p><b>Неделя наблюдения.</b> Кластер из одного узла работает как обычная АТС —
-      безопасная точка, на которой можно постоять и убедиться, что realtime и
-      кластерный диалплан ничего не сломали.</p>
       <div class="note">
         <span class="label">Откат</span>
         <p>Остановить MariaDB, убрать <code>60-galera.cnf</code>, запустить обратно.
@@ -778,107 +663,96 @@ asterisk-cluster-health</code></pre>
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>4</b>недели 6–8</div>
+    <div class="stage-no"><b>5</b>недели 5–6</div>
     <div class="stage-body">
       <h3>Воронеж — первая площадка</h3>
       <p>Самая важная точка проекта. Всё, что всплывёт здесь, всплыло бы на каждой
-      из пяти оставшихся.</p>
-<pre><code><span class="cmt"># неделя 6 — клонировать ВМ мастера, поднять в Воронеже, сменить IP, затем:</span>
+      из трёх оставшихся.</p>
+<pre><code><span class="cmt"># неделя 5 — клонировать ВМ мастера, поднять в Воронеже, сменить IP, затем:</span>
 ./scripts/preflight.sh --node-ip=10.4.3.6 --peers=&lt;полный список&gt;
 ./scripts/prepare-clone.sh --node-name=voronezh --node-ip=10.4.3.6 \
     --master-ip=10.1.10.111 --master-node-name=rostov \
     --peers=&lt;полный список&gt; --sst-pass='…' --rt-pass='…'
 ./scripts/make-node-trunks.sh --peers-map=rostov=10.1.10.111,voronezh=10.4.3.6
 asterisk-cluster-push-dialplan --nodes=voronezh=10.4.3.6
-
-<span class="cmt"># неделя 7 — свой выход в город</span>
-./scripts/setup-local-trunk.sh --trunk-name=mango-voronezh \
-    --host=&lt;сервер оператора&gt; --user=&lt;пользователь площадки&gt; \
-    --pass='…' --did=&lt;городской номер&gt;
-
-<span class="cmt"># неделя 7 — failover телефонов, начиная с одного аппарата</span>
+./scripts/setup-local-trunk.sh --trunk-name=mango-voronezh --host=&lt;оператор&gt; \
+    --user=&lt;пользователь площадки&gt; --pass='…' --did=&lt;городской номер&gt;
 epm-set-site --sites out/sites.conf --apply --rebuild</code></pre>
-      <p style="margin-top:1em"><b>Две недели наблюдения.</b> Под реальной нагрузкой
+      <p style="margin-top:1em"><b>Неделя наблюдения.</b> Под реальной нагрузкой
       проверяется:</p>
       <ul>
         <li>звонки внутри площадки, между площадками, наружу;</li>
         <li>остановка Asterisk Воронежа → телефоны уходят на Ростов за 10–60 с;</li>
         <li>возврат площадки → телефоны возвращаются;</li>
-        <li>обрыв VPN → поведение кворума на двух узлах (здесь понадобится арбитр);</li>
+        <li>обрыв VPN → поведение кворума на двух узлах;</li>
         <li><code>wsrep_flow_control_paused</code> — не тормозит ли Воронеж запись всему кластеру.</li>
       </ul>
       <div class="note crit">
         <span class="label">Контрольная точка</span>
-        <p>Если за две недели вылезли проблемы — тиражирование не начинается, пока
-        они не закрыты. Это единственное место в плане, где задержка обходится
-        дешевле спешки.</p>
+        <p>Если за неделю вылезли проблемы — тиражирование не начинается, пока они
+        не закрыты. При сжатом сроке это единственный запас в плане: сдвиг здесь
+        двигает весь график.</p>
       </div>
     </div>
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>5</b>недели 9–15</div>
+    <div class="stage-no"><b>6</b>недели 7–9</div>
     <div class="stage-body">
       <h3>Тиражирование</h3>
-      <p>По одной площадке, в порядке из графика выше. Перед каждой — обновление
-      списка узлов на всех уже работающих, по одному, с ожиданием <code>Synced</code>.
-      Полная последовательность работ по площадке — на схеме
+      <p>По одной площадке в неделю, в порядке из таблицы выше. Перед каждой —
+      обновление списка узлов на всех уже работающих, по одному, с ожиданием
+      <code>Synced</code>. Полная последовательность работ — на схеме
       «<a href="#clone" style="color:var(--accent)">Порядок работ по площадке</a>».</p>
-      <div class="note ok">
-        <p><b>Ставрополь и Москва проще остальных, а не сложнее.</b> Их абоненты уже
-        живут в базе мастера — переносить нечего. Работа сводится к клону, транку и
-        переключению телефонов через провижининг. Ростов при этом остаётся у них
-        резервным сервером, так что откат — это возврат прежнего
-        <code>sites.conf</code>.</p>
-      </div>
+<pre><code>./scripts/update-peers.sh --peers=&lt;НОВЫЙ полный список&gt; --restart</code></pre>
     </div>
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>6</b>неделя 16</div>
+    <div class="stage-no"><b>7</b>неделя 10</div>
     <div class="stage-body">
-      <h3>Резервный мастер</h3>
-<pre><code>./scripts/setup-standby-master.sh --prepare \
-    --node-name=rostov-standby --node-ip=&lt;резервный&gt; \
-    --master-ip=10.1.10.111 --master-node-name=rostov \
-    --peers=&lt;полный список&gt; --sst-pass='…' --rt-pass='…'
-./scripts/setup-standby-master.sh --status</code></pre>
-      <p style="margin-top:1em">Затем — <b>учебное переключение</b> в согласованное
-      окно: <code>--promote</code>, проверка управления и звонков,
-      <code>--demote</code>. Процедура, не опробованная в спокойной обстановке, в
-      аварию не работает.</p>
+      <h3>Учебная передача роли мастера</h3>
+      <p>Отдельной резервной машины нет — пятый сервер занят московским узлом.
+      Роль мастера передаётся на рабочий узел: FreePBX там уже установлен клонированием
+      и только отключён.</p>
+<pre><code>./scripts/setup-standby-master.sh --status
+./scripts/setup-standby-master.sh --promote   <span class="cmt"># на выбранном узле</span>
+<span class="cmt"># проверка управления и звонков</span>
+./scripts/setup-standby-master.sh --demote</code></pre>
+      <p style="margin-top:1em">Процедура, не опробованная в спокойной обстановке,
+      в аварию не работает. Это и есть цена отказа от отдельной резервной машины.</p>
     </div>
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>7</b>недели 12–20</div>
+    <div class="stage-no"><b>8</b>недели 6–12</div>
     <div class="stage-body">
       <h3>Консолидация мелких АТС</h3>
-      <p>Идёт параллельно с тиражированием, отдельным потоком.</p>
+      <p>Идёт параллельно с тиражированием, силами второго исполнителя.</p>
       <div class="tbl-wrap">
         <table>
           <thead><tr><th class="n">Недели</th><th>Что</th><th>Куда</th><th class="n">Абонентов</th></tr></thead>
           <tbody>
-            <tr><td class="wk">12–13</td><td>Калуга</td><td>Воронеж</td><td class="n">29</td></tr>
-            <tr><td class="wk">14–15</td><td>ССЗ</td><td>Нижний Новгород</td><td class="n">39</td></tr>
-            <tr><td class="wk">16–18</td><td class="wide">Манитек, Семикаракорский, Цимлянский, Приманыческий</td><td>Ростов</td><td class="n">73</td></tr>
-            <tr><td class="wk">19–20</td><td>PBX локальный</td><td>Москва</td><td class="n">15</td></tr>
+            <tr><td class="wk">6–7</td><td>Мясокомбинат</td><td>Воронеж</td><td class="n">187</td></tr>
+            <tr><td class="wk">8</td><td>Калуга</td><td>Воронеж</td><td class="n">29</td></tr>
+            <tr><td class="wk">9</td><td>ССЗ</td><td>Нижний Новгород</td><td class="n">39</td></tr>
+            <tr><td class="wk">10–11</td><td class="wide">Манитек, Семикаракорский, Цимлянский, Приманыческий</td><td>Ростов</td><td class="n">73</td></tr>
+            <tr><td class="wk">12</td><td>PBX локальный</td><td>Москва</td><td class="n">15</td></tr>
           </tbody>
         </table>
       </div>
       <p style="margin-top:1.2em">Для каждой: завести абонентов на принимающем узле,
-      перевести телефоны через провижининг, убедиться в работе неделю, погасить
-      старую станцию. Городские номера площадки при этом переносятся на принимающий
-      узел либо остаются через транк.</p>
+      перевести телефоны через провижининг, погасить старую станцию. Городские номера
+      переносятся на принимающий узел либо остаются через транк.</p>
     </div>
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>8</b>недели 6–26</div>
+    <div class="stage-no"><b>9</b>недели 5–13</div>
     <div class="stage-body">
       <h3>Перенумерация</h3>
-      <p>Самый длинный поток и самый организационный. Идёт параллельно всему,
-      начиная с первой площадки.</p>
+      <p>Самый организационный поток. Идёт параллельно всему, начиная с первой
+      площадки, силами второго исполнителя.</p>
       <ul>
         <li><b>Кто уже на пятизначных — не трогаем.</b> Калуга и часть Мясокомбината
           уже живут на новых номерах, они входят в кластер как есть.</li>
@@ -894,14 +768,11 @@ epm-set-site --sites out/sites.conf --apply --rebuild</code></pre>
         <table>
           <thead><tr><th class="n">Недели</th><th>Площадки</th><th class="n">Абонентов</th></tr></thead>
           <tbody>
-            <tr><td class="wk">6–10</td><td>Воронеж</td><td class="n">229</td></tr>
-            <tr><td class="wk">10–14</td><td>Мясокомбинат, Калуга</td><td class="n">216</td></tr>
-            <tr><td class="wk">12–16</td><td>Славянск-на-Кубани</td><td class="n">136</td></tr>
-            <tr><td class="wk">14–18</td><td>Нижний Новгород, ССЗ</td><td class="n">161</td></tr>
-            <tr><td class="wk">16–20</td><td class="wide">Ростов и его мелкие площадки</td><td class="n">352</td></tr>
-            <tr><td class="wk">18–22</td><td>Ставрополь</td><td class="n">74</td></tr>
-            <tr><td class="wk">20–24</td><td>Москва</td><td class="n">80</td></tr>
-            <tr><td class="wk">24–26</td><td class="wide">хвосты, снятие переадресаций</td><td class="n">—</td></tr>
+            <tr><td class="wk">5–8</td><td>Воронеж, Мясокомбинат</td><td class="n">416</td></tr>
+            <tr><td class="wk">7–9</td><td>Нижний Новгород, ССЗ</td><td class="n">161</td></tr>
+            <tr><td class="wk">8–10</td><td>Славянск-на-Кубани</td><td class="n">136</td></tr>
+            <tr><td class="wk">9–12</td><td class="wide">Ростов, его мелкие площадки, Ставрополь</td><td class="n">426</td></tr>
+            <tr><td class="wk">11–13</td><td class="wide">Москва, снятие переадресаций</td><td class="n">80</td></tr>
           </tbody>
         </table>
       </div>
@@ -909,38 +780,43 @@ epm-set-site --sites out/sites.conf --apply --rebuild</code></pre>
   </div>
 </section>
 
-<!-- ============ РИСКИ ============ -->
+<!-- ============ РЕСУРСЫ И РИСКИ ============ -->
 <section id="risks">
   <div class="sec-head">
-    <span class="label">Риски</span>
-    <h2>Что сдвинет сроки</h2>
+    <span class="label">Ресурсы и риски</span>
+    <h2>Чего стоит сжатый срок</h2>
   </div>
-  <p class="col">Каждый со своим сигналом и запасным вариантом. Все они обнаруживаются
-  на этапе 0 или 4 — то есть до того, как в кластере окажется больше одной площадки.</p>
+
+  <div class="stats">
+    <div class="stat"><b>85</b><span>человеко-дней всего</span></div>
+    <div class="stat"><b>56</b><span>инженер кластера, этапы 1–7</span></div>
+    <div class="stat"><b>29</b><span>второй исполнитель, этапы 8–9</span></div>
+    <div class="stat"><b>978 775 ₽</b><span>внутренних затрат без НДС</span></div>
+    <div class="stat"><b>0 ₽</b><span>внешних затрат</span></div>
+  </div>
+
+  <div class="note crit" style="margin-top:28px">
+    <span class="label">Главное ограничение плана</span>
+    <p><b>Одним человеком 13 недель не закрываются.</b> 85 человеко-дней за 13 недель —
+    это 1,3 ставки. Либо второй исполнитель на перенумерацию и консолидацию, либо эти
+    два потока выносятся за срок, и тогда план становится 10-недельным по кластерной
+    части. Это не оценка трудоёмкости, а арифметика: 13 недель × 5 дней = 65 дней
+    одного человека, а этапы 1–7 занимают 56 из них.</p>
+  </div>
+
   <div class="tbl-wrap">
     <table>
       <thead><tr><th>Риск</th><th>Где виден</th><th>Что делать</th></tr></thead>
       <tbody>
-        <tr><td class="wide">RTT выше 50 мс до региона</td><td><code>preflight.sh</code>, этап 0</td><td class="wide">Регион не в Galera: автономная АТС с транком</td></tr>
-        <tr><td class="wide">Нет IP у Славянска и PBX локального</td><td>этап 0</td><td class="wide">Блокирует недели 11 и 15 — запросить в первую неделю</td></tr>
-        <tr><td class="wide">Оператор не даёт отдельных пользователей ВАТС</td><td>этап 0</td><td class="wide">Площадка работает через мастер, локальный транк откладывается</td></tr>
-        <tr><td class="wide">Проблемы на Воронеже</td><td>этап 4</td><td class="wide">Тиражирование стоит; это заложенная в план пауза</td></tr>
-        <tr><td class="wide">Перенумерация буксует</td><td>этап 8</td><td class="wide">Кластер работает и без неё — но новые площадки не заводятся до разведения конфликтов</td></tr>
-        <tr><td class="wide">Нет окна для перезапуска базы</td><td>этапы 3, 5</td><td class="wide">Работы переносятся, но не совмещаются: узлы перезапускаются по одному</td></tr>
+        <tr><td class="wide">RTT выше 50 мс до площадки</td><td><code>preflight.sh</code>, этап 1</td><td class="wide">Площадка не в кластере: автономная АТС с транком</td></tr>
+        <tr><td class="wide">Нет IP у Славянска и PBX локального</td><td>этап 1</td><td class="wide">Блокирует недели 8 и 12 — запросить в первый день</td></tr>
+        <tr><td class="wide">Оператор не даёт отдельных пользователей ВАТС</td><td>этап 1</td><td class="wide">Площадка работает через мастер, локальный транк откладывается</td></tr>
+        <tr><td class="wide">Проблемы на Воронеже</td><td>этап 5</td><td class="wide">Тиражирование стоит; при сжатом сроке это единственный запас</td></tr>
+        <tr><td class="wide">Нет второго исполнителя</td><td>этапы 8, 9</td><td class="wide">Консолидация и перенумерация выносятся за 13 недель</td></tr>
+        <tr><td class="wide">Нет окна для перезапуска базы</td><td>этапы 4, 6</td><td class="wide">Работы переносятся, но не совмещаются: узлы перезапускаются по одному</td></tr>
       </tbody>
     </table>
   </div>
-
-  <h3 style="margin-top:38px">Ресурсы</h3>
-  <div class="stats">
-    <div class="stat"><b>1</b><span>инженер на полную занятость, 26 недель</span></div>
-    <div class="stat"><b>1–3</b><span>недели сетевой службы на VPN</span></div>
-    <div class="stat"><b>~1 ч</b><span>окно работ на площадку</span></div>
-    <div class="stat"><b>6–26</b><span>недели коммуникации перенумерации</span></div>
-  </div>
-  <p class="col" style="margin-top:1.4em">Окна работ предпочтительно вне рабочего
-  времени региона. Руководство подключается дважды: утверждение нумерации на неделе 1
-  и коммуникация перенумерации все 20 недель этапа 8.</p>
 </section>
 
 <!-- ============ ДЕНЬ 1 ============ -->
@@ -955,17 +831,18 @@ epm-set-site --sites out/sites.conf --apply --rebuild</code></pre>
     <table>
       <thead><tr><th class="n">№</th><th>Действие</th><th>Ожидание</th></tr></thead>
       <tbody>
-        <tr><td class="n">1</td><td class="wide">Запросить IP для Славянска-на-Кубани и PBX локального</td><td><span class="chip c-crit">блокирует недели 11 и 15</span></td></tr>
-        <tr><td class="n">2</td><td class="wide">Запросить у операторов по SIP-пользователю ВАТС на каждую из шести площадок</td><td><span class="chip c-warn">блокирует локальные транки</span></td></tr>
-        <tr><td class="n">3</td><td class="wide">Поставить в план замер RTT между шестью регионами</td><td><span class="chip c-warn">определяет состав кластера</span></td></tr>
+        <tr><td class="n">1</td><td class="wide">Запросить IP для Славянска-на-Кубани и PBX локального</td><td><span class="chip c-crit">блокирует недели 8 и 12</span></td></tr>
+        <tr><td class="n">2</td><td class="wide">Запросить у операторов по SIP-пользователю ВАТС на каждую из пяти площадок</td><td><span class="chip c-warn">блокирует локальные транки</span></td></tr>
+        <tr><td class="n">3</td><td class="wide">Поставить в план замер RTT между пятью площадками</td><td><span class="chip c-warn">определяет состав кластера</span></td></tr>
         <tr><td class="n">4</td><td class="wide"><code>./scripts/check-numbering.py --dump rostov=&lt;дамп&gt; --plan 5</code></td><td><span class="chip c-mut">полчаса, делается сразу</span></td></tr>
       </tbody>
     </table>
   </div>
   <div class="note">
     <p>Полный текст плана со всеми командами — в репозитории:
-    <code>docs/12-rollout-schedule.md</code>. Номерной план, <code>sites.conf</code>
-    и отчёт о конфликтах — в <code>docs/plan/</code>.</p>
+    <code>docs/12-rollout-schedule.md</code>. Тот же план в корпоративных шаблонах ДИТ —
+    <code>docs/plan/dit-annual-plan.xlsx</code> и
+    <code>docs/plan/dit-project-registry.xlsx</code>.</p>
   </div>
 </section>
 
