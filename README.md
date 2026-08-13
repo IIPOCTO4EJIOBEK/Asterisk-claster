@@ -91,6 +91,9 @@ epm-set-site --sites sites.conf --apply --rebuild
 | [plan/](docs/plan/) | Единый номерной план: CSV, sites.conf, отчёт |
 | [plan/index.html](docs/plan/index.html) | Страница проекта: описание, нумерация, настройка |
 | [plan/scheme.html](docs/plan/scheme.html) | Схемы работы кластера: четыре механизма и сценарии отказов |
+| [plan/rollout.html](docs/plan/rollout.html) | План внедрения страницей: диаграмма Ганта на 26 недель, вехи, риски |
+| [plan/dit-annual-plan.xlsx](docs/plan/dit-annual-plan.xlsx) | План в шаблоне годового плана работ ДИТ |
+| [plan/dit-project-registry.xlsx](docs/plan/dit-project-registry.xlsx) | План в шаблоне реестра проектов плана автоматизации |
 
 ## Состав
 
@@ -114,6 +117,7 @@ scripts/
   update-peers.sh        список узлов с проверкой кворума и ожиданием Synced
   setup-standby-master.sh резервный мастер: prepare / status / promote / demote
   build-numbering-plan.py единый номерной план из таблицы аудита
+  build-dit-plan.py      план внедрения в корпоративных шаблонах ДИТ (xlsx)
   lint.sh                статические проверки
 
 tools/
