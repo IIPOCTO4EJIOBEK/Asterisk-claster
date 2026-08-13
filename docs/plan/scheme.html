@@ -5,7 +5,9 @@
     --ink:#161C24; --ink-2:#3D4956; --muted:#6B7885;
     --line:#D8DEE5; --line-soft:#E7ECF1;
     --accent:#125C6B; --accent-soft:#E2EFF1;
-    --warn:#8E6118; --crit:#9B3F37; --dim:#9AA6B2;
+    --ok:#2C6E52; --ok-soft:#E3F0E9;
+    --warn:#8E6118; --warn-soft:#F6EDDC;
+    --crit:#9B3F37; --crit-soft:#F7E6E4; --dim:#9AA6B2;
     --shadow:0 1px 2px rgba(22,28,36,.06),0 8px 24px -16px rgba(22,28,36,.28);
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     --serif:Georgia,"Iowan Old Style","Times New Roman",serif;
@@ -17,7 +19,9 @@
       --ink:#E6ECF2; --ink-2:#B7C2CE; --muted:#8695A3;
       --line:#2A353F; --line-soft:#222C35;
       --accent:#5FB3C4; --accent-soft:#14313A;
-      --warn:#D9A85A; --crit:#E08A80; --dim:#5B6874;
+      --ok:#6FC49A; --ok-soft:#152A22;
+      --warn:#D9A85A; --warn-soft:#2B2417;
+      --crit:#E08A80; --crit-soft:#2E1B19; --dim:#5B6874;
       --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.7);
     }
   }
@@ -26,48 +30,65 @@
     --ink:#E6ECF2; --ink-2:#B7C2CE; --muted:#8695A3;
     --line:#2A353F; --line-soft:#222C35;
     --accent:#5FB3C4; --accent-soft:#14313A;
-    --warn:#D9A85A; --crit:#E08A80; --dim:#5B6874;
+    --ok:#6FC49A; --ok-soft:#152A22;
+    --warn:#D9A85A; --warn-soft:#2B2417;
+    --crit:#E08A80; --crit-soft:#2E1B19; --dim:#5B6874;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.7);
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);
     font-family:var(--serif);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:960px;margin:0 auto;padding:0 24px 96px}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px 96px}
   .col{max-width:66ch}
   h1,h2,h3,.label,figcaption{font-family:var(--sans)}
   h1{font-size:2.4rem;line-height:1.1;letter-spacing:-.02em;margin:0 0 .35em;font-weight:640;text-wrap:balance}
-  h2{font-size:1.36rem;letter-spacing:-.012em;margin:0 0 .4em;font-weight:620;text-wrap:balance}
+  h2{font-size:1.42rem;letter-spacing:-.012em;margin:0 0 .4em;font-weight:620;text-wrap:balance}
+  h3{font-size:1.02rem;margin:0 0 .3em;font-weight:620}
   p{margin:0 0 1em}
   code{font-family:var(--mono);font-size:.87em;background:var(--surface-2);padding:.1em .35em;border-radius:3px}
   .label{font-size:.72rem;text-transform:uppercase;letter-spacing:.11em;color:var(--muted);font-weight:600}
-  header.hero{padding:64px 0 36px;border-bottom:1px solid var(--line)}
+  header.hero{padding:64px 0 34px;border-bottom:1px solid var(--line)}
   .kicker{display:flex;gap:10px;align-items:center;margin-bottom:16px}
   .kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
-  .lede{font-size:1.14rem;color:var(--ink-2);margin:0}
-  section{padding:48px 0;border-bottom:1px solid var(--line-soft)}
-  section:last-of-type{border-bottom:0}
-  .sec-head{display:flex;flex-direction:column;gap:5px;margin-bottom:20px}
-  figure{margin:24px 0 0;background:var(--surface);border:1px solid var(--line);
+  .lede{font-size:1.14rem;color:var(--ink-2);margin:0 0 22px}
+  .toc{display:flex;flex-wrap:wrap;gap:8px;font-family:var(--sans);font-size:.82rem}
+  .toc a{text-decoration:none;color:var(--ink-2);background:var(--surface);
+    border:1px solid var(--line);border-radius:99px;padding:5px 13px;display:inline-block}
+  .toc a:hover{border-color:var(--accent);color:var(--accent)}
+  .part{padding:52px 0 8px;border-top:2px solid var(--line);margin-top:44px}
+  .part:first-of-type{border-top:0;margin-top:0}
+  .part h2{font-size:1.62rem}
+  section{padding:34px 0}
+  .sec-head{display:flex;flex-direction:column;gap:5px;margin-bottom:18px}
+  figure{margin:22px 0 0;background:var(--surface);border:1px solid var(--line);
     border-radius:10px;padding:22px 20px 16px;box-shadow:var(--shadow);overflow-x:auto}
   figure svg{display:block;max-width:100%;height:auto;margin:0 auto}
   figcaption{margin-top:16px;font-size:.85rem;color:var(--muted);line-height:1.5;text-align:center}
   .note{border-left:3px solid var(--accent);background:var(--surface);
-    padding:14px 18px;border-radius:0 8px 8px 0;margin:24px 0 0;font-size:.97rem}
+    padding:14px 18px;border-radius:0 8px 8px 0;margin:22px 0 0;font-size:.97rem}
+  .note.crit{border-left-color:var(--crit)}
+  .note.warn{border-left-color:var(--warn)}
   .note .label{display:block;margin-bottom:5px}
   .note p:last-child{margin-bottom:0}
-  /* общие классы для SVG */
   .bx{fill:var(--surface-2);stroke:currentColor;stroke-width:1.5}
   .bx-a{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.75}
+  .bx-ok{fill:var(--ok-soft);stroke:var(--ok);stroke-width:1.75}
+  .bx-c{fill:var(--crit-soft);stroke:var(--crit);stroke-width:1.75}
+  .bx-w{fill:var(--warn-soft);stroke:var(--warn);stroke-width:1.6}
   .bx-d{fill:none;stroke:var(--dim);stroke-width:1.5;stroke-dasharray:5 4}
   .ln{stroke:currentColor;stroke-width:1.5;fill:none}
   .ln-a{stroke:var(--accent);stroke-width:2.25;fill:none}
+  .ln-ok{stroke:var(--ok);stroke-width:2;fill:none}
+  .ln-c{stroke:var(--crit);stroke-width:2;fill:none}
   .ln-d{stroke:currentColor;stroke-width:1.5;fill:none;stroke-dasharray:6 5}
-  .ln-x{stroke:var(--crit);stroke-width:2;fill:none}
   .t{fill:currentColor;font-family:var(--sans);font-size:13px}
+  .t-b{fill:currentColor;font-family:var(--sans);font-size:13px;font-weight:600}
   .t-s{fill:var(--muted);font-family:var(--sans);font-size:11.5px}
   .t-a{fill:var(--accent);font-family:var(--sans);font-size:11.5px;font-weight:600}
-  .t-m{fill:currentColor;font-family:var(--mono);font-size:11.5px}
+  .t-ok{fill:var(--ok);font-family:var(--sans);font-size:11.5px;font-weight:600}
   .t-c{fill:var(--crit);font-family:var(--sans);font-size:11.5px;font-weight:600}
+  .t-w{fill:var(--warn);font-family:var(--sans);font-size:11.5px;font-weight:600}
+  .t-m{fill:currentColor;font-family:var(--mono);font-size:11.5px}
   .stepno{fill:var(--accent);stroke:none}
   .stepno-t{fill:var(--surface);font-family:var(--sans);font-size:11px;font-weight:700}
   :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -79,180 +100,432 @@
 <header class="hero">
   <div class="kicker"><span class="dot"></span><span class="label">Кластер Asterisk · 12 АТС · 1255 абонентов</span></div>
   <h1>Как работает кластер</h1>
-  <p class="lede col">Четыре механизма, из которых складывается отказоустойчивость: общая база,
-  поиск абонента по площадкам, переключение телефона при отказе и выход в город.
-  Остальное — их следствия.</p>
+  <p class="lede col">Отказоустойчивость собрана из восьми механизмов в трёх слоях.
+  Каждый закрывает свой вид отказа и ничего не знает про остальные — поэтому они
+  и складываются, а не мешают друг другу.</p>
+  <nav class="toc">
+    <a href="#db">Слой базы</a>
+    <a href="#repl">Репликация</a>
+    <a href="#quorum">Кворум</a>
+    <a href="#rejoin">Возврат узла</a>
+    <a href="#backup">Чего база не умеет</a>
+    <a href="#ast">Слой Asterisk</a>
+    <a href="#route">Поиск абонента</a>
+    <a href="#failover">Отказ площадки</a>
+    <a href="#trunk">Выход в город</a>
+    <a href="#summary">Сводка отказов</a>
+  </nav>
 </header>
 
-<section>
-  <div class="sec-head"><span class="label">Механизм 1</span><h2>Три слоя, три разных отказа</h2></div>
-  <p class="col">Каждый слой резервируется по-своему и падает независимо. Телефон переживает
-  отказ своей площадки, площадка переживает отказ мастера, база переживает отказ любого узла,
-  пока жив кворум.</p>
+<div class="part" id="db">
+  <span class="label">Слой 1</span>
+  <h2>База: одна на весь кластер</h2>
+  <p class="col">Номера, учётные записи и регистрации телефонов лежат в MariaDB Galera.
+  Это не «главный сервер с копиями»: полная копия базы есть на каждом узле, и писать можно
+  в любой. Резервируется этот слой четырьмя разными механизмами.</p>
+</div>
+
+<section id="repl">
+  <div class="sec-head"><span class="label">Механизм 1</span><h2>Запись подтверждается всем кластером</h2></div>
+  <p class="col">Обычная асинхронная репликация подтверждает запись сразу, а копии догоняют
+  потом — при отказе мастера последние транзакции теряются. Galera так не делает: пока
+  изменение не разослано всем узлам и не проверено на конфликты, клиент не получит
+  подтверждения.</p>
 
   <figure>
     <svg viewBox="0 0 860 452" role="img"
-         aria-label="Общая база Galera сверху, три узла Asterisk под ней, телефон снизу с основной регистрацией на своей площадке и резервной на мастере">
+         aria-label="Путь записи в Galera: транзакция выполняется локально, writeset рассылается всем узлам в едином порядке, каждый узел выполняет сертификацию, и только затем клиент получает подтверждение">
       <defs>
-        <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-          <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
-        </marker>
-        <marker id="a1a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-          <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/>
-        </marker>
+        <marker id="m1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+        <marker id="m1a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
+        <marker id="m1k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--ok)"/></marker>
       </defs>
 
-      <!-- слой базы -->
+      <rect class="bx" x="310" y="20" width="240" height="46" rx="8"/>
+      <text class="t-b" x="430" y="42" text-anchor="middle">Asterisk площадки</text>
+      <text class="t-s" x="430" y="58" text-anchor="middle">телефон зарегистрировался</text>
+
+      <line class="ln" x1="430" y1="66" x2="430" y2="106" marker-end="url(#m1)"/>
+      <circle class="stepno" cx="408" cy="86" r="9"/><text class="stepno-t" x="408" y="90" text-anchor="middle">1</text>
+      <text class="t-m" x="446" y="90">UPDATE ps_contacts</text>
+
+      <rect class="bx-a" x="310" y="108" width="240" height="56" rx="8"/>
+      <text class="t-b" x="430" y="132" text-anchor="middle">Узел, принявший запись</text>
+      <text class="t-s" x="430" y="150" text-anchor="middle">выполняет локально, других не блокирует</text>
+
+      <line class="ln-a" x1="430" y1="164" x2="430" y2="200" marker-end="url(#m1a)"/>
+      <circle class="stepno" cx="408" cy="182" r="9"/><text class="stepno-t" x="408" y="186" text-anchor="middle">2</text>
+      <text class="t-a" x="446" y="186">writeset: какие строки изменились</text>
+
+      <rect class="bx" x="40" y="202" width="780" height="44" rx="8"/>
+      <text class="t-b" x="430" y="222" text-anchor="middle">Групповая рассылка — все узлы получают изменения в одном и том же порядке</text>
+      <text class="t-s" x="430" y="238" text-anchor="middle">порядок единый для всего кластера, поэтому узлы не могут разойтись</text>
+      <circle class="stepno" cx="62" cy="224" r="9"/><text class="stepno-t" x="62" y="228" text-anchor="middle">3</text>
+
+      <line class="ln" x1="140" y1="246" x2="140" y2="286" marker-end="url(#m1)"/>
+      <line class="ln" x1="430" y1="246" x2="430" y2="286" marker-end="url(#m1)"/>
+      <line class="ln" x1="720" y1="246" x2="720" y2="286" marker-end="url(#m1)"/>
+
+      <rect class="bx" x="40" y="288" width="200" height="72" rx="8"/>
+      <text class="t-b" x="140" y="312" text-anchor="middle">Ростов</text>
+      <text class="t-s" x="140" y="330" text-anchor="middle">сертификация:</text>
+      <text class="t-s" x="140" y="346" text-anchor="middle">конфликта нет?</text>
+
+      <rect class="bx" x="330" y="288" width="200" height="72" rx="8"/>
+      <text class="t-b" x="430" y="312" text-anchor="middle">Воронеж</text>
+      <text class="t-s" x="430" y="330" text-anchor="middle">сертификация:</text>
+      <text class="t-s" x="430" y="346" text-anchor="middle">конфликта нет?</text>
+
+      <rect class="bx" x="620" y="288" width="200" height="72" rx="8"/>
+      <text class="t-b" x="720" y="312" text-anchor="middle">…остальные</text>
+      <text class="t-s" x="720" y="330" text-anchor="middle">сертификация:</text>
+      <text class="t-s" x="720" y="346" text-anchor="middle">конфликта нет?</text>
+      <circle class="stepno" cx="62" cy="310" r="9"/><text class="stepno-t" x="62" y="314" text-anchor="middle">4</text>
+
+      <path class="ln-ok" d="M140,360 L140,392 L720,392 L720,360" marker-end="url(#m1k)" marker-start="url(#m1k)"/>
+      <rect class="bx-ok" x="300" y="376" width="260" height="34" rx="7"/>
+      <text class="t-ok" x="430" y="398" text-anchor="middle">применено на всех — COMMIT клиенту</text>
+      <circle class="stepno" cx="322" cy="393" r="9"/><text class="stepno-t" x="322" y="397" text-anchor="middle">5</text>
+
+      <text class="t-s" x="430" y="436" text-anchor="middle">если сертификация нашла конфликт — транзакция откатывается на исходном узле, остальные её просто не применяют</text>
+    </svg>
+    <figcaption>Отказ любого узла не теряет подтверждённых данных: к моменту ответа клиенту
+    изменение уже принято всем кластером. Плата — задержка сети между площадками входит
+    во время каждой записи, поэтому RTT выше 50 мс делает схему непригодной.</figcaption>
+  </figure>
+
+  <div class="note warn">
+    <span class="label">Обратная сторона: медленный узел тормозит всех</span>
+    <p>Если один узел не успевает применять изменения, он просит кластер притормозить —
+    это <code>flow control</code>. Механизм защищает от расхождения данных, но означает, что
+    площадка на слабом диске или узком канале снижает скорость записи для всех.
+    В мониторинге за этим следит <code>wsrep_flow_control_paused</code>.</p>
+  </div>
+</section>
+
+<section id="quorum">
+  <div class="sec-head"><span class="label">Механизм 2</span><h2>Кворум: кто продолжает работать при обрыве</h2></div>
+  <p class="col">Когда сеть рвётся, кластер распадается на части, и каждая часть не знает,
+  жива ли остальная. Чтобы две половины не начали писать по-своему и не разошлись
+  необратимо, работать разрешено только большинству.</p>
+
+  <figure>
+    <svg viewBox="0 0 860 396" role="img"
+         aria-label="При обрыве связи часть из трёх узлов продолжает работать как большинство, часть из двух узлов останавливается">
+      <defs>
+        <marker id="m2c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--crit)"/></marker>
+      </defs>
+
+      <text class="t-b" x="240" y="28" text-anchor="middle">3 узла — большинство</text>
+      <text class="t-b" x="672" y="28" text-anchor="middle">2 узла — меньшинство</text>
+
+      <rect class="bx-ok" x="30" y="48" width="420" height="150" rx="10"/>
+      <rect class="bx-c" x="500" y="48" width="330" height="150" rx="10"/>
+
+      <circle class="bx-ok" cx="110" cy="112" r="30"/><text class="t" x="110" y="117" text-anchor="middle">1</text>
+      <circle class="bx-ok" cx="240" cy="112" r="30"/><text class="t" x="240" y="117" text-anchor="middle">2</text>
+      <circle class="bx-ok" cx="370" cy="112" r="30"/><text class="t" x="370" y="117" text-anchor="middle">3</text>
+      <circle class="bx-d" cx="590" cy="112" r="30"/><text class="t-s" x="590" y="117" text-anchor="middle">4</text>
+      <circle class="bx-d" cx="740" cy="112" r="30"/><text class="t-s" x="740" y="117" text-anchor="middle">5</text>
+
+      <text class="t-ok" x="240" y="172" text-anchor="middle">пишет и читает как обычно</text>
+      <text class="t-c" x="672" y="166" text-anchor="middle">non-Primary: запросы не обслуживаются,</text>
+      <text class="t-c" x="672" y="184" text-anchor="middle">данные целы, но недоступны</text>
+
+      <line class="ln-c" x1="475" y1="36" x2="475" y2="210" stroke-dasharray="7 6"/>
+      <text class="t-c" x="475" y="228" text-anchor="middle">обрыв связи</text>
+
+      <text class="t-s" x="430" y="262" text-anchor="middle">Правило: работает часть, содержащая БОЛЬШЕ половины узлов. 5 узлов переживают потерю двух.</text>
+
+      <rect class="bx-w" x="30" y="286" width="800" height="90" rx="9"/>
+      <text class="t-w" x="52" y="310">Почему на двух узлах это не работает</text>
+      <text class="t-s" x="52" y="332">При обрыве каждая половина видит 1 узел из 2 — это не больше половины, поэтому встают обе.</text>
+      <text class="t-s" x="52" y="352">Лечится третьим голосом: арбитр <tspan class="t-m">garbd</tspan> — процесс без данных на отдельном хосте. Он не хранит базу,</text>
+      <text class="t-s" x="52" y="370">но участвует в голосовании, и живая половина получает 2 голоса из 3.</text>
+    </svg>
+    <figcaption>Меньшинство не выключается и не теряет данные — оно перестаёт обслуживать
+    запросы, чтобы не разойтись с большинством. Asterisk на таком узле теряет realtime и
+    перестаёт обслуживать вызовы, телефоны уходят на резервный сервер.</figcaption>
+  </figure>
+
+  <div class="note crit">
+    <span class="label">Чего нельзя делать</span>
+    <p>Объявлять первичной сразу две части. Команда восстановления кворума выполняется
+    <strong>на одном узле</strong> — том, где <code>wsrep_last_committed</code> больше.
+    Две первичные части — это два кластера с расходящимися данными и ручное слияние потом.
+    Скрипт <code>galera-recover.sh</code> для этого и написан: он показывает позиции и
+    предупреждает перед действием.</p>
+  </div>
+</section>
+
+<section id="rejoin">
+  <div class="sec-head"><span class="label">Механизм 3</span><h2>Возврат узла: догнать или скачать заново</h2></div>
+  <p class="col">Узел, который отсутствовал, обязан догнать кластер прежде чем начнёт
+  обслуживать запросы. Как именно — зависит от того, сохранились ли пропущенные изменения
+  у оставшихся узлов.</p>
+
+  <figure>
+    <svg viewBox="0 0 860 372" role="img"
+         aria-label="Вернувшийся узел получает либо инкрементальную передачу изменений из кэша донора, либо полную копию базы, если изменения из кэша вытеснены">
+      <defs>
+        <marker id="m3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+        <marker id="m3k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--ok)"/></marker>
+        <marker id="m3w" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--warn)"/></marker>
+      </defs>
+
+      <rect class="bx" x="30" y="30" width="180" height="66" rx="8"/>
+      <text class="t-b" x="120" y="56" text-anchor="middle">Узел вернулся</text>
+      <text class="t-s" x="120" y="76" text-anchor="middle">после сбоя или работ</text>
+
+      <rect class="bx-a" x="300" y="24" width="260" height="78" rx="8"/>
+      <text class="t-b" x="430" y="48" text-anchor="middle">Кэш изменений на доноре</text>
+      <text class="t-m" x="430" y="68" text-anchor="middle">gcache.size = 1–2 ГБ</text>
+      <text class="t-s" x="430" y="88" text-anchor="middle">кольцевой буфер последних writeset'ов</text>
+
+      <line class="ln" x1="210" y1="63" x2="300" y2="63" marker-end="url(#m3)"/>
+      <text class="t-s" x="255" y="52" text-anchor="middle">с какого места</text>
+      <text class="t-s" x="255" y="80" text-anchor="middle">я отстал?</text>
+
+      <path class="ln-ok" d="M560,50 L660,50 L660,150" marker-end="url(#m3k)"/>
+      <path class="ln-w" d="M560,86 L620,86 L620,258" marker-end="url(#m3w)" stroke="var(--warn)" stroke-width="2" fill="none"/>
+
+      <rect class="bx-ok" x="500" y="152" width="330" height="88" rx="9"/>
+      <text class="t-ok" x="520" y="176">Изменения ещё в кэше → IST</text>
+      <text class="t-s" x="520" y="198">Донор досылает только пропущенное.</text>
+      <text class="t-s" x="520" y="218">Минуты. Кластер работает как обычно.</text>
+
+      <rect class="bx-w" x="500" y="260" width="330" height="88" rx="9"/>
+      <text class="t-w" x="520" y="284">Кэш уже перезаписан → SST</text>
+      <text class="t-s" x="520" y="306">Полная копия базы через mariabackup.</text>
+      <text class="t-s" x="520" y="326">Десятки минут, донор при этом нагружен.</text>
+
+      <rect class="bx" x="30" y="170" width="410" height="160" rx="9"/>
+      <text class="t-b" x="52" y="196">Что определяет выбор</text>
+      <text class="t-s" x="52" y="222">Кэш хранит последние N гигабайт изменений, а не последние N минут.</text>
+      <text class="t-s" x="52" y="242">Чем активнее пишет кластер, тем быстрее вытесняется старое.</text>
+      <text class="t-s" x="52" y="270">Отсюда практическое правило: короткие работы на узле —</text>
+      <text class="t-s" x="52" y="290">возврат почти мгновенный. Узел, пролежавший сутки, почти</text>
+      <text class="t-s" x="52" y="310">наверняка потянет полную копию.</text>
+    </svg>
+    <figcaption>Поэтому узлы кластера перезапускают по одному и дожидаются состояния
+    <code>Synced</code>: пока узел догоняет, он не считается рабочим, и одновременный
+    перезапуск нескольких узлов может увести кластер в меньшинство.</figcaption>
+  </figure>
+</section>
+
+<section id="backup">
+  <div class="sec-head"><span class="label">Механизм 4</span><h2>Чего репликация не делает</h2></div>
+  <p class="col">Это самое частое заблуждение про кластер: раз копия базы есть на пяти
+  площадках, бэкап не нужен. Ровно наоборот — репликация делает ошибку оператора
+  быстрее и необратимее.</p>
+
+  <figure>
+    <svg viewBox="0 0 860 348" role="img"
+         aria-label="Ошибочное удаление реплицируется на все узлы за миллисекунды, отменить его может только резервная копия, которая живёт вне кластера">
+      <defs>
+        <marker id="m4c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--crit)"/></marker>
+        <marker id="m4k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--ok)"/></marker>
+      </defs>
+
+      <rect class="bx-c" x="30" y="26" width="240" height="58" rx="8"/>
+      <text class="t-c" x="150" y="50" text-anchor="middle">Ошибочный DELETE</text>
+      <text class="t-s" x="150" y="70" text-anchor="middle">или неудачное обновление модуля</text>
+
+      <path class="ln-c" d="M270,55 L340,55" marker-end="url(#m4c)"/>
+
+      <rect class="bx" x="350" y="26" width="480" height="58" rx="8"/>
+      <text class="t-b" x="590" y="50" text-anchor="middle">Реплицируется на все узлы за миллисекунды</text>
+      <text class="t-s" x="590" y="70" text-anchor="middle">кластер честно делает то, что его попросили — на всех пяти площадках сразу</text>
+
+      <circle class="bx-c" cx="410" cy="140" r="24"/><text class="t-s" x="410" y="145" text-anchor="middle">1</text>
+      <circle class="bx-c" cx="500" cy="140" r="24"/><text class="t-s" x="500" y="145" text-anchor="middle">2</text>
+      <circle class="bx-c" cx="590" cy="140" r="24"/><text class="t-s" x="590" y="145" text-anchor="middle">3</text>
+      <circle class="bx-c" cx="680" cy="140" r="24"/><text class="t-s" x="680" y="145" text-anchor="middle">4</text>
+      <circle class="bx-c" cx="770" cy="140" r="24"/><text class="t-s" x="770" y="145" text-anchor="middle">5</text>
+      <line class="ln-c" x1="590" y1="84" x2="590" y2="112" marker-end="url(#m4c)"/>
+
+      <rect class="bx-ok" x="30" y="200" width="360" height="120" rx="9"/>
+      <text class="t-ok" x="52" y="226">Отматывает назад только это</text>
+      <text class="t-s" x="52" y="252">mariabackup — полная копия по расписанию</text>
+      <text class="t-s" x="52" y="272">mysqldump — логический дамп, им проще</text>
+      <text class="t-s" x="52" y="290">откатить одну таблицу</text>
+      <text class="t-s" x="52" y="310">fwconsole backup — настройки FreePBX и модулей</text>
+
+      <path class="ln-ok" d="M400,260 L470,260" marker-end="url(#m4k)"/>
+      <rect class="bx" x="480" y="200" width="350" height="120" rx="9"/>
+      <text class="t-b" x="502" y="226">Хранилище вне кластера</text>
+      <text class="t-s" x="502" y="252">Копия, лежащая на узле кластера, разделит его</text>
+      <text class="t-s" x="502" y="270">судьбу. Нужен отдельный носитель или площадка.</text>
+      <text class="t-s" x="502" y="298">Непроверенная копия копией не является:</text>
+      <text class="t-s" x="502" y="316">разворачивать на тестовой машине раз в квартал.</text>
+    </svg>
+    <figcaption>Отдельно от этого CDR — история звонков — намеренно оставлена локальной
+    на каждом узле: таблица пишется на каждый вызов и не имеет первичного ключа,
+    реплицировать её синхронно на пять площадок незачем.</figcaption>
+  </figure>
+</section>
+
+<div class="part" id="ast">
+  <span class="label">Слой 2</span>
+  <h2>Asterisk: где абонент и куда вести вызов</h2>
+  <p class="col">База отвечает на вопрос «какие есть номера». Этот слой отвечает на вопрос
+  «где сейчас конкретный человек» — и он меняется каждый раз, когда телефон
+  перерегистрируется.</p>
+</div>
+
+<section>
+  <div class="sec-head"><span class="label">Механизм 5</span><h2>Два регистратора у каждого телефона</h2></div>
+
+  <figure>
+    <svg viewBox="0 0 860 452" role="img"
+         aria-label="Общая база сверху, три узла Asterisk под ней, телефон снизу с основной регистрацией на своей площадке и резервной на мастере">
+      <defs>
+        <marker id="m5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+        <marker id="m5a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
+      </defs>
+
       <rect class="bx" x="30" y="26" width="800" height="70" rx="8"/>
-      <text class="t" x="430" y="54" text-anchor="middle" font-weight="600">MariaDB Galera — одна база на весь кластер</text>
+      <text class="t-b" x="430" y="54" text-anchor="middle">MariaDB Galera — полная копия базы на каждом узле</text>
       <text class="t-m" x="430" y="76" text-anchor="middle">ps_endpoints · ps_auths · ps_contacts (кто где зарегистрирован)</text>
 
-      <!-- связи база -> узлы -->
-      <line class="ln" x1="140" y1="96" x2="140" y2="186" marker-end="url(#a1)"/>
-      <line class="ln" x1="430" y1="96" x2="430" y2="186" marker-end="url(#a1)"/>
-      <line class="ln" x1="720" y1="96" x2="720" y2="186" marker-end="url(#a1)"/>
+      <line class="ln" x1="140" y1="96" x2="140" y2="186" marker-end="url(#m5)"/>
+      <line class="ln" x1="430" y1="96" x2="430" y2="186" marker-end="url(#m5)"/>
+      <line class="ln" x1="720" y1="96" x2="720" y2="186" marker-end="url(#m5)"/>
       <text class="t-s" x="150" y="146">realtime</text>
       <text class="t-s" x="440" y="146">realtime</text>
       <text class="t-s" x="730" y="146">realtime</text>
 
-      <!-- узлы -->
       <rect class="bx-a" x="40" y="188" width="200" height="76" rx="8"/>
-      <text class="t" x="140" y="216" text-anchor="middle" font-weight="600">Ростов — мастер</text>
+      <text class="t-b" x="140" y="216" text-anchor="middle">Ростов — мастер</text>
       <text class="t-m" x="140" y="238" text-anchor="middle">10.1.10.111</text>
       <text class="t-s" x="140" y="256" text-anchor="middle">FreePBX · управление</text>
 
       <rect class="bx" x="330" y="188" width="200" height="76" rx="8"/>
-      <text class="t" x="430" y="216" text-anchor="middle" font-weight="600">Воронеж</text>
+      <text class="t-b" x="430" y="216" text-anchor="middle">Воронеж</text>
       <text class="t-m" x="430" y="238" text-anchor="middle">10.4.3.6</text>
       <text class="t-s" x="430" y="256" text-anchor="middle">Asterisk без GUI</text>
 
       <rect class="bx" x="620" y="188" width="200" height="76" rx="8"/>
-      <text class="t" x="720" y="216" text-anchor="middle" font-weight="600">…ещё 10 площадок</text>
+      <text class="t-b" x="720" y="216" text-anchor="middle">…ещё 10 площадок</text>
       <text class="t-s" x="720" y="242" text-anchor="middle">Славянск, Н. Новгород,</text>
       <text class="t-s" x="720" y="258" text-anchor="middle">Калуга, Манитек…</text>
 
-      <!-- межузловые транки -->
-      <line class="ln" x1="240" y1="226" x2="330" y2="226" marker-end="url(#a1)" marker-start="url(#a1)"/>
-      <line class="ln" x1="530" y1="226" x2="620" y2="226" marker-end="url(#a1)" marker-start="url(#a1)"/>
+      <line class="ln" x1="240" y1="226" x2="330" y2="226" marker-end="url(#m5)" marker-start="url(#m5)"/>
+      <line class="ln" x1="530" y1="226" x2="620" y2="226" marker-end="url(#m5)" marker-start="url(#m5)"/>
       <text class="t-s" x="285" y="218" text-anchor="middle">транк</text>
       <text class="t-s" x="575" y="218" text-anchor="middle">транк</text>
 
-      <!-- телефон -->
       <rect class="bx" x="350" y="366" width="160" height="60" rx="8"/>
-      <text class="t" x="430" y="392" text-anchor="middle" font-weight="600">Телефон 11201</text>
+      <text class="t-b" x="430" y="392" text-anchor="middle">Телефон 11201</text>
       <text class="t-s" x="430" y="412" text-anchor="middle">Воронеж, офис</text>
 
-      <!-- primary -->
-      <line class="ln-a" x1="430" y1="366" x2="430" y2="266" marker-end="url(#a1a)"/>
+      <line class="ln-a" x1="430" y1="366" x2="430" y2="266" marker-end="url(#m5a)"/>
       <text class="t-a" x="440" y="322">основной регистратор</text>
 
-      <!-- backup -->
-      <path class="ln-d" d="M350,396 L140,396 L140,266" marker-end="url(#a1)"/>
+      <path class="ln-d" d="M350,396 L140,396 L140,266" marker-end="url(#m5)"/>
       <text class="t-s" x="150" y="388">резервный — мастер</text>
 
       <text class="t-s" x="430" y="446" text-anchor="middle">переключение 10–60 с, решает сам телефон</text>
     </svg>
-    <figcaption>Все узлы читают одну базу, поэтому номер, заведённый на мастере, виден площадкам.
-    Телефон знает два адреса и переключается сам — кластер в этом не участвует.</figcaption>
+    <figcaption>Кластер в переключении не участвует: телефон знает два адреса и уходит на
+    второй по неответу первого. Поэтому механизм работает, даже если площадка отвалилась
+    целиком вместе со своим узлом базы.</figcaption>
   </figure>
 </section>
 
-<section>
-  <div class="sec-head"><span class="label">Механизм 2</span><h2>Как вызов находит абонента</h2></div>
-  <p class="col">Абонент может быть зарегистрирован не на той площадке, куда пришёл вызов —
-  он в командировке, или его площадка лежит и он ушёл на мастер. Узел не гадает, а спрашивает
+<section id="route">
+  <div class="sec-head"><span class="label">Механизм 6</span><h2>Как вызов находит абонента</h2></div>
+  <p class="col">Абонент может оказаться не на той площадке, куда пришёл вызов: он в
+  командировке или его площадка лежит и он ушёл на мастер. Узел не гадает, а спрашивает
   общую таблицу.</p>
 
   <figure>
     <svg viewBox="0 0 860 330" role="img"
          aria-label="Вызов из Воронежа: узел запрашивает ps_contacts, получает имя площадки Ростов и ведёт вызов туда через межузловой транк">
       <defs>
-        <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-          <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
-        </marker>
-        <marker id="a2a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-          <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/>
-        </marker>
+        <marker id="m6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+        <marker id="m6a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
       </defs>
 
-      <!-- база -->
       <rect class="bx" x="250" y="24" width="360" height="62" rx="8"/>
       <text class="t-m" x="430" y="48" text-anchor="middle">SELECT reg_server FROM ps_contacts</text>
       <text class="t-m" x="430" y="70" text-anchor="middle">WHERE endpoint = '20201'</text>
 
-      <!-- узлы и телефоны -->
       <rect class="bx" x="16" y="170" width="136" height="60" rx="8"/>
-      <text class="t" x="84" y="196" text-anchor="middle" font-weight="600">Телефон</text>
+      <text class="t-b" x="84" y="196" text-anchor="middle">Телефон</text>
       <text class="t-m" x="84" y="216" text-anchor="middle">11201</text>
 
       <rect class="bx" x="212" y="170" width="150" height="60" rx="8"/>
-      <text class="t" x="287" y="196" text-anchor="middle" font-weight="600">Воронеж</text>
+      <text class="t-b" x="287" y="196" text-anchor="middle">Воронеж</text>
       <text class="t-s" x="287" y="216" text-anchor="middle">принял вызов</text>
 
       <rect class="bx-a" x="500" y="170" width="150" height="60" rx="8"/>
-      <text class="t" x="575" y="196" text-anchor="middle" font-weight="600">Ростов</text>
+      <text class="t-b" x="575" y="196" text-anchor="middle">Ростов</text>
       <text class="t-s" x="575" y="216" text-anchor="middle">здесь абонент</text>
 
       <rect class="bx" x="710" y="170" width="136" height="60" rx="8"/>
-      <text class="t" x="778" y="196" text-anchor="middle" font-weight="600">Телефон</text>
+      <text class="t-b" x="778" y="196" text-anchor="middle">Телефон</text>
       <text class="t-m" x="778" y="216" text-anchor="middle">20201</text>
 
-      <!-- 1 -->
-      <line class="ln" x1="152" y1="200" x2="212" y2="200" marker-end="url(#a2)"/>
+      <line class="ln" x1="152" y1="200" x2="212" y2="200" marker-end="url(#m6)"/>
       <circle class="stepno" cx="182" cy="176" r="9"/><text class="stepno-t" x="182" y="180" text-anchor="middle">1</text>
       <text class="t-s" x="182" y="228" text-anchor="middle">набрал 20201</text>
 
-      <!-- 2 запрос -->
-      <path class="ln" d="M300,170 L300,86" marker-end="url(#a2)"/>
+      <path class="ln" d="M300,170 L300,86" marker-end="url(#m6)"/>
       <circle class="stepno" cx="300" cy="128" r="9"/><text class="stepno-t" x="300" y="132" text-anchor="middle">2</text>
       <text class="t-s" x="196" y="132">где он?</text>
 
-      <!-- 3 ответ -->
-      <path class="ln-a" d="M360,86 L360,170" marker-end="url(#a2a)"/>
+      <path class="ln-a" d="M360,86 L360,170" marker-end="url(#m6a)"/>
       <circle class="stepno" cx="360" cy="128" r="9"/><text class="stepno-t" x="360" y="132" text-anchor="middle">3</text>
       <text class="t-a" x="372" y="132">reg_server = rostov</text>
 
-      <!-- 4 -->
-      <line class="ln-a" x1="362" y1="200" x2="500" y2="200" marker-end="url(#a2a)"/>
+      <line class="ln-a" x1="362" y1="200" x2="500" y2="200" marker-end="url(#m6a)"/>
       <circle class="stepno" cx="431" cy="176" r="9"/><text class="stepno-t" x="431" y="180" text-anchor="middle">4</text>
       <text class="t-m" x="431" y="230" text-anchor="middle">@node-rostov</text>
 
-      <!-- 5 -->
-      <line class="ln-a" x1="650" y1="200" x2="710" y2="200" marker-end="url(#a2a)"/>
+      <line class="ln-a" x1="650" y1="200" x2="710" y2="200" marker-end="url(#m6a)"/>
       <circle class="stepno" cx="680" cy="176" r="9"/><text class="stepno-t" x="680" y="180" text-anchor="middle">5</text>
       <text class="t-s" x="680" y="228" text-anchor="middle">звонок</text>
 
       <text class="t-s" x="430" y="290" text-anchor="middle">если транк до площадки мёртв — вызов повторяется локально:</text>
       <text class="t-s" x="430" y="308" text-anchor="middle">телефон мог уже перерегистрироваться сюда, а запись ещё не истекла</text>
     </svg>
-    <figcaption>Имя площадки берётся из поля <code>reg_server</code>, которое Asterisk заполняет
-    при регистрации телефона. Поэтому маршрут всегда соответствует текущему положению абонента,
-    а не тому, где он «прописан».</figcaption>
+    <figcaption>Имя площадки берётся из поля <code>reg_server</code>, которое Asterisk
+    заполняет при регистрации телефона. Маршрут всегда соответствует текущему положению
+    абонента, а не тому, где он «прописан».</figcaption>
   </figure>
 </section>
 
-<section>
-  <div class="sec-head"><span class="label">Механизм 3</span><h2>Что меняется при отказе площадки</h2></div>
-  <p class="col">Слева обычный режим, справа — Воронеж недоступен. Меняется ровно одна запись
-  в общей таблице, и маршрутизация идёт за ней автоматически.</p>
+<section id="failover">
+  <div class="sec-head"><span class="label">Механизм 7</span><h2>Что меняется при отказе площадки</h2></div>
 
   <figure>
     <svg viewBox="0 0 860 336" role="img"
          aria-label="Сравнение: в обычном режиме телефон зарегистрирован на своей площадке, при её отказе он уходит на мастер и запись reg_server меняется">
       <defs>
-        <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-          <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
-        </marker>
-        <marker id="a3a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-          <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/>
-        </marker>
+        <marker id="m7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+        <marker id="m7a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
       </defs>
 
       <line class="ln" x1="430" y1="16" x2="430" y2="320" stroke-dasharray="3 6" opacity=".45"/>
-      <text class="t" x="200" y="26" text-anchor="middle" font-weight="600">обычный режим</text>
-      <text class="t" x="660" y="26" text-anchor="middle" font-weight="600">Воронеж недоступен</text>
+      <text class="t-b" x="200" y="26" text-anchor="middle">обычный режим</text>
+      <text class="t-b" x="660" y="26" text-anchor="middle">Воронеж недоступен</text>
 
-      <!-- ЛЕВО -->
       <rect class="bx" x="40" y="52" width="140" height="54" rx="8"/>
       <text class="t" x="110" y="76" text-anchor="middle">Ростов</text>
       <text class="t-s" x="110" y="94" text-anchor="middle">мастер</text>
@@ -264,70 +537,71 @@
       <rect class="bx" x="230" y="196" width="140" height="52" rx="8"/>
       <text class="t-m" x="300" y="226" text-anchor="middle">11201</text>
 
-      <line class="ln-a" x1="300" y1="196" x2="300" y2="108" marker-end="url(#a3a)"/>
-      <path class="ln-d" d="M230,222 L110,222 L110,108" marker-end="url(#a3)"/>
+      <line class="ln-a" x1="300" y1="196" x2="300" y2="108" marker-end="url(#m7a)"/>
+      <path class="ln-d" d="M230,222 L110,222 L110,108" marker-end="url(#m7)"/>
       <text class="t-a" x="310" y="158">регистрация</text>
       <text class="t-s" x="46" y="188">резерв</text>
 
       <rect class="bx" x="40" y="272" width="330" height="42" rx="6"/>
       <text class="t-m" x="205" y="298" text-anchor="middle">reg_server = voronezh</text>
 
-      <!-- ПРАВО -->
       <rect class="bx-a" x="500" y="52" width="140" height="54" rx="8"/>
       <text class="t" x="570" y="76" text-anchor="middle">Ростов</text>
       <text class="t-s" x="570" y="94" text-anchor="middle">принял на себя</text>
 
       <rect class="bx-d" x="690" y="52" width="140" height="54" rx="8"/>
       <text class="t-s" x="760" y="76" text-anchor="middle">Воронеж</text>
-      <line class="ln-x" x1="706" y1="60" x2="814" y2="98"/>
-      <line class="ln-x" x1="814" y1="60" x2="706" y2="98"/>
+      <line class="ln-c" x1="706" y1="60" x2="814" y2="98"/>
+      <line class="ln-c" x1="814" y1="60" x2="706" y2="98"/>
 
       <rect class="bx" x="690" y="196" width="140" height="52" rx="8"/>
       <text class="t-m" x="760" y="226" text-anchor="middle">11201</text>
 
       <path class="ln-d" d="M760,196 L760,120" stroke="var(--dim)"/>
       <text class="t-c" x="770" y="160">нет ответа</text>
-      <path class="ln-a" d="M690,222 L570,222 L570,108" marker-end="url(#a3a)"/>
+      <path class="ln-a" d="M690,222 L570,222 L570,108" marker-end="url(#m7a)"/>
       <text class="t-a" x="506" y="188">ушёл на резерв</text>
 
       <rect class="bx" x="500" y="272" width="330" height="42" rx="6"/>
       <text class="t-m" x="665" y="298" text-anchor="middle">reg_server = rostov</text>
     </svg>
-    <figcaption>Телефон переключается сам, по неответу основного сервера. Asterisk мастера
-    переписывает <code>reg_server</code>, и все узлы кластера начинают вести вызовы к этому
-    абоненту в Ростов. Обратный переход происходит так же, когда площадка оживает.</figcaption>
+    <figcaption>Меняется одна запись в общей таблице, и маршрутизация идёт за ней —
+    все узлы начинают вести вызовы к этому абоненту в Ростов. Обратный переход происходит
+    так же, когда площадка оживает.</figcaption>
   </figure>
 
   <div class="note">
     <span class="label">Чего этот механизм не делает</span>
-    <p>Разговор, идущий в момент отказа, обрывается — переключается регистрация, а не активный
-    вызов. Речь о том, что абонент остаётся доступен через минуту, а не о бесшовности.</p>
+    <p>Разговор, идущий в момент отказа, обрывается: переключается регистрация, а не активный
+    вызов. Речь о том, что абонент снова доступен через минуту, а не о бесшовности.</p>
   </div>
 </section>
 
+<div class="part" id="trunk">
+  <span class="label">Слой 3</span>
+  <h2>Транки: выход в город</h2>
+  <p class="col">Последний слой отвязывает площадки от мастера по внешней связи.</p>
+</div>
+
 <section>
-  <div class="sec-head"><span class="label">Механизм 4</span><h2>Выход в город</h2></div>
-  <p class="col">Оператор допускает до десяти точек подключения к виртуальной АТС, поэтому
-  площадка звонит наружу сама. Мастер остаётся запасным маршрутом, а не единственным.</p>
+  <div class="sec-head"><span class="label">Механизм 8</span><h2>Свой транк площадки, мастер запасным</h2></div>
 
   <figure>
     <svg viewBox="0 0 860 306" role="img"
          aria-label="Исходящий вызов идёт через собственный транк площадки, а при его недоступности через мастер">
       <defs>
-        <marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-          <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
-        </marker>
-        <marker id="a4a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-          <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/>
-        </marker>
+        <marker id="m8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+        <marker id="m8a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
       </defs>
 
       <rect class="bx" x="20" y="112" width="140" height="58" rx="8"/>
-      <text class="t" x="90" y="136" text-anchor="middle" font-weight="600">Телефон</text>
+      <text class="t-b" x="90" y="136" text-anchor="middle">Телефон</text>
       <text class="t-s" x="90" y="156" text-anchor="middle">Воронеж</text>
 
       <rect class="bx" x="230" y="112" width="150" height="58" rx="8"/>
-      <text class="t" x="305" y="136" text-anchor="middle" font-weight="600">Воронеж</text>
+      <text class="t-b" x="305" y="136" text-anchor="middle">Воронеж</text>
       <text class="t-s" x="305" y="156" text-anchor="middle">свой транк</text>
 
       <rect class="bx" x="230" y="236" width="150" height="54" rx="8"/>
@@ -335,19 +609,18 @@
       <text class="t-s" x="305" y="278" text-anchor="middle">запасной маршрут</text>
 
       <rect class="bx-a" x="620" y="106" width="200" height="70" rx="10"/>
-      <text class="t" x="720" y="132" text-anchor="middle" font-weight="600">Оператор</text>
+      <text class="t-b" x="720" y="132" text-anchor="middle">Оператор</text>
       <text class="t-s" x="720" y="152" text-anchor="middle">виртуальная АТС</text>
       <text class="t-s" x="720" y="168" text-anchor="middle">свой пользователь у площадки</text>
 
-      <line class="ln" x1="160" y1="141" x2="230" y2="141" marker-end="url(#a4)"/>
-
-      <line class="ln-a" x1="380" y1="130" x2="620" y2="130" marker-end="url(#a4a)"/>
+      <line class="ln" x1="160" y1="141" x2="230" y2="141" marker-end="url(#m8)"/>
+      <line class="ln-a" x1="380" y1="130" x2="620" y2="130" marker-end="url(#m8a)"/>
       <text class="t-a" x="500" y="120" text-anchor="middle">обычный путь</text>
 
-      <path class="ln-d" d="M305,170 L305,236" marker-end="url(#a4)"/>
+      <path class="ln-d" d="M305,170 L305,236" marker-end="url(#m8)"/>
       <text class="t-s" x="315" y="208">CHANUNAVAIL / CONGESTION</text>
 
-      <path class="ln-d" d="M380,263 L520,263 L520,176" marker-end="url(#a4)"/>
+      <path class="ln-d" d="M380,263 L520,263 L520,176" marker-end="url(#m8)"/>
       <text class="t-s" x="530" y="230">через мастер</text>
 
       <text class="t-s" x="430" y="42" text-anchor="middle">BUSY и NOANSWER через мастер не повторяются: это ответ вызываемой стороны,</text>
@@ -359,40 +632,56 @@
   </figure>
 </section>
 
-<section>
+<section id="summary">
   <div class="sec-head"><span class="label">Итог</span><h2>Что и когда ломается</h2></div>
-  <p class="col">Четыре механизма дают четыре разных сценария отказа. Ни один из них
+  <p class="col">Восемь механизмов дают семь различимых сценариев отказа. Ни один
   не оставляет площадку без телефонии целиком.</p>
 
   <figure>
-    <svg viewBox="0 0 860 262" role="img"
-         aria-label="Таблица отказов: отказ площадки, отказ мастера, обрыв связи между площадками, отказ узла базы">
-      <line class="ln" x1="20" y1="46" x2="840" y2="46" opacity=".5"/>
-      <text class="t-s" x="24" y="34">что отказало</text>
-      <text class="t-s" x="300" y="34">что перестаёт работать</text>
-      <text class="t-s" x="640" y="34">восстановление</text>
+    <svg viewBox="0 0 860 372" role="img"
+         aria-label="Сводная таблица отказов: отказ Asterisk площадки, площадки целиком, мастера, узла базы, обрыв связи, потеря кворума, ошибочное удаление данных">
+      <line class="ln" x1="20" y1="42" x2="840" y2="42" opacity=".5"/>
+      <text class="t-s" x="24" y="30">что отказало</text>
+      <text class="t-s" x="290" y="30">что перестаёт работать</text>
+      <text class="t-s" x="640" y="30">восстановление</text>
 
-      <text class="t" x="24" y="84">Asterisk площадки</text>
-      <text class="t-s" x="300" y="84">ничего — телефоны уходят на мастер</text>
-      <text class="t-a" x="640" y="84">само, 10–60 с</text>
-      <line class="ln" x1="20" y1="102" x2="840" y2="102" opacity=".18"/>
+      <text class="t" x="24" y="76">Asterisk площадки</text>
+      <text class="t-s" x="290" y="76">ничего — телефоны уходят на мастер</text>
+      <text class="t-ok" x="640" y="76">само, 10–60 с</text>
+      <line class="ln" x1="20" y1="92" x2="840" y2="92" opacity=".16"/>
 
-      <text class="t" x="24" y="134">Площадка целиком</text>
-      <text class="t-s" x="300" y="134">её городские номера</text>
-      <text class="t-a" x="640" y="134">само, кроме транка</text>
-      <line class="ln" x1="20" y1="152" x2="840" y2="152" opacity=".18"/>
+      <text class="t" x="24" y="122">Площадка целиком</text>
+      <text class="t-s" x="290" y="122">её городские номера</text>
+      <text class="t-ok" x="640" y="122">само, кроме транка</text>
+      <line class="ln" x1="20" y1="138" x2="840" y2="138" opacity=".16"/>
 
-      <text class="t" x="24" y="184">Мастер</text>
-      <text class="t-s" x="300" y="184">управление: завести номер, поменять IVR</text>
-      <text class="t-s" x="640" y="184">резервный мастер, минуты</text>
-      <line class="ln" x1="20" y1="202" x2="840" y2="202" opacity=".18"/>
+      <text class="t" x="24" y="168">Узел базы на площадке</text>
+      <text class="t-s" x="290" y="168">Asterisk этой площадки теряет realtime</text>
+      <text class="t-ok" x="640" y="168">само: IST или SST</text>
+      <line class="ln" x1="20" y1="184" x2="840" y2="184" opacity=".16"/>
 
-      <text class="t" x="24" y="234">Связь между площадками</text>
-      <text class="t-s" x="300" y="234">меньшинство узлов встаёт по кворуму</text>
-      <text class="t-s" x="640" y="234">galera-recover.sh, вручную</text>
+      <text class="t" x="24" y="214">Мастер</text>
+      <text class="t-s" x="290" y="214">управление: завести номер, поменять IVR</text>
+      <text class="t-w" x="640" y="214">резервный мастер, минуты</text>
+      <line class="ln" x1="20" y1="230" x2="840" y2="230" opacity=".16"/>
+
+      <text class="t" x="24" y="260">Связь между площадками</text>
+      <text class="t-s" x="290" y="260">меньшинство узлов перестаёт обслуживать</text>
+      <text class="t-w" x="640" y="260">само при восстановлении связи</text>
+      <line class="ln" x1="20" y1="276" x2="840" y2="276" opacity=".16"/>
+
+      <text class="t" x="24" y="306">Потеря кворума</text>
+      <text class="t-s" x="290" y="306">база не обслуживает запросы на всех узлах</text>
+      <text class="t-c" x="640" y="306">galera-recover.sh, вручную</text>
+      <line class="ln" x1="20" y1="322" x2="840" y2="322" opacity=".16"/>
+
+      <text class="t" x="24" y="352">Ошибочное удаление данных</text>
+      <text class="t-s" x="290" y="352">данные исчезают на всех узлах сразу</text>
+      <text class="t-c" x="640" y="352">только из резервной копии</text>
     </svg>
-    <figcaption>Единственный сценарий, требующий вмешательства человека, — потеря кворума базы.
-    Остальное либо восстанавливается само, либо переживается без потери звонков.</figcaption>
+    <figcaption>Вмешательство человека нужно в двух случаях из семи: потеря кворума и
+    восстановление из копии. Оба — про базу, и оба предсказуемы, если процедуры опробованы
+    заранее, а не читаются впервые во время аварии.</figcaption>
   </figure>
 </section>
 
