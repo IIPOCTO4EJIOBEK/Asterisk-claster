@@ -87,6 +87,7 @@ epm-set-site --sites sites.conf --apply --rebuild
 | [09-epm-integration.md](docs/09-epm-integration.md) | OSS Endpoint Manager: failover через штатный провижининг |
 | [10-production-hardening.md](docs/10-production-hardening.md) | Аудит боевой АТС, усиление, приёмка перед вводом |
 | [11-local-trunks.md](docs/11-local-trunks.md) | Свой транк провайдера на каждой площадке |
+| [plan/](docs/plan/) | Единый номерной план: CSV, sites.conf, отчёт, страница проекта |
 
 ## Состав
 
@@ -108,6 +109,7 @@ scripts/
   check-numbering.py     конфликты нумерации между АТС до объединения
   update-peers.sh        список узлов с проверкой кворума и ожиданием Synced
   setup-standby-master.sh резервный мастер: prepare / status / promote / demote
+  build-numbering-plan.py единый номерной план из таблицы аудита
   lint.sh                статические проверки
 
 tools/

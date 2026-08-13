@@ -1,0 +1,440 @@
+<title>Единый номерной план</title>
+<style>
+  :root{
+    --bg:#F4F6F8; --surface:#FFFFFF; --surface-2:#EDF1F4;
+    --ink:#161C24; --ink-2:#3D4956; --muted:#6B7885;
+    --line:#D8DEE5; --line-soft:#E7ECF1;
+    --accent:#125C6B; --accent-soft:#E2EFF1;
+    --ok:#2C6E52; --ok-soft:#E3F0E9;
+    --warn:#8E6118; --warn-soft:#F6EDDC;
+    --crit:#9B3F37; --crit-soft:#F7E6E4;
+    --shadow:0 1px 2px rgba(22,28,36,.06),0 8px 24px -16px rgba(22,28,36,.28);
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --serif:Georgia,"Iowan Old Style","Times New Roman",serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0F1419; --surface:#161D25; --surface-2:#1D262F;
+      --ink:#E6ECF2; --ink-2:#B7C2CE; --muted:#8695A3;
+      --line:#2A353F; --line-soft:#222C35;
+      --accent:#5FB3C4; --accent-soft:#14313A;
+      --ok:#6FC49A; --ok-soft:#152A22;
+      --warn:#D9A85A; --warn-soft:#2B2417;
+      --crit:#E08A80; --crit-soft:#2E1B19;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0F1419; --surface:#161D25; --surface-2:#1D262F;
+    --ink:#E6ECF2; --ink-2:#B7C2CE; --muted:#8695A3;
+    --line:#2A353F; --line-soft:#222C35;
+    --accent:#5FB3C4; --accent-soft:#14313A;
+    --ok:#6FC49A; --ok-soft:#152A22;
+    --warn:#D9A85A; --warn-soft:#2B2417;
+    --crit:#E08A80; --crit-soft:#2E1B19;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--serif); font-size:17px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1040px; margin:0 auto; padding:0 24px 96px}
+  .col{max-width:68ch}
+
+  h1,h2,h3,.label,th,.chip,.btn{font-family:var(--sans)}
+  h1{font-size:2.6rem; line-height:1.08; letter-spacing:-.022em; margin:0 0 .4em; text-wrap:balance; font-weight:640}
+  h2{font-size:1.5rem; line-height:1.2; letter-spacing:-.014em; margin:0 0 .5em; text-wrap:balance; font-weight:620}
+  h3{font-size:1.06rem; letter-spacing:-.006em; margin:0 0 .35em; font-weight:620}
+  p{margin:0 0 1em}
+  a{color:var(--accent)}
+  code,.num{font-family:var(--mono); font-variant-numeric:tabular-nums}
+  code{font-size:.88em; background:var(--surface-2); padding:.1em .35em; border-radius:3px}
+
+  .label{
+    font-size:.72rem; text-transform:uppercase; letter-spacing:.11em;
+    color:var(--muted); font-weight:600;
+  }
+
+  header.hero{padding:72px 0 40px; border-bottom:1px solid var(--line)}
+  .kicker{display:flex; gap:10px; align-items:center; margin-bottom:18px}
+  .kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  .lede{font-size:1.18rem; color:var(--ink-2); margin:0}
+
+  section{padding:56px 0; border-bottom:1px solid var(--line-soft)}
+  section:last-of-type{border-bottom:0}
+  .sec-head{display:flex; flex-direction:column; gap:6px; margin-bottom:28px}
+
+  .stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(132px,1fr)); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:28px 0 0}
+  .stat{background:var(--surface); padding:16px 18px}
+  .stat b{display:block; font-family:var(--mono); font-size:1.6rem; font-weight:600;
+    letter-spacing:-.02em; font-variant-numeric:tabular-nums; line-height:1.1}
+  .stat span{display:block; font-family:var(--sans); font-size:.78rem; color:var(--muted); margin-top:4px}
+
+  /* разбор номера */
+  .decode{background:var(--surface); border:1px solid var(--line); border-radius:10px;
+    padding:26px 24px; box-shadow:var(--shadow); margin:0 0 28px}
+  .digits{display:flex; gap:6px; font-family:var(--mono); font-size:2.4rem; font-weight:600;
+    letter-spacing:.02em; margin-bottom:2px}
+  .digits i{font-style:normal; padding:2px 10px; border-radius:6px; border:1px solid transparent}
+  .d-r{background:var(--accent-soft); color:var(--accent); border-color:var(--accent)}
+  .d-s{background:var(--warn-soft); color:var(--warn); border-color:var(--warn)}
+  .d-n{background:var(--ok-soft); color:var(--ok); border-color:var(--ok)}
+  .legend{display:grid; gap:10px; margin-top:18px}
+  .legend div{display:flex; gap:12px; align-items:baseline; font-size:.95rem}
+  .legend b{font-family:var(--mono); min-width:3.2em; font-weight:600}
+
+  .tbl-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:8px; background:var(--surface)}
+  table{border-collapse:collapse; width:100%; font-family:var(--sans); font-size:.9rem}
+  th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--line-soft); white-space:nowrap}
+  th{font-size:.74rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted);
+    font-weight:600; background:var(--surface-2); position:sticky; top:0}
+  tr:last-child td{border-bottom:0}
+  td.n{font-family:var(--mono); font-variant-numeric:tabular-nums}
+  td.wide{white-space:normal; min-width:16ch}
+
+  .chip{display:inline-block; font-size:.72rem; font-weight:600; padding:2px 8px;
+    border-radius:99px; letter-spacing:.02em}
+  .c-ok{background:var(--ok-soft); color:var(--ok)}
+  .c-warn{background:var(--warn-soft); color:var(--warn)}
+  .c-crit{background:var(--crit-soft); color:var(--crit)}
+  .c-mut{background:var(--surface-2); color:var(--muted)}
+
+  .note{border-left:3px solid var(--accent); background:var(--surface);
+    padding:16px 20px; border-radius:0 8px 8px 0; margin:24px 0; font-size:.98rem}
+  .note.warn{border-left-color:var(--warn)}
+  .note.crit{border-left-color:var(--crit)}
+  .note p:last-child{margin-bottom:0}
+  .note .label{display:block; margin-bottom:6px}
+
+  pre{background:var(--surface); border:1px solid var(--line); border-radius:8px;
+    padding:16px 18px; overflow-x:auto; margin:0 0 18px; font-size:.85rem; line-height:1.6}
+  pre code{background:none; padding:0; font-size:inherit}
+  .cmt{color:var(--muted)}
+
+  ol.steps{list-style:none; counter-reset:s; padding:0; margin:0; display:grid; gap:24px}
+  ol.steps>li{counter-increment:s; display:grid; grid-template-columns:34px 1fr; gap:16px}
+  ol.steps>li::before{content:counter(s); font-family:var(--mono); font-weight:600;
+    color:var(--accent); background:var(--accent-soft); border-radius:6px;
+    width:34px; height:28px; display:grid; place-items:center; font-size:.9rem}
+  ol.steps h3{margin-top:2px}
+
+  ul.plain{padding-left:1.15em; margin:0 0 1em}
+  ul.plain li{margin-bottom:.4em}
+
+  footer{padding:40px 0 0; color:var(--muted); font-size:.86rem}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+  @media (max-width:640px){
+    h1{font-size:2rem} body{font-size:16px}
+    .digits{font-size:1.7rem}
+  }
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker"><span class="dot"></span><span class="label">Кластер Asterisk · 6 регионов · 12 АТС</span></div>
+  <h1>Единый номерной план</h1>
+  <p class="lede col">Двенадцать независимых АТС объединяются в один кластер с общей базой,
+  сквозной нумерацией и локальной регистрацией абонентов. Здесь — устройство проекта,
+  порядок настройки и новый пятизначный план на 1255 номеров.</p>
+
+  <div class="stats">
+    <div class="stat"><b>1255</b><span>абонентов</span></div>
+    <div class="stat"><b>12</b><span>АТС</span></div>
+    <div class="stat"><b>6</b><span>регионов</span></div>
+    <div class="stat"><b>107</b><span>правок в плане</span></div>
+    <div class="stat"><b>0</b><span>коллизий</span></div>
+  </div>
+</header>
+
+<section>
+  <div class="sec-head"><span class="label">Что строим</span><h2>Устройство кластера</h2></div>
+  <div class="col">
+    <p>Три независимых слоя, у каждого свой режим отказа и своё время восстановления.
+    Абонент этого не видит — он видит, что телефон работает, когда его площадка недоступна.</p>
+
+    <h3>База — единый источник правды</h3>
+    <p>MariaDB Galera на всех площадках, multi-master. Номера, учётные записи и регистрации
+    телефонов лежат в общих таблицах: изменение в одном месте видно везде. Каждый Asterisk
+    работает со своим локальным узлом БД, поэтому чтение быстрое.</p>
+
+    <h3>Asterisk — мастер и площадки</h3>
+    <p>Мастер (Ростов, <code>10.1.10.111</code>) остаётся тем же сервером FreePBX, что и сейчас:
+    его не переустанавливают, он принимается в кластер как есть — вместе с номерами, диалпланом,
+    транками и настроенным Endpoint Manager. Площадки получают headless Asterisk, который читает
+    ту же базу.</p>
+
+    <h3>Телефоны — своя площадка, резерв на мастере</h3>
+    <p>Каждому телефону прописываются два регистратора: основной — Asterisk своей площадки,
+    резервный — мастер. При отказе площадки телефон сам переключается за 10–60 секунд.
+    Вызов находит абонента там, где он фактически зарегистрирован: узел спрашивает общую
+    таблицу и либо звонит локально, либо ведёт вызов по межузловому транку.</p>
+  </div>
+
+  <div class="note">
+    <span class="label">Почему нумерация — первый шаг</span>
+    <p>Пока один и тот же внутренний номер существует на разных АТС, объединять нечего:
+    в общей таблице два абонента с номером <code>564</code> — это не «разберёмся потом»,
+    а невозможность завести вторую строку с тем же ключом. Единый план — предпосылка
+    кластера, а не его следствие.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="label">Схема</span><h2>Как читается новый номер</h2></div>
+
+  <div class="decode">
+    <div class="digits" aria-label="Пример номера 2 02 01">
+      <i class="d-r">2</i><i class="d-s">0</i><i class="d-s">2</i><i class="d-n">0</i><i class="d-n">1</i>
+    </div>
+    <div class="legend">
+      <div><b>2</b><span>регион — Ростов</span></div>
+      <div><b>02</b><span>площадка — Береговая</span></div>
+      <div><b>01</b><span>номер абонента внутри площадки, 00–99</span></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>Пять знаков, фиксированная длина. Номер абонента берётся из двух последних цифр
+    текущего: <code>201</code> → <code>20201</code>, <code>2024</code> → <code>22024</code>.
+    Так большинство людей запоминает новый номер за один раз — меняется префикс, хвост остаётся.</p>
+    <p>Ёмкость: 100 площадок на регион, 100 абонентов на площадку. При текущих 1255 абонентах
+    занято меньше двух процентов пространства.</p>
+  </div>
+
+  <h3 style="margin-top:32px">Регионы</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Код</th><th>Регион</th><th>Абонентов</th><th>АТС</th></tr></thead>
+      <tbody>
+        <tr><td class="n">1</td><td class="wide">Калуга, Воронеж, Фидлот</td><td class="n">445</td><td class="wide">Воронеж, Мясокомбинат, Калуга</td></tr>
+        <tr><td class="n">2</td><td class="wide">Ростов</td><td class="n">352</td><td class="wide">Ростов, Манитек, Семикаракорский, Цимлянский, Приманыческий</td></tr>
+        <tr><td class="n">3</td><td class="wide">Краснодар</td><td class="n">140</td><td class="wide">Славянск-на-Кубани, Ростов</td></tr>
+        <tr><td class="n">4</td><td class="wide">Нижегородская область</td><td class="n">164</td><td class="wide">Нижний Новгород, ССЗ</td></tr>
+        <tr><td class="n">5</td><td class="wide">Москва, СПб, Новосибирск</td><td class="n">80</td><td class="wide">PBX локальный, Ростов</td></tr>
+        <tr><td class="n">6</td><td class="wide">Ставрополь</td><td class="n">74</td><td class="wide">Ростов</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <span class="label">Регион в номере — это география абонента, не место АТС</span>
+    <p>Ростовская АТС обслуживает людей в пяти регионах, а краснодарские номера обслуживаются
+    двумя разными станциями. Это нормально и специально: номер говорит, где человек сидит,
+    а не какой сервер его обрабатывает. Второе меняется при failover, первое — нет.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="label">Распределение</span><h2>Диапазоны по станциям</h2></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>АТС</th><th>Адрес</th><th>Абонентов</th><th>Регионы</th><th>Диапазон</th></tr></thead>
+      <tbody>
+        <tr><td class="wide">Ростов <span class="chip c-ok">мастер</span></td><td class="n">10.1.10.111</td><td class="n">424</td><td class="n">2, 3, 4, 5, 6</td><td class="n">20201–69473</td></tr>
+        <tr><td class="wide">Воронеж</td><td class="n">10.4.3.6</td><td class="n">229</td><td class="n">1</td><td class="n">10007–19999</td></tr>
+        <tr><td class="wide">Мясокомбинат</td><td class="n">192.168.11.2</td><td class="n">187</td><td class="n">1</td><td class="n">12000–16001</td></tr>
+        <tr><td class="wide">Славянск-на-Кубани</td><td class="n">—</td><td class="n">137</td><td class="n">2, 3</td><td class="n">28128–38999</td></tr>
+        <tr><td class="wide">Нижний Новгород</td><td class="n">10.1.48.23</td><td class="n">122</td><td class="n">4</td><td class="n">48000–48600</td></tr>
+        <tr><td class="wide">ССЗ</td><td class="n">10.1.67.5</td><td class="n">39</td><td class="n">4</td><td class="n">41175–41999</td></tr>
+        <tr><td class="wide">Калуга</td><td class="n">192.168.131.6</td><td class="n">29</td><td class="n">1</td><td class="n">13000–13999</td></tr>
+        <tr><td class="wide">Манитек</td><td class="n">10.1.155.23</td><td class="n">20</td><td class="n">2</td><td class="n">25100–25122</td></tr>
+        <tr><td class="wide">Семикаракорский</td><td class="n">10.2.91.23</td><td class="n">19</td><td class="n">2</td><td class="n">23100–23149</td></tr>
+        <tr><td class="wide">Цимлянский</td><td class="n">10.1.49.23</td><td class="n">19</td><td class="n">2</td><td class="n">26101–26121</td></tr>
+        <tr><td class="wide">Приманыческий</td><td class="n">10.1.50.23</td><td class="n">15</td><td class="n">2</td><td class="n">24101–24129</td></tr>
+        <tr><td class="wide">PBX локальный</td><td class="n">—</td><td class="n">15</td><td class="n">5</td><td class="n">51201–51217</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="margin-top:14px;font-size:.9rem;color:var(--muted)">
+    У двух станций в таблице аудита не указан адрес — его нужно проставить перед настройкой.
+  </p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="label">Проверка</span><h2>Что исправлено в проекте плана</h2></div>
+  <div class="col">
+    <p>Черновой план из таблицы аудита давал <strong>33 коллизии</strong> — номеров, которые
+    достались бы двум разным людям одновременно, — и 22 записи без региона. Проверка и
+    исправление автоматизированы, поэтому пересчёт после любой правки таблицы занимает секунду.</p>
+  </div>
+
+  <div class="tbl-wrap" style="margin-top:20px">
+    <table>
+      <thead><tr><th>Что</th><th>Сколько</th><th>Решение</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="wide"><span class="chip c-crit">коллизия</span> Калуга и Фидлот получили один код площадки&nbsp;30</td>
+          <td class="n">68</td>
+          <td class="wide">Код остаётся за Калугой — она <strong>уже</strong> живёт на пятизначных
+            <span class="num">13000–13027</span>. Фидлот переезжает на код&nbsp;24: <span class="num">12400–12468</span></td>
+        </tr>
+        <tr>
+          <td class="wide"><span class="chip c-crit">коллизия</span> Воронеж и Мясокомбинат — код&nbsp;60</td>
+          <td class="n">10</td>
+          <td class="wide">Код за Мясокомбинатом (его номер уже пятизначный), Воронеж → код&nbsp;02: <span class="num">10201–10216</span></td>
+        </tr>
+        <tr>
+          <td class="wide"><span class="chip c-warn">риск</span> Ростов и Славянск делят код&nbsp;10 региона&nbsp;3</td>
+          <td class="n">1</td>
+          <td class="wide">Номера не пересекались, но общий код — мина на будущее. Славянск → код&nbsp;04</td>
+        </tr>
+        <tr>
+          <td class="wide"><span class="chip c-warn">риск</span> Нижний Новгород и Ростов делят код&nbsp;82</td>
+          <td class="n">1</td>
+          <td class="wide">Нижний Новгород → код&nbsp;80</td>
+        </tr>
+        <tr>
+          <td class="wide"><span class="chip c-crit">повтор</span> два абонента одной площадки → один номер</td>
+          <td class="n">5</td>
+          <td class="wide">Хвост берётся из двух последних цифр, поэтому <span class="num">458</span> и
+            <span class="num">558</span> дают одно и то же. Первый по старому номеру остаётся, второму — ближайший свободный</td>
+        </tr>
+        <tr>
+          <td class="wide"><span class="chip c-mut">пробел</span> не заполнены регион и площадка</td>
+          <td class="n">22</td>
+          <td class="wide">Ростов, выделен код&nbsp;04 региона&nbsp;2 — чтобы записи не потерялись и не заняли чужой блок</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <span class="label">Правило, по которому выбирается «кто остаётся»</span>
+    <p>Код площадки сохраняется за той станцией, чьи абоненты <strong>уже переведены</strong>
+    на пятизначные номера: у них старый номер совпадает с новым, и трогать их — значит менять
+    работающий номер второй раз. Остальные меняют номер в любом случае, поэтому переезд блока
+    им ничего не стоит. Если не переведён никто — код остаётся за большей группой.</p>
+  </div>
+
+  <div class="note warn">
+    <span class="label">Отдельно проверено</span>
+    <p>Новый номер не должен совпадать с <em>действующим</em> номером другого человека —
+    иначе в переходный период один набор ведёт к двум разным абонентам. В черновике таких
+    совпадений было 28, в исправленном плане — ноль.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="label">Настройка</span><h2>Порядок развёртывания</h2></div>
+
+  <ol class="steps">
+    <li>
+      <div>
+        <h3>Пересчитать план</h3>
+        <p class="col">После любой правки таблицы аудита — пересборка и проверка. Ненулевой код
+        возврата означает, что конфликты остались.</p>
+        <pre><code>./scripts/build-numbering-plan.py --xlsx audit.xlsx --out-dir out/
+<span class="cmt"># out/numbering-plan.csv   — план со старыми и новыми номерами
+# out/sites.conf          — площадки и диапазоны для кластера
+# out/numbering-report.txt — что и почему изменено</span></code></pre>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h3>Закрыть периметр</h3>
+        <p class="col">Журнал безопасности, fail2ban, ограничение AMI. Порт 5060 смотрит наружу,
+        а журнала безопасности сейчас нет — перебор учёток идёт незамеченным.</p>
+        <pre><code>./scripts/harden.sh --apply</code></pre>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h3>Сменить пароли</h3>
+        <p class="col">Обязательно до объединения: SIP-пароли абонентов (Bulk Handler),
+        учётки транков у Ростелекома и Манго, AMI, пользователь базы.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h3>Принять действующую АТС в кластер</h3>
+        <p class="col">Ничего не переустанавливается. Скрипт снимает резервную копию, переводит
+        базу в режим Galera и включает realtime. Нужно окно: база перезапускается, около минуты
+        не устанавливаются новые вызовы — активные разговоры не рвутся.</p>
+        <pre><code>./scripts/adopt-master.sh --node-name=rostov --node-ip=10.1.10.111 \
+    --peers=10.1.10.111,10.4.3.6 --cluster-name=asterisk_prod
+asterisk-cluster-sync --apply</code></pre>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h3>Развернуть первую площадку</h3>
+        <p class="col">Одну, и обкатать неделю, прежде чем тиражировать.</p>
+        <pre><code>./scripts/clone-node.sh --node-name=voronezh --node-ip=10.4.3.6 \
+    --master-ip=10.1.10.111 --master-node-name=rostov \
+    --peers=10.1.10.111,10.4.3.6 --asterisk-major=18 \
+    --sst-pass='…' --rt-pass='…'
+./scripts/make-node-trunks.sh --peers-map=rostov=10.1.10.111,voronezh=10.4.3.6</code></pre>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h3>Свой выход в город на площадке</h3>
+        <p class="col">Оператор допускает до десяти точек подключения, поэтому площадка
+        регистрируется сама. У каждой должен быть <strong>свой</strong> пользователь виртуальной
+        АТС: общий аккаунт даёт рабочие исходящие, но ломает входящие — оператор не знает,
+        какой из точек адресован вызов.</p>
+        <pre><code>./scripts/setup-local-trunk.sh --trunk-name=mango-voronezh \
+    --host=vpbx.mango-office.ru --user=&lt;пользователь площадки&gt; \
+    --pass='…' --did=4732XXXXXX</code></pre>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h3>Failover телефонов</h3>
+        <p class="col">Провижининг остаётся на вашем Endpoint Manager. Резервный сервер он
+        из коробки не выдаёт — нужна однократная правка шаблона, дальше площадки
+        расставляются массово.</p>
+        <pre><code>epm-set-site --sites out/sites.conf --apply --rebuild</code></pre>
+      </div>
+    </li>
+  </ol>
+
+  <div class="note crit">
+    <span class="label">Чего делать нельзя</span>
+    <p>Вводить площадки пачкой и одновременно перезапускать несколько узлов базы. Кластер
+    собирается по одному узлу за раз, с ожиданием синхронизации перед переходом к следующему —
+    <code>update-peers.sh</code> проверяет кворум и откажется работать, если после ухода узла
+    оставшиеся окажутся в меньшинстве.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="label">Переход</span><h2>Как менять номера людям</h2></div>
+  <div class="col">
+    <p>План готов, но перенумерация — организационная задача, а не техническая. Порядок,
+    который переживает контакт с реальностью:</p>
+    <ul class="plain">
+      <li><strong>Сначала те, кто уже на пятизначных.</strong> Калуга и часть Мясокомбината
+      менять номер не будут вовсе — их можно заводить в кластер как есть.</li>
+      <li><strong>Переходный период с двумя номерами.</strong> Старый номер остаётся рабочим
+      и переадресуется на новый — минимум месяц, чтобы внешние контакты успели обновиться.</li>
+      <li><strong>Площадка целиком, а не по одному человеку.</strong> Внутри площадки люди
+      звонят друг другу чаще всего, и смешанное состояние путает сильнее самого перехода.</li>
+      <li><strong>Визитки, подписи, справочники, таблички.</strong> Список мест, где записан
+      старый номер, всегда длиннее, чем кажется.</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <span class="label">Что остаётся нерешённым</span>
+    <p>Мастер — единственная точка управления: при его отказе звонки идут, в том числе внешние
+    через локальные транки, но завести номер или поменять IVR негде. Резервный мастер
+    подготовлен скриптом, переключение — минуты, но перенос адреса и телефонов зависит от сети
+    и делается руками. Шифрование SIP и репликации не настроено: схема рассчитывает на
+    доверенную сеть между площадками.</p>
+  </div>
+</section>
+
+<footer>
+  <p>Данные: рабочая таблица аудита, лист «План», 1255 записей. Проверка и пересборка —
+  <code>scripts/build-numbering-plan.py</code>. Полная документация проекта — в репозитории,
+  разделы 01–11.</p>
+</footer>
+
+</div>
