@@ -87,6 +87,7 @@ epm-set-site --sites sites.conf --apply --rebuild
 | [09-epm-integration.md](docs/09-epm-integration.md) | OSS Endpoint Manager: failover через штатный провижининг |
 | [10-production-hardening.md](docs/10-production-hardening.md) | Аудит боевой АТС, усиление, приёмка перед вводом |
 | [11-local-trunks.md](docs/11-local-trunks.md) | Свой транк провайдера на каждой площадке |
+| [12-rollout-schedule.md](docs/12-rollout-schedule.md) | План внедрения на шесть регионов: 26 недель, этапы, риски |
 | [plan/](docs/plan/) | Единый номерной план: CSV, sites.conf, отчёт |
 | [plan/index.html](docs/plan/index.html) | Страница проекта: описание, нумерация, настройка |
 | [plan/scheme.html](docs/plan/scheme.html) | Схемы работы кластера: четыре механизма и сценарии отказов |
@@ -98,7 +99,8 @@ scripts/
   preflight.sh           проверка сервера до установки (RTT, ресурсы, порты)
   adopt-master.sh        существующая АТС -> мастер кластера, без переустановки
   install-master.sh      мастер с нуля: FreePBX + Galera + realtime
-  clone-node.sh          площадка: join в Galera + headless Asterisk
+  clone-node.sh          площадка с нуля: join в Galera + headless Asterisk
+  prepare-clone.sh       клон ВМ мастера -> самостоятельный узел кластера
   install-garbd.sh       арбитр кворума (на отдельном хосте)
   make-node-trunks.sh    межузловые транки, полная сетка
   sync-config.py         номера из FreePBX -> realtime-таблицы ps_*
