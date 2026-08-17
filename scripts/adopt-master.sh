@@ -299,7 +299,7 @@ fi
 
 info "Перезапускаю Asterisk для применения systemname..."
 systemctl restart asterisk
-for i in $(seq 1 30); do asterisk_running && break; sleep 1; done
+for _ in $(seq 1 30); do asterisk_running && break; sleep 1; done
 asterisk_running || die "Asterisk не поднялся: journalctl -u asterisk -n 100"
 
 asterisk -rx 'odbc show all' 2>/dev/null | sed 's/^/    /' | head -8

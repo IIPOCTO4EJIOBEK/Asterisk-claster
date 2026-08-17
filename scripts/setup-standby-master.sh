@@ -234,7 +234,7 @@ EOF
   step "Запуск обслуживания"
   systemctl enable asterisk >/dev/null 2>&1 || true
   systemctl start asterisk
-  for i in $(seq 1 30); do asterisk_running && break; sleep 1; done
+  for _ in $(seq 1 30); do asterisk_running && break; sleep 1; done
   asterisk_running || die "Asterisk не запустился: journalctl -u asterisk -n 100"
 
   for svc in apache2 httpd nginx freepbx; do
