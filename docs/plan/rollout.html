@@ -1,4 +1,4 @@
-<title>Тринадцать недель до кластера</title>
+<title>Пятнадцать недель до кластера</title>
 <style>
   :root{
     --bg:#F4F6F8; --surface:#FFFFFF; --surface-2:#EDF1F4;
@@ -162,26 +162,30 @@
 <div class="wrap">
 
 <header class="hero">
-  <div class="kicker"><span class="dot"></span><span class="label">Asterisk-кластер · пять узлов · 13 недель</span></div>
-  <h1>Тринадцать недель до кластера</h1>
+  <div class="kicker"><span class="dot"></span><span class="label">Централизованная телефония на Asterisk · выносы в кластерах · два этапа</span></div>
+  <h1>Пятнадцать недель до кластера</h1>
   <p class="lede col">Двенадцать разрозненных станций и 1255 абонентов сводятся
-  в один кластер из пяти узлов. Все узлы — свои виртуальные машины, закупать
-  нечего. Каждый, кроме Ростова, появляется клонированием мастера за минуты —
-  на этом и держится недельный цикл на площадку.</p>
+  в централизованную схему: центральный узел в Ростове и четыре выноса,
+  работающих узлами одного кластера. По решению совещания сначала вводится
+  всё, кроме Воронежа, и только затем Воронеж — самая крупная площадка идёт
+  последней.</p>
+  <p class="col" style="font-size:.92rem;color:var(--muted);max-width:66ch">
+  Основание — протокол, п. 3. Скорректированная архитектура — Савенко В.,
+  до 05.08, выполнено. План — Цеховской В., срок 20.08.</p>
   <nav class="toc">
     <a href="#gantt">Сводный график</a>
     <a href="#audit">Что показал аудит</a>
     <a href="#topology">Пять узлов</a>
     <a href="#clone">Как разворачивается узел</a>
-    <a href="#stages">Этапы по неделям</a>
+    <a href="#stages">Задачи по неделям</a>
     <a href="#risks">Ресурсы и риски</a>
     <a href="#day1">Первый день</a>
   </nav>
   <div class="stats">
     <div class="stat"><b>1255</b><span>абонентов</span></div>
     <div class="stat"><b>12&nbsp;→&nbsp;5</b><span>станций в узлы</span></div>
-    <div class="stat"><b>13</b><span>недель</span></div>
-    <div class="stat"><b>85</b><span>человеко-дней</span></div>
+    <div class="stat"><b>15</b><span>недель, два этапа</span></div>
+    <div class="stat"><b>89</b><span>человеко-дней</span></div>
     <div class="stat"><b>0</b><span>закупок</span></div>
   </div>
 </header>
@@ -190,117 +194,127 @@
 <section id="gantt">
   <div class="sec-head">
     <span class="label">Сводный график</span>
-    <h2>Девять потоков, одна жёсткая остановка</h2>
+    <h2>Два этапа подряд, одна жёсткая остановка</h2>
   </div>
-  <p class="col">Потоки идут внахлёст: перенумерация и консолидация мелких станций —
-  работа организационная, она запускается параллельно тиражированию, а не после него.
-  Останавливается план в одном месте — после первой площадки.</p>
+  <p class="col">Этапность задана протоколом и последовательна: сначала всё,
+  кроме Воронежа, затем Воронеж. Совмещать нельзя. Внутри этапа 1 потоки идут
+  внахлёст — перенумерация и консолидация мелких станций запускаются параллельно
+  тиражированию, а не после него.</p>
 
   <figure>
-    <svg viewBox="0 0 900 392" role="img"
-         aria-label="Диаграмма Ганта на 13 недель. Подготовка и безопасность недели 1-2, стенд неделя 3, мастер неделя 4, Воронеж 5-6, тиражирование 7-9, передача роли мастера 10, консолидация 6-12, перенумерация 5-13. Семь вех и контрольная точка после недели 6.">
+    <svg viewBox="0 0 900 424" role="img"
+         aria-label="Диаграмма Ганта на 15 недель, разделённая на два этапа. Этап 1, недели 1-11: подготовка и безопасность 1-2, стенд 3, центральный узел 4, пилот Нижний Новгород 5-6, тиражирование 7-8, передача роли 9, консолидация 7-10, перенумерация 5-11. Этап 2, недели 12-15: воронежский вынос 12-13, консолидация воронежских АТС 13-14, перенумерация Воронежа 13-15.">
       <defs>
         <marker id="ga" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
           <path d="M0,0 L10,5 L0,10 z" fill="var(--crit)"/></marker>
       </defs>
 
-      <g class="t-n" text-anchor="middle" font-size="11">
-        <text x="185.5" y="15">1</text><text x="240.5" y="15">2</text>
-        <text x="295.5" y="15">3</text><text x="350.5" y="15">4</text>
-        <text x="405.5" y="15">5</text><text x="460.5" y="15">6</text>
-        <text x="515.5" y="15">7</text><text x="570.5" y="15">8</text>
-        <text x="625.5" y="15">9</text><text x="680.5" y="15">10</text>
-        <text x="735.5" y="15">11</text><text x="790.5" y="15">12</text>
-        <text x="845.5" y="15">13</text>
+      <g class="t-n" text-anchor="middle" font-size="10.5">
+        <text x="181.5" y="15">1</text><text x="228.5" y="15">2</text>
+        <text x="275.5" y="15">3</text><text x="322.5" y="15">4</text>
+        <text x="369.5" y="15">5</text><text x="416.5" y="15">6</text>
+        <text x="463.5" y="15">7</text><text x="510.5" y="15">8</text>
+        <text x="557.5" y="15">9</text><text x="604.5" y="15">10</text>
+        <text x="651.5" y="15">11</text><text x="698.5" y="15">12</text>
+        <text x="745.5" y="15">13</text><text x="792.5" y="15">14</text>
+        <text x="839.5" y="15">15</text>
       </g>
       <text x="150" y="15" class="t-s" text-anchor="end">неделя</text>
 
+      <rect x="158" y="24" width="517" height="17" rx="3" class="bx-a"/>
+      <text x="416.5" y="36.5" class="t-a" text-anchor="middle" font-size="10">ЭТАП 1 — все, кроме Воронежа · 810 абонентов</text>
+      <rect x="675" y="24" width="188" height="17" rx="3" class="bx-c"/>
+      <text x="769" y="36.5" class="t-c" text-anchor="middle" font-size="10">ЭТАП 2 — Воронеж · 445</text>
+      <text x="150" y="36" class="t-s" text-anchor="end">этап</text>
+
       <g class="grid">
-        <line x1="158" y1="46" x2="158" y2="348"/>
-        <line x1="268" y1="46" x2="268" y2="348"/>
-        <line x1="378" y1="46" x2="378" y2="348"/>
-        <line x1="488" y1="46" x2="488" y2="348"/>
-        <line x1="598" y1="46" x2="598" y2="348"/>
-        <line x1="708" y1="46" x2="708" y2="348"/>
-        <line x1="818" y1="46" x2="818" y2="348"/>
-        <line x1="873" y1="46" x2="873" y2="348"/>
-        <line x1="158" y1="348" x2="873" y2="348"/>
+        <line x1="158" y1="48" x2="158" y2="380"/>
+        <line x1="252" y1="48" x2="252" y2="380"/>
+        <line x1="346" y1="48" x2="346" y2="380"/>
+        <line x1="440" y1="48" x2="440" y2="380"/>
+        <line x1="534" y1="48" x2="534" y2="380"/>
+        <line x1="628" y1="48" x2="628" y2="380"/>
+        <line x1="769" y1="48" x2="769" y2="380"/>
+        <line x1="863" y1="48" x2="863" y2="380"/>
+        <line x1="158" y1="380" x2="863" y2="380"/>
       </g>
 
-      <g>
-        <path d="M295.5,26 l8,8 -8,8 -8,-8 z" class="ms"/><text x="295.5" y="37.5" class="ms-t" text-anchor="middle">1</text>
-        <path d="M350.5,26 l8,8 -8,8 -8,-8 z" class="ms"/><text x="350.5" y="37.5" class="ms-t" text-anchor="middle">2</text>
-        <path d="M460.5,26 l8,8 -8,8 -8,-8 z" class="ms" stroke="var(--crit)"/><text x="460.5" y="37.5" class="ms-t" fill="var(--crit)" text-anchor="middle">3</text>
-        <path d="M625.5,26 l8,8 -8,8 -8,-8 z" class="ms"/><text x="625.5" y="37.5" class="ms-t" text-anchor="middle">4</text>
-        <path d="M680.5,26 l8,8 -8,8 -8,-8 z" class="ms"/><text x="680.5" y="37.5" class="ms-t" text-anchor="middle">5</text>
-        <path d="M790.5,26 l8,8 -8,8 -8,-8 z" class="ms"/><text x="790.5" y="37.5" class="ms-t" text-anchor="middle">6</text>
-        <path d="M845.5,26 l8,8 -8,8 -8,-8 z" class="ms"/><text x="845.5" y="37.5" class="ms-t" text-anchor="middle">7</text>
-      </g>
-      <text x="150" y="38" class="t-s" text-anchor="end">веха</text>
+      <text x="150" y="72" class="t-b" text-anchor="end">Подготовка</text>
+      <rect x="158" y="60" width="94" height="16" rx="3" class="bx-a"/>
+      <text x="260" y="72" class="t-s">сеть, ВМ, учётки у операторов — Воронеж тоже</text>
 
-      <text x="150" y="73" class="t-b" text-anchor="end">Подготовка</text>
-      <rect x="158" y="60" width="110" height="16" rx="3" class="bx-a"/>
-      <text x="276" y="72" class="t-s">сеть, сервер под Москву, учётки у операторов</text>
+      <text x="150" y="100" class="t-b" text-anchor="end">Безопасность</text>
+      <rect x="158" y="88" width="94" height="16" rx="3" class="bx-c"/>
+      <text x="260" y="100" class="t-s">444 пароля, транки, AMI, проверка бэкапа</text>
 
-      <text x="150" y="105" class="t-b" text-anchor="end">Безопасность</text>
-      <rect x="158" y="92" width="110" height="16" rx="3" class="bx-c"/>
-      <text x="276" y="104" class="t-s">444 пароля, транки, AMI, проверка бэкапа</text>
+      <text x="150" y="128" class="t-b" text-anchor="end">Стенд</text>
+      <rect x="252" y="116" width="94" height="16" rx="3" class="bx-a"/>
+      <text x="354" y="128" class="t-s">клонирование и восстановление — руками</text>
 
-      <text x="150" y="137" class="t-b" text-anchor="end">Стенд</text>
-      <rect x="268" y="124" width="55" height="16" rx="3" class="bx-a"/>
-      <text x="331" y="136" class="t-s">клонирование и восстановление — руками</text>
+      <text x="150" y="156" class="t-b" text-anchor="end">Центральный узел</text>
+      <rect x="299" y="144" width="47" height="16" rx="3" class="bx-ok"/>
+      <text x="354" y="156" class="t-s">Ростов, окно около часа</text>
 
-      <text x="150" y="169" class="t-b" text-anchor="end">Ростов → мастер</text>
-      <rect x="323" y="156" width="55" height="16" rx="3" class="bx-ok"/>
-      <text x="386" y="168" class="t-s">окно около часа</text>
+      <text x="150" y="184" class="t-b" text-anchor="end">Пилот — Н. Новгород</text>
+      <rect x="346" y="172" width="47" height="16" rx="3" class="bx-ok"/>
+      <rect x="393" y="172" width="47" height="16" rx="3" class="bx-d"/>
+      <text x="448" y="184" class="t-s">неделя наблюдения — до контрольной точки</text>
 
-      <text x="150" y="201" class="t-b" text-anchor="end">Воронеж</text>
-      <rect x="378" y="188" width="55" height="16" rx="3" class="bx-ok"/>
-      <rect x="433" y="188" width="55" height="16" rx="3" class="bx-d"/>
-      <text x="496" y="200" class="t-s">неделя наблюдения — до контрольной точки</text>
+      <text x="150" y="212" class="t-b" text-anchor="end">Тиражирование</text>
+      <rect x="440" y="200" width="94" height="16" rx="3" class="bx-a"/>
+      <line x1="487" y1="200" x2="487" y2="216" class="grid" opacity=".9"/>
+      <text x="447" y="212" class="t-a" font-size="9">Славянск</text>
+      <text x="495" y="212" class="t-a" font-size="9">Москва</text>
+      <text x="542" y="212" class="t-s">по площадке в неделю</text>
 
-      <text x="150" y="233" class="t-b" text-anchor="end">Тиражирование</text>
-      <rect x="488" y="220" width="165" height="16" rx="3" class="bx-a"/>
-      <g class="grid" opacity=".9">
-        <line x1="543" y1="220" x2="543" y2="236"/>
-        <line x1="598" y1="220" x2="598" y2="236"/>
-      </g>
-      <text x="502" y="232" class="t-a" font-size="9.5">НН</text>
-      <text x="551" y="232" class="t-a" font-size="9.5">Славянск</text>
-      <text x="612" y="232" class="t-a" font-size="9.5">Мск</text>
-      <text x="661" y="232" class="t-s">по площадке в неделю</text>
+      <text x="150" y="240" class="t-b" text-anchor="end">Передача роли</text>
+      <rect x="534" y="228" width="47" height="16" rx="3" class="bx-ok"/>
+      <text x="589" y="240" class="t-s">учебно, до начала этапа 2</text>
 
-      <text x="150" y="265" class="t-b" text-anchor="end">Передача роли</text>
-      <rect x="653" y="252" width="55" height="16" rx="3" class="bx-ok"/>
-      <text x="716" y="264" class="t-s">учебно: мастер на рабочий узел и обратно</text>
+      <text x="150" y="268" class="t-b" text-anchor="end">Консолидация</text>
+      <rect x="440" y="256" width="188" height="16" rx="3" class="bx-w"/>
+      <text x="448" y="268" class="t-w">ССЗ, ростовские мелкие, локальный PBX</text>
 
-      <text x="150" y="297" class="t-b" text-anchor="end">Консолидация</text>
-      <rect x="433" y="284" width="385" height="16" rx="3" class="bx-w"/>
-      <text x="441" y="296" class="t-w">пять мелких АТС — второй исполнитель</text>
+      <text x="150" y="296" class="t-b" text-anchor="end">Перенумерация</text>
+      <rect x="346" y="284" width="329" height="16" rx="3" class="bx-w"/>
+      <text x="354" y="296" class="t-w">810 абонентов этапа 1 — второй исполнитель</text>
 
-      <text x="150" y="329" class="t-b" text-anchor="end">Перенумерация</text>
-      <rect x="378" y="316" width="495" height="16" rx="3" class="bx-w"/>
-      <text x="386" y="328" class="t-w">организационный поток — второй исполнитель</text>
+      <text x="150" y="324" class="t-b" text-anchor="end">Воронеж — вынос</text>
+      <rect x="675" y="312" width="94" height="16" rx="3" class="bx-c"/>
+      <text x="777" y="324" class="t-s">445 абонентов, самая крупная площадка</text>
 
-      <line x1="488" y1="46" x2="488" y2="360" class="ln-c" stroke-dasharray="5 4" marker-end="url(#ga)"/>
-      <text x="488" y="374" class="t-c" text-anchor="middle">контрольная точка: тиражирование не начинается, пока Воронеж не отработал неделю чисто</text>
+      <text x="150" y="352" class="t-b" text-anchor="end">Воронеж — АТС</text>
+      <rect x="722" y="340" width="94" height="16" rx="3" class="bx-w"/>
+      <text x="824" y="352" class="t-s">Мясокомбинат 187, Калуга 29</text>
+
+      <text x="150" y="380" class="t-b" text-anchor="end">Воронеж — номера</text>
+      <rect x="722" y="368" width="141" height="16" rx="3" class="bx-w"/>
+
+      <line x1="416" y1="48" x2="416" y2="392" class="ln-c" stroke-dasharray="5 4" marker-end="url(#ga)"/>
+      <text x="410" y="406" class="t-c" text-anchor="end">контрольная точка: тиражирование ждёт чистой недели на пилоте</text>
+
+      <line x1="675" y1="20" x2="675" y2="396" class="ln-c" stroke-width="2"/>
+      <text x="683" y="406" class="t-c">этап 2 стартует только после закрытия этапа 1</text>
     </svg>
-    <figcaption>Сплошная заливка — работы, штриховка — наблюдение под нагрузкой.
-    Жёлтым — потоки второго исполнителя. При сжатом сроке контрольная точка после
-    Воронежа остаётся единственным запасом: сдвиг здесь двигает весь график.</figcaption>
+    <figcaption>Сплошная заливка — работы, штриховка — наблюдение под нагрузкой,
+    жёлтым — потоки второго исполнителя. Вертикаль на неделе 11 — граница этапов:
+    протокол требует последовательности, поэтому любой сдвиг этапа 1 двигает
+    Воронеж целиком.</figcaption>
   </figure>
 
   <div class="tbl-wrap">
     <table>
-      <thead><tr><th class="n">№</th><th>Веха</th><th class="n">Неделя</th><th>Что она означает</th></tr></thead>
+      <thead><tr><th>Веха</th><th class="n">Неделя</th><th>Что она означает</th></tr></thead>
       <tbody>
-        <tr><td class="n">1</td><td>Стенд пройден</td><td class="n">3</td><td class="wide">Восстановление кворума и передача роли мастера сделаны руками, а не прочитаны</td></tr>
-        <tr><td class="n">2</td><td>Ростов работает как мастер</td><td class="n">4</td><td class="wide">Кластер из одного узла: работает как обычная АТС</td></tr>
-        <tr><td class="n">3</td><td>Решение о тиражировании</td><td class="n">6</td><td class="wide"><span class="chip c-crit">контрольная</span> Всё, что всплыло бы на трёх площадках, всплыло на одной</td></tr>
-        <tr><td class="n">4</td><td>Все пять узлов в кластере</td><td class="n">9</td><td class="wide">Кворум 5, нечётный — арбитр не нужен</td></tr>
-        <tr><td class="n">5</td><td>Передача роли мастера проверена</td><td class="n">10</td><td class="wide">Отдельной резервной машины нет, поэтому процедура отработана учебно</td></tr>
-        <tr><td class="n">6</td><td>Мелкие АТС погашены</td><td class="n">12</td><td class="wide">343 абонента пяти станций переехали на узлы</td></tr>
-        <tr><td class="n">7</td><td>Перенумерация завершена</td><td class="n">13</td><td class="wide">Переадресации со старых номеров сняты</td></tr>
+        <tr><td>Стенд пройден</td><td class="n">3</td><td class="wide">Восстановление кворума и передача роли сделаны руками, а не прочитаны</td></tr>
+        <tr><td>Ростов — центральный узел</td><td class="n">4</td><td class="wide">Кластер из одного узла: работает как обычная АТС</td></tr>
+        <tr><td>Решение о тиражировании</td><td class="n">6</td><td class="wide"><span class="chip c-crit">контрольная</span> Пилот в Нижнем Новгороде отработал неделю под нагрузкой</td></tr>
+        <tr><td>Все выносы этапа 1 в кластере</td><td class="n">8</td><td class="wide">Четыре узла — кворум чётный до ввода Воронежа</td></tr>
+        <tr><td>Передача роли проверена</td><td class="n">9</td><td class="wide">Сделано до этапа 2 намеренно: ввод Воронежа — самая нагруженная операция</td></tr>
+        <tr><td><b>Этап 1 закрыт</b></td><td class="n">11</td><td class="wide">810 абонентов на кластере, мелкие АТС погашены, нумерация переведена</td></tr>
+        <tr><td>Воронежский вынос работает</td><td class="n">13</td><td class="wide">Пять узлов, кворум снова нечётный</td></tr>
+        <tr><td>Воронежские АТС погашены</td><td class="n">14</td><td class="wide">Мясокомбинат 187 и Калуга 29 переехали на вынос</td></tr>
+        <tr><td><b>Этап 2 закрыт</b></td><td class="n">15</td><td class="wide">1255 абонентов, 12 станций сведены в 5 узлов</td></tr>
       </tbody>
     </table>
   </div>
@@ -343,14 +357,16 @@
 <section id="topology">
   <div class="sec-head">
     <span class="label">Целевое состояние</span>
-    <h2>Двенадцать станций сводятся в пять узлов</h2>
+    <h2>Двенадцать станций сводятся в центр и четыре выноса</h2>
   </div>
-  <p class="col">Пять узлов — число нечётное, поэтому отдельный арбитр не нужен.
-  Кластер сохраняет кворум при потере двух узлов из пяти.</p>
+  <p class="col">В готовой схеме пять узлов — число нечётное, поэтому отдельный
+  арбитр не нужен: кластер сохраняет кворум при потере двух узлов из пяти. Но
+  Воронеж вводится последним, и на неделях 8–11 узлов ровно четыре — про это
+  ниже, в задаче 6.</p>
 
   <figure>
     <svg viewBox="0 0 900 500" role="img"
-         aria-label="Схема консолидации: двенадцать существующих станций слева сводятся в пять узлов справа. Ростов принимает свои мелкие станции и сохраняет ставропольских абонентов, Москва получает новую виртуальную машину.">
+         aria-label="Схема консолидации: двенадцать существующих станций слева сводятся в пять узлов справа. Ростов принимает свои мелкие станции и сохраняет ставропольских абонентов, Москва получает новую виртуальную машину, Воронеж вводится вторым этапом.">
       <defs>
         <marker id="ca" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
           <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
@@ -400,8 +416,8 @@
         <text x="530" y="140" class="t-b">Ростов — мастер, FreePBX</text><text x="840" y="140" class="t-m" text-anchor="end">426</text>
         <text x="530" y="166" class="t-ok">включая 74 абонента Ставрополя — они и сейчас здесь</text>
 
-        <rect x="516" y="241" width="336" height="30" rx="4" class="bx-a"/>
-        <text x="530" y="260" class="t-b">Воронеж</text><text x="840" y="260" class="t-m" text-anchor="end">445</text>
+        <rect x="516" y="241" width="336" height="30" rx="4" class="bx-c"/>
+        <text x="530" y="260" class="t-b">Воронеж</text><text x="700" y="260" class="t-c">этап 2</text><text x="840" y="260" class="t-m" text-anchor="end">445</text>
 
         <rect x="516" y="316" width="336" height="30" rx="4" class="bx-a"/>
         <text x="530" y="335" class="t-b">Нижний Новгород</text><text x="840" y="335" class="t-m" text-anchor="end">164</text>
@@ -597,14 +613,20 @@ systemd-detect-virt; cat /sys/class/dmi/id/product_uuid</code></pre>
 <section id="stages">
   <div class="sec-head">
     <span class="label">Подробно</span>
-    <h2>Девять этапов по неделям</h2>
+    <h2>Двенадцать задач в двух этапах</h2>
+  </div>
+
+  <div class="note" style="border-left-color:var(--accent);margin-bottom:8px">
+    <span class="label">Этап 1 — все площадки, кроме Воронежа · недели 1–11 · 810 абонентов</span>
+    <p>Ростов 426 (включая Ставрополь 74), Нижний Новгород 164,
+    Славянск-на-Кубани 140, Москва 80.</p>
   </div>
 
   <div class="stage">
     <div class="stage-no"><b>1</b>недели 1–2</div>
     <div class="stage-body">
       <h3>Подготовка</h3>
-      <p>Идёт параллельно с этапом 2. Ничего не разворачивается, но без этого
+      <p>Идёт параллельно с задачей 2. Ничего не разворачивается, но без этого
       остальное встанет.</p>
       <div class="tbl-wrap">
         <table>
@@ -620,15 +642,12 @@ systemd-detect-virt; cat /sys/class/dmi/id/product_uuid</code></pre>
         </table>
       </div>
       <div class="note warn">
-        <span class="label">Точка принятия решения</span>
-        <p>Замер RTT. Порог: до 20 мс хорошо, до 50 мс терпимо, выше — площадка в
-        кластер не включается и получает автономную АТС с транком.</p>
+        <span class="label">Воронеж участвует уже здесь</span>
+        <p>Замер RTT и запрос учётки у оператора делаются и для Воронежа, хотя его
+        очередь на неделе 12. Ждать канал или учётную запись дольше, чем ставить сам
+        вынос — выяснять это в конце графика поздно.</p>
       </div>
 <pre><code>./scripts/preflight.sh --node-ip=&lt;этот&gt; --peers=&lt;все пять&gt;</code></pre>
-      <p style="margin-top:1em">Московской ВМ нужно 2 vCPU без переподписки и
-      4 ГБ, а диск считается по текущему размеру мастера с запасом: это место под
-      его клон, а не под установку с нуля. Хост — не тот же, что у любого другого
-      узла кластера.</p>
     </div>
   </div>
 
@@ -652,7 +671,7 @@ systemd-detect-virt; cat /sys/class/dmi/id/product_uuid</code></pre>
         </table>
       </div>
       <div class="note crit">
-        <p>Последний пункт не формальность: следующий этап перезапускает базу.
+        <p>Последний пункт не формальность: следующая задача перезапускает базу.
         Непроверенная копия копией не является.</p>
       </div>
     </div>
@@ -663,8 +682,9 @@ systemd-detect-virt; cat /sys/class/dmi/id/product_uuid</code></pre>
     <div class="stage-body">
       <h3>Испытательный стенд</h3>
       <p>Две виртуалки, полный прогон до касания продуктива. Стенд повторяет боевую
-      схему <b>включая способ развёртывания</b>: узел получается клонированием
-      мастера. Иначе на стенде не проявятся именно те проблемы, ради которых он нужен.</p>
+      схему <b>включая способ развёртывания</b>: вынос получается клонированием
+      центрального узла. Иначе на стенде не проявятся именно те проблемы, ради
+      которых он нужен.</p>
       <ul>
         <li><code>SELECT reg_server, COUNT(*) FROM ps_contacts GROUP BY reg_server</code> —
           имена узлов различаются, задвоения нет;</li>
@@ -674,9 +694,8 @@ systemd-detect-virt; cat /sys/class/dmi/id/product_uuid</code></pre>
       </ul>
       <div class="note crit">
         <p>Плюс то, что в аварию делают впервые: восстановление кворума и
-        <b>передача роли мастера на рабочий узел</b>. При отсутствии отдельной
-        резервной машины это основная процедура восстановления управления —
-        отработать её на стенде обязательно.</p>
+        <b>передача роли центрального узла на рабочий вынос</b>. При отсутствии
+        отдельной резервной машины это основная процедура восстановления управления.</p>
       </div>
     </div>
   </div>
@@ -684,15 +703,19 @@ systemd-detect-virt; cat /sys/class/dmi/id/product_uuid</code></pre>
   <div class="stage">
     <div class="stage-no"><b>4</b>неделя 4</div>
     <div class="stage-body">
-      <h3>Ростов становится мастером</h3>
+      <h3>Ростов становится центральным узлом</h3>
       <p>Одно окно, около часа. База перезапускается: активные разговоры не рвутся,
       новые вызовы не устанавливаются примерно минуту.</p>
 <pre><code>./scripts/adopt-master.sh --node-name=rostov --node-ip=10.1.10.111 \
     --peers=&lt;все пять узлов&gt; --cluster-name=asterisk_prod
 asterisk-cluster-sync --apply
 asterisk-cluster-health</code></pre>
-      <p style="margin-top:1em">Скрипт сам снимает бэкап, конвертирует MyISAM в InnoDB,
-      поднимает Galera поверх существующей базы и сверяет число добавочных до и после.</p>
+      <div class="note">
+        <span class="label">Список узлов задаётся сразу полный, включая Воронеж</span>
+        <p>Узел, которого пока нет, просто недоступен и в кворуме не участвует — это
+        нормально. Так на неделе 12 не придётся переобновлять список на всех уже
+        работающих выносах.</p>
+      </div>
       <div class="note">
         <span class="label">Откат</span>
         <p>Остановить MariaDB, убрать <code>60-galera.cnf</code>, запустить обратно.
@@ -704,115 +727,189 @@ asterisk-cluster-health</code></pre>
   <div class="stage">
     <div class="stage-no"><b>5</b>недели 5–6</div>
     <div class="stage-body">
-      <h3>Воронеж — первая площадка</h3>
-      <p>Самая важная точка проекта. Всё, что всплывёт здесь, всплыло бы на каждой
-      из трёх оставшихся.</p>
-<pre><code><span class="cmt"># неделя 5 — клонировать ВМ мастера, поднять в Воронеже, сменить IP, затем:</span>
-./scripts/preflight.sh --node-ip=10.4.3.6 --peers=&lt;полный список&gt;
-./scripts/prepare-clone.sh --node-name=voronezh --node-ip=10.4.3.6 \
-    --master-ip=10.1.10.111 --master-node-name=rostov \
-    --peers=&lt;полный список&gt; --sst-pass='…' --rt-pass='…'
-./scripts/make-node-trunks.sh --peers-map=rostov=10.1.10.111,voronezh=10.4.3.6
-asterisk-cluster-push-dialplan --nodes=voronezh=10.4.3.6
-./scripts/setup-local-trunk.sh --trunk-name=mango-voronezh --host=&lt;оператор&gt; \
-    --user=&lt;пользователь площадки&gt; --pass='…' --did=&lt;городской номер&gt;
-epm-set-site --sites out/sites.conf --apply --rebuild</code></pre>
-      <p style="margin-top:1em"><b>Неделя наблюдения.</b> Под реальной нагрузкой
+      <h3>Пилотный вынос — Нижний Новгород</h3>
+      <div class="note ok">
+        <span class="label">Почему не Воронеж</span>
+        <p>Воронеж по протоколу вынесен во второй этап и пилотом быть не может.
+        Из оставшихся Нижний Новгород — самый крупный (164) и единственный, у кого
+        есть <b>и своя станция, и станция на консолидацию</b> (ССЗ, 39 абонентов),
+        то есть он отрабатывает процедуру целиком. Москва проще: её абоненты уже
+        живут в базе центрального узла, переносить нечего.</p>
+      </div>
+      <p style="margin-top:1.2em"><b>Неделя наблюдения.</b> Под реальной нагрузкой
       проверяется:</p>
       <ul>
         <li>звонки внутри площадки, между площадками, наружу;</li>
-        <li>остановка Asterisk Воронежа → телефоны уходят на Ростов за 10–60 с;</li>
+        <li>остановка Asterisk в НН → телефоны уходят на Ростов за 10–60 с;</li>
         <li>возврат площадки → телефоны возвращаются;</li>
         <li>обрыв VPN → поведение кворума на двух узлах;</li>
-        <li><code>wsrep_flow_control_paused</code> — не тормозит ли Воронеж запись всему кластеру.</li>
+        <li><code>wsrep_flow_control_paused</code> — не тормозит ли вынос запись всему кластеру.</li>
       </ul>
       <div class="note crit">
         <span class="label">Контрольная точка</span>
         <p>Если за неделю вылезли проблемы — тиражирование не начинается, пока они
-        не закрыты. При сжатом сроке это единственный запас в плане: сдвиг здесь
-        двигает весь график.</p>
+        не закрыты. Это единственный запас в графике: сдвиг здесь двигает и этап 1,
+        и этап 2.</p>
       </div>
     </div>
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>6</b>недели 7–9</div>
+    <div class="stage-no"><b>6</b>недели 7–8</div>
     <div class="stage-body">
-      <h3>Тиражирование</h3>
-      <p>По одной площадке в неделю, в порядке из таблицы выше. Перед каждой —
-      обновление списка узлов на всех уже работающих, по одному, с ожиданием
-      <code>Synced</code>. Полная последовательность работ — на схеме
+      <h3>Тиражирование на остальные выносы этапа 1</h3>
+      <p>По одной площадке в неделю. Полная последовательность работ — на схеме
       «<a href="#clone" style="color:var(--accent)">Порядок работ по площадке</a>».</p>
-<pre><code>./scripts/update-peers.sh --peers=&lt;НОВЫЙ полный список&gt; --restart</code></pre>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th class="n">Неделя</th><th>Площадка</th><th class="n">Абонентов</th><th>Особенность</th></tr></thead>
+          <tbody>
+            <tr><td class="wk">7</td><td>Славянск-на-Кубани</td><td class="n">140</td><td class="wide"><span class="chip c-crit">нужен IP</span> в аудите не указан</td></tr>
+            <tr><td class="wk">8</td><td>Москва</td><td class="n">80</td><td class="wide"><span class="chip c-ok">проще остальных</span> абоненты уже в базе центра, шаги 1–2 не нужны</td></tr>
+          </tbody>
+        </table>
+      </div>
+<pre><code>./scripts/update-peers.sh --peers=&lt;полный список&gt; --restart</code></pre>
+      <div class="note warn">
+        <span class="label">С недели 8 кворум чётный</span>
+        <p>После ввода Москвы узлов четыре: Ростов, Нижний Новгород, Славянск,
+        Москва. Чётное число переживает потерю только одного узла, а при разрыве
+        сети пополам большинства нет ни у одной половины. Так продлится до недели
+        12. Если четыре недели в таком состоянии неприемлемы — на этот период
+        ставится арбитр <code>garbd</code> и снимается с вводом Воронежа.</p>
+      </div>
     </div>
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>7</b>неделя 10</div>
+    <div class="stage-no"><b>7</b>неделя 9</div>
     <div class="stage-body">
-      <h3>Учебная передача роли мастера</h3>
-      <p>Отдельной резервной машины в плане нет. Роль мастера передаётся на рабочий
-      узел: FreePBX там уже установлен клонированием и только отключён. На своих ВМ
-      выделенный резерв возможен, но требует двух машин — шестой узел делает число
-      чётным, и кворум приходится добирать арбитром.</p>
+      <h3>Учебная передача роли центрального узла</h3>
+      <p>Отдельной резервной машины в плане нет. Роль передаётся на рабочий вынос:
+      FreePBX там уже установлен клонированием и только отключён.</p>
 <pre><code>./scripts/setup-standby-master.sh --status
-./scripts/setup-standby-master.sh --promote   <span class="cmt"># на выбранном узле</span>
+./scripts/setup-standby-master.sh --promote   <span class="cmt"># на выбранном выносе</span>
 <span class="cmt"># проверка управления и звонков</span>
 ./scripts/setup-standby-master.sh --demote</code></pre>
-      <p style="margin-top:1em">Процедура, не опробованная в спокойной обстановке,
-      в аварию не работает. Это и есть цена отказа от отдельной резервной машины.</p>
+      <p style="margin-top:1em">Делается до этапа 2 намеренно: к неделе 12 процедура
+      должна быть уже проверена, потому что ввод Воронежа — самая нагруженная
+      операция плана.</p>
     </div>
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>8</b>недели 6–12</div>
+    <div class="stage-no"><b>8</b>недели 7–10</div>
     <div class="stage-body">
-      <h3>Консолидация мелких АТС</h3>
+      <h3>Консолидация мелких АТС этапа 1</h3>
       <p>Идёт параллельно с тиражированием, силами второго исполнителя.</p>
       <div class="tbl-wrap">
         <table>
           <thead><tr><th class="n">Недели</th><th>Что</th><th>Куда</th><th class="n">Абонентов</th></tr></thead>
           <tbody>
-            <tr><td class="wk">6–7</td><td>Мясокомбинат</td><td>Воронеж</td><td class="n">187</td></tr>
-            <tr><td class="wk">8</td><td>Калуга</td><td>Воронеж</td><td class="n">29</td></tr>
-            <tr><td class="wk">9</td><td>ССЗ</td><td>Нижний Новгород</td><td class="n">39</td></tr>
-            <tr><td class="wk">10–11</td><td class="wide">Манитек, Семикаракорский, Цимлянский, Приманыческий</td><td>Ростов</td><td class="n">73</td></tr>
-            <tr><td class="wk">12</td><td>PBX локальный</td><td>Москва</td><td class="n">15</td></tr>
+            <tr><td class="wk">7</td><td>ССЗ</td><td>Нижний Новгород</td><td class="n">39</td></tr>
+            <tr><td class="wk">8–9</td><td class="wide">Манитек, Семикаракорский, Цимлянский, Приманыческий</td><td>Ростов</td><td class="n">73</td></tr>
+            <tr><td class="wk">10</td><td>PBX локальный</td><td>Москва</td><td class="n">15</td></tr>
           </tbody>
         </table>
       </div>
-      <p style="margin-top:1.2em">Для каждой: завести абонентов на принимающем узле,
-      перевести телефоны через провижининг, погасить старую станцию. Городские номера
-      переносятся на принимающий узел либо остаются через транк.</p>
     </div>
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>9</b>недели 5–13</div>
+    <div class="stage-no"><b>9</b>недели 5–11</div>
     <div class="stage-body">
-      <h3>Перенумерация</h3>
-      <p>Самый организационный поток. Идёт параллельно всему, начиная с первой
-      площадки, силами второго исполнителя.</p>
+      <h3>Перенумерация этапа 1</h3>
       <ul>
-        <li><b>Кто уже на пятизначных — не трогаем.</b> Калуга и часть Мясокомбината
-          уже живут на новых номерах, они входят в кластер как есть.</li>
+        <li><b>Кто уже на пятизначных — не трогаем.</b></li>
         <li><b>Площадка целиком, а не по человеку.</b> Внутри площадки звонят друг
           другу чаще всего, смешанное состояние путает сильнее самого перехода.</li>
-        <li><b>Переходный период — месяц минимум.</b> Старый номер остаётся рабочим и
-          переадресуется на новый.</li>
+        <li><b>Переходный период — месяц минимум.</b> Старый номер остаётся рабочим
+          и переадресуется на новый.</li>
         <li><b>Список мест, где записан старый номер, длиннее, чем кажется:</b>
-          визитки, подписи в почте, справочники, таблички на дверях, договоры, сайты,
-          настройки переадресации у контрагентов.</li>
+          визитки, подписи в почте, справочники, таблички на дверях, договоры,
+          сайты, настройки переадресации у контрагентов.</li>
       </ul>
       <div class="tbl-wrap">
         <table>
           <thead><tr><th class="n">Недели</th><th>Площадки</th><th class="n">Абонентов</th></tr></thead>
           <tbody>
-            <tr><td class="wk">5–8</td><td>Воронеж, Мясокомбинат</td><td class="n">416</td></tr>
-            <tr><td class="wk">7–9</td><td>Нижний Новгород, ССЗ</td><td class="n">161</td></tr>
-            <tr><td class="wk">8–10</td><td>Славянск-на-Кубани</td><td class="n">136</td></tr>
-            <tr><td class="wk">9–12</td><td class="wide">Ростов, его мелкие площадки, Ставрополь</td><td class="n">426</td></tr>
-            <tr><td class="wk">11–13</td><td class="wide">Москва, снятие переадресаций</td><td class="n">80</td></tr>
+            <tr><td class="wk">5–7</td><td>Нижний Новгород, ССЗ</td><td class="n">161</td></tr>
+            <tr><td class="wk">7–9</td><td>Славянск-на-Кубани</td><td class="n">136</td></tr>
+            <tr><td class="wk">8–11</td><td class="wide">Ростов, его мелкие площадки, Ставрополь</td><td class="n">426</td></tr>
+            <tr><td class="wk">9–11</td><td class="wide">Москва, снятие переадресаций</td><td class="n">80</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="note crit" style="margin:38px 0 8px">
+    <span class="label">Этап 2 — Воронеж · недели 12–15 · 445 абонентов</span>
+    <p>Начинается только после закрытия этапа 1 — так задано протоколом. К этому
+    моменту процедура ввода выноса отработана на трёх площадках, а передача роли
+    центрального узла проверена учебно.</p>
+    <p style="margin-top:.7em"><b>Самая крупная площадка идёт последней — это и плюс,
+    и минус.</b> Плюс: Воронеж получает процедуру, обкатанную на 384 абонентах трёх
+    площадок. Минус: треть периметра переводится в конце графика, и запаса после неё
+    не остаётся. Резерв на этап 2 в план не заложен — если он нужен, срок сдвигается
+    вправо, а не ужимается.</p>
+  </div>
+
+  <div class="stage">
+    <div class="stage-no"><b>10</b>недели 12–13</div>
+    <div class="stage-body">
+      <h3>Воронежский вынос</h3>
+      <p>Порядок тот же, что в задаче 6, но список узлов содержит Воронеж ещё с
+      задачи 4 — переобновлять его на работающих выносах не требуется, только
+      проверить, что все <code>Synced</code>.</p>
+<pre><code><span class="cmt"># неделя 12</span>
+./scripts/preflight.sh --node-ip=10.4.3.6 --peers=&lt;полный список&gt;
+asterisk-cluster-health          <span class="cmt"># все четыре узла Synced до начала работ</span>
+./scripts/prepare-clone.sh --node-name=voronezh --node-ip=10.4.3.6 \
+    --master-ip=10.1.10.111 --master-node-name=rostov \
+    --peers=&lt;полный список&gt; --sst-pass='…' --rt-pass='…'
+./scripts/make-node-trunks.sh --peers-map=&lt;все узлы&gt;
+asterisk-cluster-push-dialplan --nodes=voronezh=10.4.3.6
+<span class="cmt"># неделя 13</span>
+./scripts/setup-local-trunk.sh --trunk-name=&lt;оператор&gt;-voronezh --host=&lt;оператор&gt; \
+    --user=&lt;пользователь площадки&gt; --pass='…' --did=&lt;городской номер&gt;
+epm-set-site --sites out/sites.conf --apply --rebuild</code></pre>
+      <div class="note ok">
+        <p>С вводом Воронежа узлов становится пять — <b>кворум снова нечётный</b>,
+        и временный арбитр, если он ставился на недели 8–11, снимается.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="stage-no"><b>11</b>недели 13–14</div>
+    <div class="stage-body">
+      <h3>Консолидация воронежских АТС</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th class="n">Недели</th><th>Что</th><th class="n">Абонентов</th></tr></thead>
+          <tbody>
+            <tr><td class="wk">13–14</td><td>Мясокомбинат</td><td class="n">187</td></tr>
+            <tr><td class="wk">14</td><td>Калуга</td><td class="n">29</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:1.2em">Мясокомбинат — вторая по величине станция периметра.
+      В одну неделю с вводом самого выноса не совмещается: сначала вынос работает под
+      своей нагрузкой, потом принимает чужую.</p>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="stage-no"><b>12</b>недели 13–15</div>
+    <div class="stage-body">
+      <h3>Перенумерация Воронежа</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th class="n">Недели</th><th>Площадки</th><th class="n">Абонентов</th></tr></thead>
+          <tbody>
+            <tr><td class="wk">13–15</td><td>Воронеж, Мясокомбинат</td><td class="n">416</td></tr>
+            <tr><td class="wk">15</td><td class="wide">Калуга — сверка, часть уже на пятизначных</td><td class="n">29</td></tr>
           </tbody>
         </table>
       </div>
@@ -824,38 +921,39 @@ epm-set-site --sites out/sites.conf --apply --rebuild</code></pre>
 <section id="risks">
   <div class="sec-head">
     <span class="label">Ресурсы и риски</span>
-    <h2>Чего стоит сжатый срок</h2>
+    <h2>Чего стоит выбранная этапность</h2>
   </div>
 
   <div class="stats">
-    <div class="stat"><b>85</b><span>человеко-дней всего</span></div>
-    <div class="stat"><b>56</b><span>инженер кластера, этапы 1–7</span></div>
-    <div class="stat"><b>29</b><span>второй исполнитель, этапы 8–9</span></div>
-    <div class="stat"><b>978 775 ₽</b><span>внутренних затрат без НДС</span></div>
+    <div class="stat"><b>89</b><span>человеко-дней всего</span></div>
+    <div class="stat"><b>59</b><span>инженер, задачи 1–7 и 10</span></div>
+    <div class="stat"><b>30</b><span>второй исполнитель, задачи 8, 9, 11, 12</span></div>
+    <div class="stat"><b>1 024 835 ₽</b><span>внутренних затрат без НДС</span></div>
     <div class="stat"><b>0 ₽</b><span>внешних затрат: ПО бесплатное, ВМ свои</span></div>
   </div>
 
   <div class="note crit" style="margin-top:28px">
     <span class="label">Главное ограничение плана</span>
-    <p><b>Одним человеком 13 недель не закрываются.</b> 85 человеко-дней за 13 недель —
-    это 1,3 ставки. Либо второй исполнитель на перенумерацию и консолидацию, либо эти
-    два потока выносятся за срок, и тогда план становится 10-недельным по кластерной
-    части. Это не оценка трудоёмкости, а арифметика: 13 недель × 5 дней = 65 дней
-    одного человека, а этапы 1–7 занимают 56 из них.</p>
+    <p><b>Одним человеком 15 недель не закрываются.</b> 89 человеко-дней за 15 недель —
+    это 1,2 ставки. Задачи 1–7 и 10 занимают 59 из 75 доступных дней одного инженера;
+    консолидация и перенумерация идут параллельно и требуют второго человека. Либо он
+    есть, либо эти потоки выносятся за срок. Это арифметика, а не оценка трудоёмкости.</p>
   </div>
 
   <div class="tbl-wrap">
     <table>
       <thead><tr><th>Риск</th><th>Где виден</th><th>Что делать</th></tr></thead>
       <tbody>
-        <tr><td class="wide">RTT выше 50 мс до площадки</td><td><code>preflight.sh</code>, этап 1</td><td class="wide">Площадка не в кластере: автономная АТС с транком</td></tr>
-        <tr><td class="wide">Нет IP у Славянска и PBX локального</td><td>этап 1</td><td class="wide">Блокирует недели 8 и 12 — запросить в первый день</td></tr>
-        <tr><td class="wide">Оператор не даёт отдельных пользователей ВАТС</td><td>этап 1</td><td class="wide">Площадка работает через мастер, локальный транк откладывается</td></tr>
-        <tr><td class="wide">Узлы оказались на одном гипервизоре</td><td>этап 1, проверка размещения</td><td class="wide">Развести по хостам до ввода второго узла — иначе кластер не отказоустойчив</td></tr>
+        <tr><td class="wide">RTT выше 50 мс до площадки</td><td><code>preflight.sh</code>, задача 1</td><td class="wide">Площадка не в кластере: автономная АТС с транком</td></tr>
+        <tr><td class="wide">Нет IP у Славянска и PBX локального</td><td>задача 1</td><td class="wide">Блокирует недели 8 и 12 — запросить в первый день</td></tr>
+        <tr><td class="wide">Оператор не даёт отдельных пользователей ВАТС</td><td>задача 1</td><td class="wide">Площадка работает через мастер, локальный транк откладывается</td></tr>
+        <tr><td class="wide">Узлы оказались на одном гипервизоре</td><td>задача 1, проверка размещения</td><td class="wide">Развести по хостам до ввода второго узла — иначе кластер не отказоустойчив</td></tr>
         <tr><td class="wide">Узел откатили на снимок ВМ</td><td>расхождение <code>seqno</code> в журнале MariaDB</td><td class="wide">Вводить обратно только через <code>prepare-clone.sh --full-resync</code></td></tr>
-        <tr><td class="wide">Проблемы на Воронеже</td><td>этап 5</td><td class="wide">Тиражирование стоит; при сжатом сроке это единственный запас</td></tr>
-        <tr><td class="wide">Нет второго исполнителя</td><td>этапы 8, 9</td><td class="wide">Консолидация и перенумерация выносятся за 13 недель</td></tr>
-        <tr><td class="wide">Нет окна для перезапуска базы</td><td>этапы 4, 6</td><td class="wide">Работы переносятся, но не совмещаются: узлы перезапускаются по одному</td></tr>
+        <tr><td class="wide">Чётный кворум на неделях 8–11</td><td>четыре узла до ввода Воронежа</td><td class="wide">При необходимости временный арбитр <code>garbd</code>, снимается на неделе 12</td></tr>
+        <tr><td class="wide">Проблемы на пилоте</td><td>задача 5</td><td class="wide">Тиражирование стоит; это единственный запас в графике</td></tr>
+        <tr><td class="wide"><b>Сдвиг этапа 1</b></td><td>любая задача 1–9</td><td class="wide">Этап 2 двигается целиком: этапы последовательны по протоколу</td></tr>
+        <tr><td class="wide">Нет второго исполнителя</td><td>задачи 8, 9, 11, 12</td><td class="wide">Консолидация и перенумерация выносятся за 15 недель</td></tr>
+        <tr><td class="wide">Нет окна для перезапуска базы</td><td>задачи 4, 6, 10</td><td class="wide">Работы переносятся, но не совмещаются: узлы перезапускаются по одному</td></tr>
       </tbody>
     </table>
   </div>
