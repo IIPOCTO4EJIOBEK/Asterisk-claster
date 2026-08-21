@@ -242,6 +242,7 @@ tr:last-child td{border-bottom:0}
   h1{padding-top:32px}
 }
 @media (max-width:680px){body{font-size:16px}h1{font-size:1.7rem}}
+@page{ size:A4; margin:16mm 14mm; }
 @media print{
   body{background:#fff;color:#000;font-size:10.5pt}
   .page{display:block;max-width:none;padding:0}

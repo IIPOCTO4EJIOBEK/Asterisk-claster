@@ -158,6 +158,42 @@
   .ms-t{fill:var(--accent);font-family:var(--sans);font-size:9.5px;font-weight:700}
   .stepno{fill:var(--accent);stroke:none}
   .stepno-t{fill:var(--surface);font-family:var(--sans);font-size:10.5px;font-weight:700}
+
+  @page{ size:A4; margin:14mm 12mm; }
+  @media print{
+    :root, :root[data-theme="dark"]{
+      --bg:#FFFFFF; --surface:#FFFFFF; --surface-2:#F1F4F7;
+      --ink:#14181D; --ink-2:#333C46; --muted:#5C6772;
+      --line:#C9D1D9; --line-soft:#E2E7EC;
+      --accent:#0E4E5C; --accent-soft:#E4F0F2;
+      --ok:#245C45; --ok-soft:#E6F1EB;
+      --warn:#75500F; --warn-soft:#F7EFDF;
+      --crit:#8A362F; --crit-soft:#F8E8E6; --dim:#8A949E;
+      --shadow:none;
+    }
+    body{background:#fff;font-size:10.5pt;line-height:1.55}
+    .wrap{max-width:none;padding:0}
+    .toc{display:none}
+    header.hero{padding:0 0 18px}
+    section{padding:20px 0;border-bottom:0}
+    .sec-head{margin-bottom:12px}
+    h1{font-size:21pt}
+    h2{font-size:14pt}
+    h3{font-size:11pt}
+    figure{box-shadow:none;padding:12px 10px 8px;break-inside:avoid;page-break-inside:avoid}
+    figure svg{min-width:0}
+    figcaption{font-size:8.5pt}
+    .tbl-wrap,table,pre,.note,.stage,.stats,blockquote{break-inside:avoid;page-break-inside:avoid}
+    tr,li{break-inside:avoid;page-break-inside:avoid}
+    h1,h2,h3{break-after:avoid;page-break-after:avoid}
+    section{break-before:auto}
+    #topology,#quorum,#move,#final,#stages,#risks,#day1{break-before:page;page-break-before:always}
+    table{font-size:8.6pt}
+    th,td{padding:6px 9px}
+    pre{font-size:8pt;padding:10px 12px}
+    a{color:inherit;text-decoration:none}
+    .stat b{font-size:15pt}
+  }
 </style>
 <div class="wrap">
 
@@ -200,7 +236,7 @@
 
   <figure>
     <svg viewBox="0 0 900 424" role="img"
-         aria-label="Диаграмма Ганта на 16 недель, два этапа. Этап 1, недели 1-12: подготовка и безопасность 1-2, стенд 3, ростовская АТС в кластер 4, переезд центра в ЦОД 5-6, пилот Нижний Новгород 7-8, Славянск 9, учебное переключение между залами ЦОД 10, консолидация 8-11, перенумерация 6-12. Этап 2, недели 13-16: воронежский вынос и арбитр 13-14, консолидация воронежских АТС 14-15, перенумерация Воронежа 14-16.">
+         aria-label="Диаграмма Ганта на 16 недель, два этапа. Этап 1, недели 1-12: подготовка и безопасность 1-2, стенд 3, ростовская АТС в кластер 4, переезд центра в ЦОД 5-6, пилот Нижний Новгород 7-8, учебное переключение управления 9, выносы Славянск и Ставрополь 10-11, консолидация 8-11, перенумерация 6-12. Этап 2, недели 13-16: воронежский вынос 13-14, консолидация воронежских АТС 14-15, перенумерация Воронежа 14-16.">
       <defs>
         <marker id="ga" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
           <path d="M0,0 L10,5 L0,10 z" fill="var(--crit)"/></marker>
@@ -243,8 +279,8 @@
       <text x="254" y="95" class="t-s">444 пароля, транки, AMI, проверка бэкапа</text>
 
       <text x="150" y="121" class="t-b" text-anchor="end">Стенд</text>
-      <rect x="246" y="110" width="88" height="15" rx="3" class="bx-a"/>
-      <text x="342" y="121" class="t-s">репетиция передачи роли мастера</text>
+      <rect x="246" y="110" width="44" height="15" rx="3" class="bx-a"/>
+      <text x="298" y="121" class="t-s">репетиция передачи роли мастера</text>
 
       <text x="150" y="147" class="t-b" text-anchor="end">Ростов в кластер</text>
       <rect x="290" y="136" width="44" height="15" rx="3" class="bx-ok"/>
@@ -252,20 +288,21 @@
 
       <text x="150" y="173" class="t-b" text-anchor="end">Центр → ЦОД</text>
       <rect x="334" y="162" width="88" height="15" rx="3" class="bx-ok"/>
-      <text x="430" y="173" class="t-s">два живых узла в залах, Ростов → вынос</text>
+      <text x="430" y="173" class="t-s">два живых узла в стойках, Ростов → вынос</text>
 
       <text x="150" y="199" class="t-b" text-anchor="end">Пилот — Н. Новгород</text>
       <rect x="422" y="188" width="44" height="15" rx="3" class="bx-ok"/>
       <rect x="466" y="188" width="44" height="15" rx="3" class="bx-d"/>
       <text x="518" y="199" class="t-s">неделя наблюдения — до контрольной точки</text>
 
-      <text x="150" y="225" class="t-b" text-anchor="end">Славянск</text>
-      <rect x="510" y="214" width="44" height="15" rx="3" class="bx-a"/>
-      <text x="562" y="225" class="t-s">узлов пять — кворум нечётный</text>
+      <text x="150" y="225" class="t-b" text-anchor="end">Переключение GUI</text>
+      <rect x="510" y="214" width="44" height="15" rx="3" class="bx-ok"/>
+      <text x="562" y="225" class="t-s">учебно: управление зал 1 ↔ зал 2, замер норматива</text>
 
-      <text x="150" y="251" class="t-b" text-anchor="end">Переключение GUI</text>
-      <rect x="554" y="240" width="44" height="15" rx="3" class="bx-ok"/>
-      <text x="606" y="251" class="t-s">учебно: управление зал 1 ↔ зал 2</text>
+      <text x="150" y="251" class="t-b" text-anchor="end">Славянск, Ставрополь</text>
+      <rect x="554" y="240" width="88" height="15" rx="3" class="bx-a"/>
+      <line x1="598" y1="240" x2="598" y2="255" class="grid" opacity=".9"/>
+      <text x="650" y="251" class="t-s">по выносу в неделю — этап 1 закрыт</text>
 
       <text x="150" y="277" class="t-b" text-anchor="end">Консолидация</text>
       <rect x="466" y="266" width="176" height="15" rx="3" class="bx-w"/>
@@ -275,22 +312,23 @@
       <rect x="378" y="292" width="308" height="15" rx="3" class="bx-w"/>
       <text x="386" y="303" class="t-w">810 абонентов этапа 1 — второй исполнитель</text>
 
-      <text x="150" y="329" class="t-b" text-anchor="end">Воронеж + арбитр</text>
+      <text x="150" y="329" class="t-b" text-anchor="end">Воронежский вынос</text>
       <rect x="686" y="318" width="88" height="15" rx="3" class="bx-c"/>
-      <text x="782" y="329" class="t-s">445 абонентов, шестой узел — нужен garbd</text>
+      <text x="678" y="329" class="t-s" text-anchor="end">445 абонентов — узлов семь, кворум нечётный</text>
 
       <text x="150" y="355" class="t-b" text-anchor="end">Воронеж — АТС</text>
       <rect x="730" y="344" width="88" height="15" rx="3" class="bx-w"/>
-      <text x="826" y="355" class="t-s">Мясокомбинат, Калуга</text>
+      <text x="722" y="355" class="t-s" text-anchor="end">Мясокомбинат 187, Калуга 29</text>
 
       <text x="150" y="381" class="t-b" text-anchor="end">Воронеж — номера</text>
       <rect x="730" y="370" width="132" height="15" rx="3" class="bx-w"/>
+      <text x="722" y="381" class="t-s" text-anchor="end">416 абонентов Воронежа и Мясокомбината</text>
 
-      <line x1="466" y1="44" x2="466" y2="398" class="ln-c" stroke-dasharray="5 4" marker-end="url(#ga)"/>
-      <text x="460" y="412" class="t-c" text-anchor="end">контрольная точка: тиражирование ждёт чистой недели на пилоте</text>
+      <line x1="510" y1="44" x2="510" y2="398" class="ln-c" stroke-dasharray="5 4" marker-end="url(#ga)"/>
+      <text x="504" y="412" class="t-c" text-anchor="end">контрольная точка: тиражирование ждёт чистой недели на пилоте</text>
 
       <line x1="686" y1="18" x2="686" y2="402" class="ln-c" stroke-width="2"/>
-      <text x="694" y="412" class="t-c">этап 2 — только после закрытия этапа 1</text>
+      <text x="862" y="412" class="t-c" text-anchor="end">этап 2 — только после закрытия этапа 1</text>
     </svg>
     <figcaption>Сплошная заливка — работы, штриховка — наблюдение под нагрузкой,
     жёлтым — потоки второго исполнителя. Вертикаль на неделе 12 — граница этапов:
@@ -338,7 +376,7 @@
 
       <text x="20" y="24" class="t-b">Сейчас — 12 станций</text>
       <text x="20" y="40" class="t-s">каждая со своей базой и планом номеров</text>
-      <text x="516" y="24" class="t-b">После — 6 узлов и арбитр</text>
+      <text x="516" y="24" class="t-b">После — 7 узлов</text>
       <text x="516" y="40" class="t-s">одна база, единая нумерация</text>
 
       <g>
@@ -367,19 +405,19 @@
         <path d="M274,250 H512"/>
         <path d="M250,289 H512"/>
         <path d="M274,341 H512"/>
-        <path d="M250,393 H330 V64 H512"/>
+        <path d="M250,393 H330 V82 H518"/>
       </g>
-      <text x="336" y="58" class="t-a">15 абонентов локального PBX — в ЦОД</text>
+      <text x="336" y="76" class="t-a">локальный PBX — 15 абонентов</text>
 
-      <path d="M196,118 V440 H460 V78 H512" class="ln-c" marker-end="url(#cc)" stroke-dasharray="6 4"/>
+      <path d="M196,118 V440 H468 V95 H518" class="ln-c" marker-end="url(#cc)" stroke-dasharray="6 4"/>
       <text x="204" y="454" class="t-c">65 московских абонентов уезжают с Ростова в ЦОД</text>
 
-      <rect x="512" y="34" width="344" height="98" rx="6" class="bx-d"/>
-      <text x="526" y="52" class="t-s">МОСКОВСКИЙ ЦОД — две площадки</text>
-      <rect x="522" y="58" width="324" height="28" rx="4" class="bx-ok"/>
-      <text x="534" y="76" class="t-b">ЦОД-1 · зал 1 — живой узел + FreePBX</text><text x="836" y="76" class="t-m" text-anchor="end">40</text>
-      <rect x="522" y="94" width="324" height="28" rx="4" class="bx-ok"/>
-      <text x="534" y="112" class="t-b">ЦОД-2 · зал 2 — живой узел, резерв GUI</text><text x="836" y="112" class="t-m" text-anchor="end">40</text>
+      <rect x="512" y="52" width="344" height="86" rx="6" class="bx-d"/>
+      <text x="526" y="68" class="t-s">МОСКОВСКИЙ ЦОД — две площадки</text>
+      <rect x="522" y="74" width="324" height="26" rx="4" class="bx-ok"/>
+      <text x="534" y="91" class="t-b">ЦОД-1 · зал 1 — живой узел + FreePBX</text><text x="836" y="91" class="t-m" text-anchor="end">40</text>
+      <rect x="522" y="106" width="324" height="26" rx="4" class="bx-ok"/>
+      <text x="534" y="123" class="t-b">ЦОД-2 · зал 2 — живой узел, резерв GUI</text><text x="836" y="123" class="t-m" text-anchor="end">40</text>
 
       <rect x="512" y="145" width="344" height="28" rx="4" class="bx-a"/>
       <text x="526" y="163" class="t-b">Ростов — вынос</text><text x="700" y="163" class="t-s">+ 4 мелких АТС</text><text x="840" y="163" class="t-m" text-anchor="end">352</text>

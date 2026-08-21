@@ -16,3 +16,6 @@ __pycache__/
 *.log
 *.swp
 .DS_Store
+
+# собранные PDF — пересобираются scripts/html-to-pdf.sh
+out/

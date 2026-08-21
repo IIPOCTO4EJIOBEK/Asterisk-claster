@@ -120,6 +120,7 @@ scripts/
   build-numbering-plan.py единый номерной план из таблицы аудита
   build-dit-plan.py      план внедрения в корпоративных шаблонах ДИТ (xlsx)
   md-to-html.py          сборка HTML-документа из markdown, без внешних зависимостей
+  html-to-pdf.sh         печать HTML в PDF через Chromium из окружения
   lint.sh                статические проверки
 
 tools/
