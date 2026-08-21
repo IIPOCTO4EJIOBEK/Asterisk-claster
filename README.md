@@ -87,7 +87,7 @@ epm-set-site --sites sites.conf --apply --rebuild
 | [09-epm-integration.md](docs/09-epm-integration.md) | OSS Endpoint Manager: failover через штатный провижининг |
 | [10-production-hardening.md](docs/10-production-hardening.md) | Аудит боевой АТС, усиление, приёмка перед вводом |
 | [11-local-trunks.md](docs/11-local-trunks.md) | Свой транк провайдера на каждой площадке |
-| [12-rollout-schedule.md](docs/12-rollout-schedule.md) | План внедрения: центр в ЦОД, два этапа, 16 недель |
+| [12-rollout-schedule.md](docs/12-rollout-schedule.md) | План внедрения: семь узлов, центр в ЦОД, 16 недель |
 | [plan/](docs/plan/) | Единый номерной план: CSV, sites.conf, отчёт |
 | [plan/index.html](docs/plan/index.html) | Страница проекта: описание, нумерация, настройка |
 | [plan/scheme.html](docs/plan/scheme.html) | Схемы работы кластера: четыре механизма и сценарии отказов |
