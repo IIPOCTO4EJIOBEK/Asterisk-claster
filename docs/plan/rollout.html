@@ -219,7 +219,7 @@
     <div class="stat"><b>1255</b><span>абонентов</span></div>
     <div class="stat"><b>12&nbsp;→&nbsp;7</b><span>станций в узлы</span></div>
     <div class="stat"><b>16</b><span>недель, два этапа</span></div>
-    <div class="stat"><b>98</b><span>человеко-дней</span></div>
+    <div class="stat"><b>100</b><span>человеко-дней</span></div>
     <div class="stat"><b>7</b><span>узлов, арбитр не нужен</span></div>
   </div>
 </header>
@@ -228,15 +228,15 @@
 <section id="gantt">
   <div class="sec-head">
     <span class="label">Сводный график</span>
-    <h2>Тринадцать задач, два этапа, одна остановка</h2>
+    <h2>Четырнадцать задач, два этапа, одна остановка</h2>
   </div>
   <p class="col">Этапность задана протоколом и последовательна: сначала центр и все
   выносы, кроме Воронежа, затем Воронеж. Внутри этапа 1 перенумерацию и консолидацию
   ведём внахлёст с основными работами — иначе в срок не укладываемся.</p>
 
   <figure>
-    <svg viewBox="0 0 900 424" role="img"
-         aria-label="Диаграмма Ганта на 16 недель, два этапа. Этап 1, недели 1-12: подготовка и безопасность 1-2, стенд 3, ростовская АТС в кластер 4, переезд центра в ЦОД 5-6, пилот Ставрополь 7-8, учебное переключение управления 9, выносы Нижний Новгород и Славянск 10-11, консолидация 8-11, перенумерация 6-12. Этап 2, недели 13-16: воронежский вынос 13-14, консолидация воронежских АТС 14-15, перенумерация Воронежа 14-16.">
+    <svg viewBox="0 0 900 450" role="img"
+         aria-label="Диаграмма Ганта на 16 недель, два этапа. Этап 1, недели 1-12: подготовка и безопасность 1-2, порядок оповещения техподдержки 2, стенд 3, ростовская АТС в кластер 4, переезд центра в ЦОД 5-6, пилот Ставрополь 7-8, учебное переключение управления 9, выносы Нижний Новгород и Славянск 10-11, консолидация 8-11, перенумерация 6-12. Этап 2, недели 13-16: воронежский вынос 13-14, консолидация воронежских АТС 14-15, перенумерация Воронежа 14-16.">
       <defs>
         <marker id="ga" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
           <path d="M0,0 L10,5 L0,10 z" fill="var(--crit)"/></marker>
@@ -259,15 +259,15 @@
       <text x="150" y="34" class="t-s" text-anchor="end">этап</text>
 
       <g class="grid">
-        <line x1="158" y1="44" x2="158" y2="388"/>
-        <line x1="246" y1="44" x2="246" y2="388"/>
-        <line x1="334" y1="44" x2="334" y2="388"/>
-        <line x1="422" y1="44" x2="422" y2="388"/>
-        <line x1="510" y1="44" x2="510" y2="388"/>
-        <line x1="598" y1="44" x2="598" y2="388"/>
-        <line x1="774" y1="44" x2="774" y2="388"/>
-        <line x1="862" y1="44" x2="862" y2="388"/>
-        <line x1="158" y1="388" x2="862" y2="388"/>
+        <line x1="158" y1="44" x2="158" y2="414"/>
+        <line x1="246" y1="44" x2="246" y2="414"/>
+        <line x1="334" y1="44" x2="334" y2="414"/>
+        <line x1="422" y1="44" x2="422" y2="414"/>
+        <line x1="510" y1="44" x2="510" y2="414"/>
+        <line x1="598" y1="44" x2="598" y2="414"/>
+        <line x1="774" y1="44" x2="774" y2="414"/>
+        <line x1="862" y1="44" x2="862" y2="414"/>
+        <line x1="158" y1="388" x2="862" y2="414"/>
       </g>
 
       <text x="150" y="69" class="t-b" text-anchor="end">Подготовка</text>
@@ -278,60 +278,64 @@
       <rect x="158" y="84" width="88" height="15" rx="3" class="bx-c"/>
       <text x="254" y="95" class="t-s">444 пароля, транки, AMI, проверка бэкапа</text>
 
-      <text x="150" y="121" class="t-b" text-anchor="end">Стенд</text>
-      <rect x="246" y="110" width="44" height="15" rx="3" class="bx-a"/>
-      <text x="298" y="121" class="t-s">репетиция передачи роли мастера</text>
+      <text x="150" y="121" class="t-b" text-anchor="end">Оповещение ТП</text>
+      <rect x="202" y="110" width="44" height="15" rx="3" class="bx-c"/>
+      <text x="254" y="121" class="t-s">кто дежурит, каким каналом, за какое время</text>
 
-      <text x="150" y="147" class="t-b" text-anchor="end">Ростов в кластер</text>
-      <rect x="290" y="136" width="44" height="15" rx="3" class="bx-ok"/>
-      <text x="342" y="147" class="t-s">боевая база — первый узел, окно около часа</text>
+      <text x="150" y="147" class="t-b" text-anchor="end">Стенд</text>
+      <rect x="246" y="136" width="44" height="15" rx="3" class="bx-a"/>
+      <text x="298" y="147" class="t-s">репетиция передачи роли мастера</text>
 
-      <text x="150" y="173" class="t-b" text-anchor="end">Центр → ЦОД</text>
-      <rect x="334" y="162" width="88" height="15" rx="3" class="bx-ok"/>
-      <text x="430" y="173" class="t-s">два живых узла в стойках, Ростов → вынос</text>
+      <text x="150" y="173" class="t-b" text-anchor="end">Ростов в кластер</text>
+      <rect x="290" y="162" width="44" height="15" rx="3" class="bx-ok"/>
+      <text x="342" y="173" class="t-s">боевая база — первый узел, окно около часа</text>
 
-      <text x="150" y="199" class="t-b" text-anchor="end">Пилот — Ставрополь</text>
-      <rect x="422" y="188" width="44" height="15" rx="3" class="bx-ok"/>
-      <rect x="466" y="188" width="44" height="15" rx="3" class="bx-d"/>
-      <text x="518" y="199" class="t-s">неделя наблюдения — до контрольной точки</text>
+      <text x="150" y="199" class="t-b" text-anchor="end">Центр → ЦОД</text>
+      <rect x="334" y="188" width="88" height="15" rx="3" class="bx-ok"/>
+      <text x="430" y="199" class="t-s">два живых узла в стойках, Ростов → вынос</text>
 
-      <text x="150" y="225" class="t-b" text-anchor="end">Переключение GUI</text>
-      <rect x="510" y="214" width="44" height="15" rx="3" class="bx-ok"/>
-      <text x="562" y="225" class="t-s">учебно: управление зал 1 ↔ зал 2, замер норматива</text>
+      <text x="150" y="225" class="t-b" text-anchor="end">Пилот — Ставрополь</text>
+      <rect x="422" y="214" width="44" height="15" rx="3" class="bx-ok"/>
+      <rect x="466" y="214" width="44" height="15" rx="3" class="bx-d"/>
+      <text x="518" y="225" class="t-s">неделя наблюдения — до контрольной точки</text>
 
-      <text x="150" y="251" class="t-b" text-anchor="end">Н. Новгород, Славянск</text>
-      <rect x="554" y="240" width="88" height="15" rx="3" class="bx-a"/>
-      <line x1="598" y1="240" x2="598" y2="255" class="grid" opacity=".9"/>
-      <text x="650" y="251" class="t-s">по выносу в неделю — этап 1 закрыт</text>
+      <text x="150" y="251" class="t-b" text-anchor="end">Переключение GUI</text>
+      <rect x="510" y="240" width="44" height="15" rx="3" class="bx-ok"/>
+      <text x="562" y="251" class="t-s">учебно: управление зал 1 ↔ зал 2, замер норматива</text>
 
-      <text x="150" y="277" class="t-b" text-anchor="end">Консолидация</text>
-      <rect x="466" y="266" width="176" height="15" rx="3" class="bx-w"/>
-      <text x="474" y="277" class="t-w">ССЗ, ростовские мелкие, локальный PBX</text>
+      <text x="150" y="277" class="t-b" text-anchor="end">Н. Новгород, Славянск</text>
+      <rect x="554" y="266" width="88" height="15" rx="3" class="bx-a"/>
+      <line x1="598" y1="240" x2="598" y2="281" class="grid" opacity=".9"/>
+      <text x="650" y="277" class="t-s">по выносу в неделю — этап 1 закрыт</text>
 
-      <text x="150" y="303" class="t-b" text-anchor="end">Перенумерация</text>
-      <rect x="378" y="292" width="308" height="15" rx="3" class="bx-w"/>
-      <text x="386" y="303" class="t-w">810 абонентов этапа 1 — второй исполнитель</text>
+      <text x="150" y="303" class="t-b" text-anchor="end">Консолидация</text>
+      <rect x="466" y="292" width="176" height="15" rx="3" class="bx-w"/>
+      <text x="474" y="303" class="t-w">ССЗ, ростовские мелкие, локальный PBX</text>
 
-      <text x="150" y="329" class="t-b" text-anchor="end">Воронежский вынос</text>
-      <rect x="686" y="318" width="88" height="15" rx="3" class="bx-c"/>
-      <text x="678" y="329" class="t-s" text-anchor="end">445 абонентов — узлов семь, кворум нечётный</text>
+      <text x="150" y="329" class="t-b" text-anchor="end">Перенумерация</text>
+      <rect x="378" y="318" width="308" height="15" rx="3" class="bx-w"/>
+      <text x="386" y="329" class="t-w">810 абонентов этапа 1 — помощник</text>
 
-      <text x="150" y="355" class="t-b" text-anchor="end">Воронеж — АТС</text>
-      <rect x="730" y="344" width="88" height="15" rx="3" class="bx-w"/>
-      <text x="722" y="355" class="t-s" text-anchor="end">Мясокомбинат 187, Калуга 29</text>
+      <text x="150" y="355" class="t-b" text-anchor="end">Воронежский вынос</text>
+      <rect x="686" y="344" width="88" height="15" rx="3" class="bx-c"/>
+      <text x="678" y="355" class="t-s" text-anchor="end">445 абонентов — узлов семь, кворум нечётный</text>
 
-      <text x="150" y="381" class="t-b" text-anchor="end">Воронеж — номера</text>
-      <rect x="730" y="370" width="132" height="15" rx="3" class="bx-w"/>
-      <text x="722" y="381" class="t-s" text-anchor="end">416 абонентов Воронежа и Мясокомбината</text>
+      <text x="150" y="381" class="t-b" text-anchor="end">Воронеж — АТС</text>
+      <rect x="730" y="370" width="88" height="15" rx="3" class="bx-w"/>
+      <text x="722" y="381" class="t-s" text-anchor="end">Мясокомбинат 187, Калуга 29</text>
 
-      <line x1="510" y1="44" x2="510" y2="398" class="ln-c" stroke-dasharray="5 4" marker-end="url(#ga)"/>
-      <text x="504" y="412" class="t-c" text-anchor="end">контрольная точка: тиражирование ждёт чистой недели на пилоте</text>
+      <text x="150" y="407" class="t-b" text-anchor="end">Воронеж — номера</text>
+      <rect x="730" y="396" width="132" height="15" rx="3" class="bx-w"/>
+      <text x="722" y="407" class="t-s" text-anchor="end">416 абонентов Воронежа и Мясокомбината</text>
 
-      <line x1="686" y1="18" x2="686" y2="402" class="ln-c" stroke-width="2"/>
-      <text x="862" y="412" class="t-c" text-anchor="end">этап 2 — только после закрытия этапа 1</text>
+      <line x1="510" y1="44" x2="510" y2="424" class="ln-c" stroke-dasharray="5 4" marker-end="url(#ga)"/>
+      <text x="504" y="438" class="t-c" text-anchor="end">контрольная точка: тиражирование ждёт чистой недели на пилоте</text>
+
+      <line x1="686" y1="18" x2="686" y2="428" class="ln-c" stroke-width="2"/>
+      <text x="862" y="438" class="t-c" text-anchor="end">этап 2 — только после закрытия этапа 1</text>
     </svg>
     <figcaption>Сплошная заливка — работы, штриховка — наблюдение под нагрузкой,
-    жёлтым — потоки второго исполнителя. Вертикаль на неделе 12 — граница этапов:
+    жёлтым — потоки помощника. Вертикаль на неделе 12 — граница этапов:
     любой сдвиг этапа 1 двигает Воронеж целиком.</figcaption>
   </figure>
 
@@ -846,7 +850,7 @@ epm-set-site --sites out/sites.conf --apply --rebuild   <span class="cmt"># мо
 <section id="stages">
   <div class="sec-head">
     <span class="label">Подробно</span>
-    <h2>Тринадцать задач в двух этапах</h2>
+    <h2>Четырнадцать задач в двух этапах</h2>
   </div>
 
   <div class="note" style="margin-bottom:8px">
@@ -869,7 +873,6 @@ epm-set-site --sites out/sites.conf --apply --rebuild   <span class="cmt"># мо
             <tr><td class="wide">Фиксируем адресный план на семь узлов</td><td>ИТ</td><td class="wk">нед. 1</td></tr>
             <tr><td class="wide">Выделяем три ВМ: две в ЦОД (разные стойки) и одну под Ставрополь</td><td>виртуализация</td><td class="wk">нед. 1</td></tr>
             <tr><td class="wide">Заводим SIP-пользователей ВАТС на каждую площадку</td><td>ИТ</td><td class="wk">нед. 1–2</td></tr>
-            <tr><td class="wide"><b>Согласовываем порядок оповещения техподдержки</b> при отклонениях</td><td>ИТ + техподдержка</td><td class="wk">нед. 2</td></tr>
           </tbody>
         </table>
       </div>
@@ -879,15 +882,6 @@ epm-set-site --sites out/sites.conf --apply --rebuild   <span class="cmt"># мо
         она получает автономную АТС с транком до ЦОД. Всё остальное в этой задаче
         мы делаем сами и в своём темпе: площадки наши, стойки наши, машины на нашей
         виртуализации.</p>
-      </div>
-      <div class="note crit">
-        <span class="label">Оповещение техподдержки — до первых работ на боевой базе</span>
-        <p>Зафиксировать надо четыре вещи: <b>кто</b> поднимается по тревоге,
-        <b>по какому каналу</b>, <b>за какое время</b> обязан ответить и <b>что
-        считается инцидентом</b> — потеря регистраций на площадке, расхождение
-        узлов, недоступность панели управления. Порядок раздаётся всем участникам
-        работ, включая второго исполнителя. Договариваться об этом после первой
-        нештатной ситуации поздно.</p>
       </div>
       <p style="margin-top:1em">Воронеж трогаем уже здесь: RTT до него меряем и
       учётку заводим в первую неделю, хотя очередь — на неделе 13. <b>Машинам ЦОД</b>
@@ -921,7 +915,36 @@ epm-set-site --sites out/sites.conf --apply --rebuild   <span class="cmt"># мо
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>3</b>неделя 3</div>
+    <div class="stage-no"><b>3</b>неделя 2</div>
+    <div class="stage-body">
+      <h3>Порядок оповещения техподдержки при отклонениях</h3>
+      <p>Работы идут на боевой телефонии, а договариваться о том, кто поднимается
+      по тревоге, после первой нештатной ситуации поздно.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Что фиксируем</th><th>Содержание</th></tr></thead>
+          <tbody>
+            <tr><td class="wide"><b>Что считается отклонением</b></td><td class="wide">потеря регистраций на площадке, расхождение узлов кластера, недоступность панели управления, отказ транка в город</td></tr>
+            <tr><td class="wide"><b>Кто дежурит</b></td><td class="wide">поимённо, с подменой на время отпусков</td></tr>
+            <tr><td class="wide"><b>По какому каналу</b></td><td class="wide">один основной и один запасной</td></tr>
+            <tr><td class="wide"><b>За какое время реакция</b></td><td class="wide">норматив, на который можно сослаться</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note crit">
+        <span class="label">Запасной канал связи — не формальность</span>
+        <p>Половина работ в плане идёт по самой телефонии: перенос центра, ввод
+        выносов, переключение управления. В момент, когда что-то пойдёт не так,
+        звонить может быть уже нечем.</p>
+      </div>
+      <p style="margin-top:1em">Порядок раздаётся всем участникам работ, включая
+      помощника и того, кто разворачивает клоны. Памятка — одна страница, а не
+      регламент на двадцать.</p>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="stage-no"><b>4</b>неделя 3</div>
     <div class="stage-body">
       <h3>Испытательный стенд</h3>
       <p>Три виртуалки, полный прогон до касания продуктива. В этой версии плана
@@ -940,7 +963,7 @@ epm-set-site --sites out/sites.conf --apply --rebuild   <span class="cmt"># мо
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>4</b>неделя 4</div>
+    <div class="stage-no"><b>5</b>неделя 4</div>
     <div class="stage-body">
       <h3>Ростовская АТС — первый узел кластера</h3>
       <p>Одно окно, около часа. База перезапускается: активные разговоры не рвутся,
@@ -959,7 +982,7 @@ asterisk-cluster-health</code></pre>
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>5</b>недели 5–6</div>
+    <div class="stage-no"><b>6</b>недели 5–6</div>
     <div class="stage-body">
       <h3>Центр переезжает в ЦОД</h3>
       <p>Самая ответственная операция этапа 1 — подробная схема выше, в разделе
@@ -985,7 +1008,7 @@ asterisk-cluster-health</code></pre>
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>6</b>недели 7–8</div>
+    <div class="stage-no"><b>7</b>недели 7–8</div>
     <div class="stage-body">
       <h3>Пилотный вынос — Ставрополь</h3>
       <div class="note ok">
@@ -1012,7 +1035,7 @@ asterisk-cluster-health</code></pre>
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>7</b>неделя 9</div>
+    <div class="stage-no"><b>8</b>неделя 9</div>
     <div class="stage-body">
       <h3>Вынос Славянск-на-Кубани</h3>
       <p>Славянск идёт по уже отработанной процедуре — 140 абонентов, своя станция
@@ -1115,7 +1138,7 @@ asterisk-cluster-health</code></pre>
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>8</b>неделя 10</div>
+    <div class="stage-no"><b>9</b>неделя 10</div>
     <div class="stage-body">
       <h3>Учебное переключение управления между залами ЦОД</h3>
       <p>Вызовы оба зала несут постоянно, а вот <b>панель управления</b> живёт на одном —
@@ -1131,7 +1154,7 @@ asterisk-cluster-health</code></pre>
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>9</b>недели 8–11</div>
+    <div class="stage-no"><b>10</b>недели 8–11</div>
     <div class="stage-body">
       <h3>Консолидация мелких АТС этапа 1</h3>
       <div class="tbl-wrap">
@@ -1148,7 +1171,7 @@ asterisk-cluster-health</code></pre>
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>10</b>недели 6–12</div>
+    <div class="stage-no"><b>11</b>недели 6–12</div>
     <div class="stage-body">
       <h3>Перенумерация этапа 1</h3>
       <ul>
@@ -1185,7 +1208,7 @@ asterisk-cluster-health</code></pre>
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>11</b>недели 13–14</div>
+    <div class="stage-no"><b>12</b>недели 13–14</div>
     <div class="stage-body">
       <h3>Воронежский вынос и арбитр кворума</h3>
 <pre><code><span class="cmt"># неделя 13</span>
@@ -1210,7 +1233,7 @@ epm-set-site --sites out/sites.conf --apply --rebuild</code></pre>
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>12</b>недели 14–15</div>
+    <div class="stage-no"><b>13</b>недели 14–15</div>
     <div class="stage-body">
       <h3>Консолидация воронежских АТС</h3>
       <div class="tbl-wrap">
@@ -1228,7 +1251,7 @@ epm-set-site --sites out/sites.conf --apply --rebuild</code></pre>
   </div>
 
   <div class="stage">
-    <div class="stage-no"><b>13</b>недели 14–16</div>
+    <div class="stage-no"><b>14</b>недели 14–16</div>
     <div class="stage-body">
       <h3>Перенумерация Воронежа</h3>
       <div class="tbl-wrap">
@@ -1258,18 +1281,34 @@ epm-set-site --sites out/sites.conf --apply --rebuild</code></pre>
   </div>
 
   <div class="stats">
-    <div class="stat"><b>98</b><span>человеко-дней всего</span></div>
-    <div class="stat"><b>68</b><span>инженер, задачи 1–8 и 11</span></div>
-    <div class="stat"><b>30</b><span>Кириевская Е., задачи 9, 10, 12, 13</span></div>
-    <div class="stat"><b>1 128 470 ₽</b><span>внутренних затрат без НДС</span></div>
+    <div class="stat"><b>100</b><span>человеко-дней всего</span></div>
+    <div class="stat"><b>70</b><span>основной исполнитель</span></div>
+    <div class="stat"><b>30</b><span>помощник</span></div>
+    <div class="stat"><b>1 151 500 ₽</b><span>внутренних затрат без НДС</span></div>
     <div class="stat"><b>0 ₽</b><span>внешних затрат: ПО бесплатное, ВМ свои</span></div>
   </div>
 
+  <h3 style="margin-top:30px">Команда проекта</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Роль</th><th>Кто</th><th>Что делает</th></tr></thead>
+      <tbody>
+        <tr><td>Руководитель</td><td><b>Савенко В.</b></td><td class="wide">главный по проекту, заказчик во всех строках плана</td></tr>
+        <tr><td>Основной исполнитель</td><td><b>Цеховской В.</b></td><td class="wide">70 ч/д, задачи 1–9 и 12: кластер, перенос центра, ввод выносов</td></tr>
+        <tr><td>Помощник</td><td><b>Кириевская Е.</b></td><td class="wide">30 ч/д, задачи 10, 11, 13, 14: консолидация и перенумерация, частичная занятость</td></tr>
+        <tr><td class="wide">Развёртывание и адресация</td><td><b>Дулепов А.</b></td><td class="wide">создание клонов, установка и присвоение IP на площадках</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="col" style="margin-top:1.2em">По запросу привлекаются сетевая служба
+  (недели 1–2, VPN), виртуализация (неделя 1, три ВМ) и техподдержка (неделя 2,
+  согласование порядка оповещения).</p>
+
   <div class="note crit" style="margin-top:28px">
     <span class="label">Главное ограничение плана</span>
-    <p><b>Одним человеком 16 недель не закрываются.</b> 98 человеко-дней за 16 недель —
-    это 1,2 ставки. Задачи 1–8 и 11 занимают 68 из 80 доступных дней одного инженера;
-    консолидация и перенумерация идут параллельно и требуют второго человека.</p>
+    <p><b>Одним человеком 16 недель не закрываются.</b> 100 человеко-дней за 16 недель —
+    это 1,25 ставки. Задачи основного исполнителя занимают 70 из 80 доступных дней;
+    консолидация и перенумерация идут параллельно и держатся на помощнике.</p>
   </div>
 
   <div class="tbl-wrap">
@@ -1279,12 +1318,12 @@ epm-set-site --sites out/sites.conf --apply --rebuild</code></pre>
         <tr><td class="wide">RTT выше 50 мс до площадки</td><td>замер на задаче 1</td><td class="wide">Не включаем площадку в Galera: ставим ей автономную АТС с транком до ЦОД</td></tr>
         <tr><td class="wide">Узлы делят гипервизор</td><td>задача 1, проверка размещения</td><td class="wide">Разводим по хостам до ввода второго узла</td></tr>
         <tr><td class="wide">Узел откатили на снимок ВМ</td><td>расхождение <code>seqno</code> в журнале MariaDB</td><td class="wide">Вводим обратно только полным переносом состояния</td></tr>
-        <tr><td class="wide">Передача роли в ЦОД не прошла</td><td>задача 5</td><td class="wide">Возвращаем роль на Ростов — он остаётся полноценным узлом</td></tr>
-        <tr><td class="wide">Проблемы на пилоте</td><td>задача 6</td><td class="wide">Останавливаем тиражирование; это единственный запас в графике</td></tr>
+        <tr><td class="wide">Передача роли в ЦОД не прошла</td><td>задача 6</td><td class="wide">Возвращаем роль на Ростов — он остаётся полноценным узлом</td></tr>
+        <tr><td class="wide">Проблемы на пилоте</td><td>задача 7</td><td class="wide">Останавливаем тиражирование; это единственный запас в графике</td></tr>
         <tr><td class="wide">Чётный кворум на неделях 11–12</td><td>шесть узлов до ввода Воронежа</td><td class="wide">Окно две недели, закрывается вводом Воронежа; при необходимости временный <code>garbd</code></td></tr>
-        <tr><td class="wide"><b>Сдвиг этапа 1</b></td><td>любая задача 1–10</td><td class="wide">Этап 2 двигается целиком: этапы последовательны по протоколу</td></tr>
-        <tr><td class="wide">Неделя 16 предновогодняя</td><td>задача 13</td><td class="wide">Сдвигаем старт на неделю раньше либо переносим перенумерацию на январь</td></tr>
-        <tr><td class="wide">Нет второго исполнителя</td><td>задачи 9, 10, 12, 13</td><td class="wide">Выносим консолидацию и перенумерацию за 16 недель</td></tr>
+        <tr><td class="wide"><b>Сдвиг этапа 1</b></td><td>любая задача 1–11</td><td class="wide">Этап 2 двигается целиком: этапы последовательны по протоколу</td></tr>
+        <tr><td class="wide">Неделя 16 предновогодняя</td><td>задача 14</td><td class="wide">Сдвигаем старт на неделю раньше либо переносим перенумерацию на январь</td></tr>
+        <tr><td class="wide">Нет помощника</td><td>задачи 10, 11, 13, 14</td><td class="wide">Выносим консолидацию и перенумерацию за 16 недель</td></tr>
       </tbody>
     </table>
   </div>
