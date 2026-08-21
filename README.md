@@ -113,6 +113,7 @@ scripts/
   galera-recover.sh      восстановление кворума
   epm-set-site.py        привязка телефонов Endpoint Manager к площадкам
   harden.sh              журнал безопасности, fail2ban, ограничение AMI
+  freepbx-live-fixes.sh  безопасные правки Core tamper и fax-уведомлений
   setup-local-trunk.sh   транк провайдера на площадке + откат на мастер
   check-numbering.py     конфликты нумерации между АТС до объединения
   update-peers.sh        список узлов с проверкой кворума и ожиданием Synced

@@ -222,6 +222,73 @@ ls -lt /etc/asterisk/*.bak.* | head
 cp /etc/asterisk/pjsip.conf.bak.20260812-143000 /etc/asterisk/pjsip.conf
 ```
 
+## FreePBX показывает изменённый Core
+
+Если FreePBX показывает `You have 1 tampered files` для модуля Core и файл
+`/var/www/html/admin/modules/core/node/fastagi-server.js altered`, не гасите
+предупреждение ручной правкой базы сигнатур.
+
+Что было исправлено на боевой АТС:
+
+- `fastagi-server.js` восстановлен из официального релиза FreePBX Core той же
+  версии;
+- `core-fastagi` оставлен на `127.0.0.1:4573` при Node 20 через параметр PM2
+  `--dns-result-order=ipv4first`;
+- обновлён кэш сигнатур Core;
+- старое уведомление `FW_TAMPERED` удалено только после проверки файла и
+  FastAGI listener.
+
+Сначала dry-run:
+
+```bash
+sudo scripts/freepbx-live-fixes.sh core-fastagi
+```
+
+Применить:
+
+```bash
+sudo scripts/freepbx-live-fixes.sh core-fastagi --apply
+```
+
+Проверка:
+
+```bash
+fwconsole notifications --list --no-ansi
+fwconsole ma list --no-ansi
+ss -lntp | grep ':4573'
+timeout 2 bash -lc '</dev/tcp/127.0.0.1/4573'
+```
+
+Скрипт пишет бэкап в `/root/pbx-fix-backups/<timestamp>-core-fastagi`. Если
+восстановленный файл не совпал с `module.sig` или FastAGI не поднялся на
+`127.0.0.1:4573`, файл откатывается из бэкапа.
+
+## FreePBX показывает Invalid Email for Inbound Fax
+
+Уведомление `Invalid Email for Inbound Fax` появляется, когда у пользователей
+User Manager включён `Receive Fax`, но не задан email. На боевой АТС входящих
+fax-маршрутов не было, поэтому `Receive Fax` был отключён только у пользователей
+без email.
+
+Сначала dry-run:
+
+```bash
+sudo scripts/freepbx-live-fixes.sh fax-invalid-email
+```
+
+Применить:
+
+```bash
+sudo scripts/freepbx-live-fixes.sh fax-invalid-email --apply
+```
+
+Скрипт сохраняет таблицы `notifications`, `fax_users`, `fax_details`,
+`fax_incoming`, `userman_users`, отключает `fax_users.faxenabled` только для
+пользователей с пустым email, затем удаляет и проверяет уведомление. Если есть
+активные входящие fax-маршруты, сначала добавьте реальные email или используйте
+`--force-active-routes` только после осознанного подтверждения, что эти
+назначения fax можно отключать.
+
 ## Полезные однострочники
 
 ```bash
