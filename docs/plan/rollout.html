@@ -448,6 +448,68 @@
   арбитром <code>garbd</code>. Теперь та же виртуальная машина вместо бесполезного
   голоса несёт реальных абонентов.</p>
 
+
+  <figure>
+    <svg viewBox="0 0 900 336" role="img"
+         aria-label="Что происходит при разрыве сети пополам. Слева шесть узлов: связь рвётся на три и три, ни одна половина не имеет большинства, обе останавливаются. Справа семь узлов: связь рвётся на три и четыре, половина с четырьмя голосами сохраняет большинство и продолжает работать.">
+      <defs>
+        <marker id="qx" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--crit)"/></marker>
+      </defs>
+
+      <text x="222" y="24" class="t-b" text-anchor="middle">Шесть узлов — чётное</text>
+      <text x="222" y="42" class="t-s" text-anchor="middle">так было бы без своей АТС в Ставрополе</text>
+      <text x="652" y="24" class="t-b" text-anchor="middle">Семь узлов — нечётное</text>
+      <text x="652" y="42" class="t-s" text-anchor="middle">наша схема</text>
+
+      <g class="bx-d" opacity=".55">
+        <rect x="40" y="10" width="390" height="316" rx="8"/>
+        <rect x="470" y="10" width="390" height="316" rx="8"/>
+      </g>
+
+      <g>
+        <rect x="85" y="72" width="110" height="30" rx="4" class="bx"/><text x="140" y="92" class="t" text-anchor="middle">узел</text>
+        <rect x="85" y="108" width="110" height="30" rx="4" class="bx"/><text x="140" y="128" class="t" text-anchor="middle">узел</text>
+        <rect x="85" y="144" width="110" height="30" rx="4" class="bx"/><text x="140" y="164" class="t" text-anchor="middle">узел</text>
+        <rect x="250" y="72" width="110" height="30" rx="4" class="bx"/><text x="305" y="92" class="t" text-anchor="middle">узел</text>
+        <rect x="250" y="108" width="110" height="30" rx="4" class="bx"/><text x="305" y="128" class="t" text-anchor="middle">узел</text>
+        <rect x="250" y="144" width="110" height="30" rx="4" class="bx"/><text x="305" y="164" class="t" text-anchor="middle">узел</text>
+      </g>
+      <line x1="222" y1="60" x2="222" y2="186" class="ln-c" stroke-dasharray="6 5" stroke-width="2"/>
+      <text x="222" y="204" class="t-c" text-anchor="middle" font-size="10">сеть порвалась здесь</text>
+
+      <text x="140" y="234" class="t-c" text-anchor="middle">3 голоса из 6</text>
+      <text x="140" y="250" class="t-c" text-anchor="middle" font-size="10">большинства нет — стоп</text>
+      <text x="305" y="234" class="t-c" text-anchor="middle">3 голоса из 6</text>
+      <text x="305" y="250" class="t-c" text-anchor="middle" font-size="10">большинства нет — стоп</text>
+
+      <rect x="70" y="272" width="330" height="34" rx="5" class="bx-c"/>
+      <text x="235" y="294" class="t-c" text-anchor="middle">Встают обе половины: звонков нет нигде</text>
+
+      <g>
+        <rect x="515" y="72" width="110" height="30" rx="4" class="bx"/><text x="570" y="92" class="t" text-anchor="middle">узел</text>
+        <rect x="515" y="108" width="110" height="30" rx="4" class="bx"/><text x="570" y="128" class="t" text-anchor="middle">узел</text>
+        <rect x="515" y="144" width="110" height="30" rx="4" class="bx"/><text x="570" y="164" class="t" text-anchor="middle">узел</text>
+        <rect x="680" y="72" width="110" height="30" rx="4" class="bx-ok"/><text x="735" y="92" class="t" text-anchor="middle">узел</text>
+        <rect x="680" y="108" width="110" height="30" rx="4" class="bx-ok"/><text x="735" y="128" class="t" text-anchor="middle">узел</text>
+        <rect x="680" y="144" width="110" height="30" rx="4" class="bx-ok"/><text x="735" y="164" class="t" text-anchor="middle">узел</text>
+        <rect x="680" y="180" width="110" height="30" rx="4" class="bx-ok"/><text x="735" y="200" class="t" text-anchor="middle">узел</text>
+      </g>
+      <line x1="652" y1="60" x2="652" y2="222" class="ln-c" stroke-dasharray="6 5" stroke-width="2"/>
+      <text x="652" y="240" class="t-c" text-anchor="middle" font-size="10">сеть порвалась здесь</text>
+
+      <text x="570" y="234" class="t-c" text-anchor="middle">3 из 7 — стоп</text>
+      <text x="800" y="196" class="t-ok" text-anchor="start" font-size="10">4 из 7</text>
+
+      <rect x="500" y="272" width="330" height="34" rx="5" class="bx-ok"/>
+      <text x="665" y="294" class="t-ok" text-anchor="middle">Половина с большинством работает дальше</text>
+    </svg>
+    <figcaption>Разрыв сети пополам — тот случай, ради которого считают чётность.
+    При шести узлах обе половины видят ровно половину кластера, большинства нет ни
+    у кого, и останавливаются обе. Седьмой узел гарантирует, что одна из половин
+    окажется больше — и продолжит обслуживать вызовы.</figcaption>
+  </figure>
+
   <div class="tbl-wrap">
     <table>
       <thead><tr><th class="n">Неделя</th><th>Состав</th><th class="n">Узлов</th><th>Чётность</th><th>Переживает потерю</th></tr></thead>
@@ -663,6 +725,71 @@ epm-set-site --sites out/sites.conf --apply --rebuild   <span class="cmt"># мо
     каждый из них клон мастера, поэтому управление поднимается на любом.</figcaption>
   </figure>
 
+
+  <figure>
+    <svg viewBox="0 0 900 280" role="img"
+         aria-label="Как телефон переживает отказ площадки. В штатном режиме телефон зарегистрирован на своём выносе, а ЦОД-1 прописан в его конфигурации резервным сервером. Если площадка отвалилась, телефон перерегистрируется в ЦОД-1 за 10–60 секунд и звонит через транк ЦОД.">
+      <defs>
+        <marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
+        <marker id="pk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--ok)"/></marker>
+        <marker id="pd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--dim)"/></marker>
+      </defs>
+
+      <g class="bx-d" opacity=".5">
+        <rect x="40" y="8" width="390" height="264" rx="8"/>
+        <rect x="470" y="8" width="390" height="264" rx="8"/>
+      </g>
+      <text x="235" y="30" class="t-b" text-anchor="middle">Штатно</text>
+      <text x="665" y="30" class="t-b" text-anchor="middle">Площадка отвалилась</text>
+
+      <rect x="60" y="54" width="150" height="46" rx="5" class="bx-a"/>
+      <text x="135" y="74" class="t-b" text-anchor="middle">Вынос площадки</text>
+      <text x="135" y="90" class="t-s" text-anchor="middle">свой транк в город</text>
+
+      <rect x="250" y="54" width="150" height="46" rx="5" class="bx"/>
+      <text x="325" y="74" class="t-b" text-anchor="middle">ЦОД-1</text>
+      <text x="325" y="90" class="t-s" text-anchor="middle">резервный сервер</text>
+
+      <rect x="155" y="186" width="140" height="38" rx="5" class="bx"/>
+      <text x="225" y="210" class="t-b" text-anchor="middle">телефон</text>
+
+      <path d="M200,186 L142,106" class="ln-a" marker-end="url(#pa)"/>
+      <text x="128" y="146" class="t-a" text-anchor="end">регистрация</text>
+      <path d="M250,186 L318,106" class="ln-d" marker-end="url(#pd)" stroke-dasharray="5 4"/>
+      <text x="332" y="146" class="t-s">прописан в конфиге</text>
+      <text x="332" y="160" class="t-s">вторым сервером</text>
+
+      <rect x="490" y="54" width="150" height="46" rx="5" class="bx-d"/>
+      <text x="565" y="74" class="t-s" text-anchor="middle">Вынос площадки</text>
+      <text x="565" y="90" class="t-s" text-anchor="middle">недоступен</text>
+      <g class="ln-c" stroke-width="2">
+        <line x1="505" y1="62" x2="625" y2="92"/>
+        <line x1="625" y1="62" x2="505" y2="92"/>
+      </g>
+
+      <rect x="680" y="54" width="150" height="46" rx="5" class="bx-ok"/>
+      <text x="755" y="74" class="t-b" text-anchor="middle">ЦОД-1</text>
+      <text x="755" y="90" class="t-ok" text-anchor="middle">принял регистрацию</text>
+
+      <rect x="585" y="186" width="140" height="38" rx="5" class="bx"/>
+      <text x="655" y="210" class="t-b" text-anchor="middle">телефон</text>
+
+      <path d="M680,186 L748,106" class="ln-ok" marker-end="url(#pk)"/>
+      <text x="762" y="146" class="t-ok">перерегистрация</text>
+      <text x="762" y="160" class="t-ok">за 10–60 с</text>
+      <path d="M630,186 L572,112" class="ln-d" marker-end="url(#pd)" stroke-dasharray="5 4" opacity=".45"/>
+
+      <text x="235" y="252" class="t-s" text-anchor="middle">звонки идут через транк площадки</text>
+      <text x="665" y="252" class="t-s" text-anchor="middle">звонки идут через транк ЦОД</text>
+    </svg>
+    <figcaption>Оба сервера приходят на телефон при провижининге, поэтому переключение
+    не требует ничьего вмешательства. Обратный переезд такой же автоматический: когда
+    площадка возвращается, телефон снова регистрируется на своём выносе.</figcaption>
+  </figure>
+
   <div class="tbl-wrap">
     <table>
       <thead><tr><th>Что отказало</th><th>Что происходит</th><th>Голосов осталось</th></tr></thead>
@@ -846,6 +973,78 @@ asterisk-cluster-health</code></pre>
       <h3 style="margin-top:26px">Порядок работ по выносу</h3>
       <p>Клон мастера знает только то, что есть в базе мастера, поэтому абоненты
       старой станции должны попасть туда <b>до</b> того, как клон её заменит.</p>
+      <figure>
+        <svg viewBox="0 0 900 330" role="img"
+             aria-label="Порядок работ по выносу за одну неделю. Старая АТС работает всё время работ и гасится последней. На мастере в ЦОД заводят абонентов и выгружают их в realtime, затем клонируют виртуальную машину, расшивают клон в самостоятельный узел, поднимают межузловые транки и локальный транк оператора. Телефоны переезжают на новый вынос провижинингом. Откат — вернуть прежний sites.conf и пересобрать конфиги.">
+          <defs>
+            <marker id="wa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
+            <marker id="wk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="var(--ok)"/></marker>
+            <marker id="wd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="var(--dim)"/></marker>
+          </defs>
+
+          <g class="grid">
+            <line x1="150" y1="34" x2="150" y2="300"/>
+            <line x1="880" y1="34" x2="880" y2="300"/>
+          </g>
+          <text x="515" y="26" class="t-s" text-anchor="middle">одна неделя на вынос</text>
+
+          <text x="140" y="70" class="t-b" text-anchor="end">Старая АТС</text>
+          <rect x="150" y="54" width="560" height="26" rx="3" class="bx"/>
+          <text x="164" y="71" class="t-s">работает и принимает вызовы — её не трогают</text>
+          <rect x="710" y="54" width="170" height="26" rx="3" class="bx-d"/>
+          <text x="724" y="71" class="t-s">погашена</text>
+
+          <text x="140" y="124" class="t-b" text-anchor="end">Мастер в ЦОД</text>
+          <text x="140" y="140" class="t-s" text-anchor="end">FreePBX + общая база</text>
+          <circle cx="182" cy="126" r="11" class="stepno"/><text x="182" y="130" class="stepno-t" text-anchor="middle">1</text>
+          <rect x="199" y="112" width="165" height="28" rx="3" class="bx-a"/>
+          <text x="211" y="124" class="t-b">Завести абонентов</text><text x="211" y="136" class="t-s">Bulk Handler</text>
+          <circle cx="382" cy="126" r="11" class="stepno"/><text x="382" y="130" class="stepno-t" text-anchor="middle">2</text>
+          <rect x="399" y="112" width="165" height="28" rx="3" class="bx-a"/>
+          <text x="411" y="124" class="t-b">Выгрузить в realtime</text><text x="411" y="136" class="t-m">cluster-sync --apply</text>
+
+          <text x="140" y="206" class="t-b" text-anchor="end">Новый вынос</text>
+          <text x="140" y="222" class="t-s" text-anchor="end">клон ВМ мастера</text>
+          <circle cx="182" cy="208" r="11" class="stepno"/><text x="182" y="212" class="stepno-t" text-anchor="middle">3</text>
+          <rect x="199" y="194" width="150" height="28" rx="3" class="bx-a"/>
+          <text x="211" y="206" class="t-b">Клонировать ВМ</text><text x="211" y="218" class="t-s">поднять, сменить IP</text>
+          <circle cx="367" cy="208" r="11" class="stepno"/><text x="367" y="212" class="stepno-t" text-anchor="middle">4</text>
+          <rect x="384" y="194" width="150" height="28" rx="3" class="bx-a"/>
+          <text x="396" y="206" class="t-b">Расшить клон</text><text x="396" y="218" class="t-m">prepare-clone.sh</text>
+          <circle cx="552" cy="208" r="11" class="stepno"/><text x="552" y="212" class="stepno-t" text-anchor="middle">5</text>
+          <rect x="569" y="194" width="145" height="28" rx="3" class="bx-a"/>
+          <text x="581" y="206" class="t-b">Межузловые транки</text><text x="581" y="218" class="t-s">на всех узлах</text>
+          <circle cx="732" cy="208" r="11" class="stepno"/><text x="732" y="212" class="stepno-t" text-anchor="middle">6</text>
+          <rect x="749" y="194" width="131" height="28" rx="3" class="bx-a"/>
+          <text x="761" y="206" class="t-b">Выход в город</text><text x="761" y="218" class="t-s">транк оператора</text>
+
+          <path d="M281,144 V180" class="ln-a" marker-end="url(#wa)"/>
+          <text x="289" y="166" class="t-a">клон уже содержит абонентов площадки</text>
+
+          <text x="140" y="286" class="t-b" text-anchor="end">Телефоны</text>
+          <rect x="150" y="270" width="420" height="28" rx="3" class="bx"/>
+          <text x="164" y="288" class="t-s">регистрируются на старой АТС</text>
+          <circle cx="588" cy="284" r="11" class="stepno"/><text x="588" y="288" class="stepno-t" text-anchor="middle">7</text>
+          <rect x="605" y="270" width="160" height="28" rx="3" class="bx-ok"/>
+          <text x="617" y="282" class="t-b">Провижининг</text><text x="617" y="294" class="t-m">epm-set-site --apply</text>
+          <rect x="785" y="270" width="95" height="28" rx="3" class="bx-ok"/>
+          <text x="799" y="288" class="t-ok">на выносе</text>
+
+          <path d="M690,270 V226" class="ln-ok" marker-end="url(#wk)"/>
+          <text x="698" y="248" class="t-ok">перерегистрация за 10–60 с</text>
+
+          <path d="M770,316 H400" class="ln-d" marker-end="url(#wd)" stroke-dasharray="6 5"/>
+          <text x="404" y="326" class="t-s">Откат: вернуть прежний <tspan class="t-m">sites.conf</tspan>, пересобрать конфиги — телефоны уходят обратно</text>
+        </svg>
+        <figcaption>Старая станция работает всё время работ, а клон поднимается рядом
+        на новом адресе. Поэтому переезд обратим одной пересборкой конфигов, а не
+        восстановлением из бэкапа — именно это позволяет отводить на вынос неделю,
+        а не три.</figcaption>
+      </figure>
+
       <div class="tbl-wrap">
         <table>
           <thead><tr><th class="n">Шаг</th><th>Что</th><th>Чем</th></tr></thead>
