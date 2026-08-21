@@ -92,6 +92,7 @@ epm-set-site --sites sites.conf --apply --rebuild
 | [plan/index.html](docs/plan/index.html) | Страница проекта: описание, нумерация, настройка |
 | [plan/scheme.html](docs/plan/scheme.html) | Схемы работы кластера: четыре механизма и сценарии отказов |
 | [plan/rollout.html](docs/plan/rollout.html) | План страницей: итоговая схема, гант на 16 недель, вехи, риски |
+| [plan/rollout-doc.html](docs/plan/rollout-doc.html) | Полный текст плана в HTML — собирается из markdown, для печати и рассылки |
 | [plan/dit-annual-plan.xlsx](docs/plan/dit-annual-plan.xlsx) | План в шаблоне годового плана работ ДИТ |
 | [plan/dit-project-registry.xlsx](docs/plan/dit-project-registry.xlsx) | План в шаблоне реестра проектов плана автоматизации |
 
@@ -118,6 +119,7 @@ scripts/
   setup-standby-master.sh резервный мастер: prepare / status / promote / demote
   build-numbering-plan.py единый номерной план из таблицы аудита
   build-dit-plan.py      план внедрения в корпоративных шаблонах ДИТ (xlsx)
+  md-to-html.py          сборка HTML-документа из markdown, без внешних зависимостей
   lint.sh                статические проверки
 
 tools/
