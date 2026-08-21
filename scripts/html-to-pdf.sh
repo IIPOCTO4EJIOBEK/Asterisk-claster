@@ -9,7 +9,6 @@
 #
 set -euo pipefail
 
-REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 die() { printf '[x] %s\n' "$*" >&2; exit 1; }
 
