@@ -236,7 +236,7 @@
 
   <figure>
     <svg viewBox="0 0 900 424" role="img"
-         aria-label="Диаграмма Ганта на 16 недель, два этапа. Этап 1, недели 1-12: подготовка и безопасность 1-2, стенд 3, ростовская АТС в кластер 4, переезд центра в ЦОД 5-6, пилот Нижний Новгород 7-8, учебное переключение управления 9, выносы Славянск и Ставрополь 10-11, консолидация 8-11, перенумерация 6-12. Этап 2, недели 13-16: воронежский вынос 13-14, консолидация воронежских АТС 14-15, перенумерация Воронежа 14-16.">
+         aria-label="Диаграмма Ганта на 16 недель, два этапа. Этап 1, недели 1-12: подготовка и безопасность 1-2, стенд 3, ростовская АТС в кластер 4, переезд центра в ЦОД 5-6, пилот Ставрополь 7-8, учебное переключение управления 9, выносы Нижний Новгород и Славянск 10-11, консолидация 8-11, перенумерация 6-12. Этап 2, недели 13-16: воронежский вынос 13-14, консолидация воронежских АТС 14-15, перенумерация Воронежа 14-16.">
       <defs>
         <marker id="ga" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
           <path d="M0,0 L10,5 L0,10 z" fill="var(--crit)"/></marker>
@@ -290,7 +290,7 @@
       <rect x="334" y="162" width="88" height="15" rx="3" class="bx-ok"/>
       <text x="430" y="173" class="t-s">два живых узла в стойках, Ростов → вынос</text>
 
-      <text x="150" y="199" class="t-b" text-anchor="end">Пилот — Н. Новгород</text>
+      <text x="150" y="199" class="t-b" text-anchor="end">Пилот — Ставрополь</text>
       <rect x="422" y="188" width="44" height="15" rx="3" class="bx-ok"/>
       <rect x="466" y="188" width="44" height="15" rx="3" class="bx-d"/>
       <text x="518" y="199" class="t-s">неделя наблюдения — до контрольной точки</text>
@@ -299,7 +299,7 @@
       <rect x="510" y="214" width="44" height="15" rx="3" class="bx-ok"/>
       <text x="562" y="225" class="t-s">учебно: управление зал 1 ↔ зал 2, замер норматива</text>
 
-      <text x="150" y="251" class="t-b" text-anchor="end">Славянск, Ставрополь</text>
+      <text x="150" y="251" class="t-b" text-anchor="end">Н. Новгород, Славянск</text>
       <rect x="554" y="240" width="88" height="15" rx="3" class="bx-a"/>
       <line x1="598" y1="240" x2="598" y2="255" class="grid" opacity=".9"/>
       <text x="650" y="251" class="t-s">по выносу в неделю — этап 1 закрыт</text>
@@ -342,7 +342,7 @@
         <tr><td>Стенд пройден</td><td class="n">3</td><td class="wide">Передача роли мастера отработана руками — это репетиция задачи 5</td></tr>
         <tr><td>Ростовская АТС — узел кластера</td><td class="n">4</td><td class="wide">Боевая база готова к репликации в ЦОД</td></tr>
         <tr><td><b>Центр работает в ЦОД</b></td><td class="n">6</td><td class="wide"><span class="chip c-ok">ключевая</span> Мастер в зале 1, копия в зале 2, Ростов понижен до выноса</td></tr>
-        <tr><td>Пилот обкатан</td><td class="n">8</td><td class="wide"><span class="chip c-crit">контрольная</span> Нижний Новгород отработал неделю под нагрузкой</td></tr>
+        <tr><td>Пилот обкатан</td><td class="n">8</td><td class="wide"><span class="chip c-crit">контрольная</span> Ставрополь отработал неделю под нагрузкой</td></tr>
         <tr><td>Все выносы этапа 1 в кластере</td><td class="n">9</td><td class="wide">Узлов пять — кворум нечётный, арбитр пока не нужен</td></tr>
         <tr><td>Переключение управления проверено</td><td class="n">10</td><td class="wide">Норматив времени измерен и записан в регламент</td></tr>
         <tr><td><b>Этап 1 закрыт</b></td><td class="n">12</td><td class="wide">810 абонентов на кластере, мелкие АТС погашены, нумерация переведена</td></tr>
@@ -555,9 +555,9 @@
         <tr><td class="wk">4</td><td class="wide">Ростов</td><td class="n">1</td><td>—</td><td class="wide">кластер из одного узла</td></tr>
         <tr><td class="wk">5</td><td class="wide">+ ЦОД-1, роль мастера туда</td><td class="n">2</td><td><span class="chip c-warn">чёт</span></td><td class="wide">переходное состояние, одна неделя</td></tr>
         <tr><td class="wk">6</td><td class="wide">+ ЦОД-2</td><td class="n">3</td><td><span class="chip c-ok">нечёт</span></td><td class="wide">одного узла</td></tr>
-        <tr><td class="wk">7–9</td><td class="wide">+ Нижний Новгород (пилот)</td><td class="n">4</td><td><span class="chip c-warn">чёт</span></td><td class="wide">одного узла</td></tr>
-        <tr><td class="wk">10</td><td class="wide">+ Славянск-на-Кубани</td><td class="n">5</td><td><span class="chip c-ok">нечёт</span></td><td class="wide">двух узлов</td></tr>
-        <tr><td class="wk">11–12</td><td class="wide">+ Ставрополь — <b>конец этапа 1</b></td><td class="n">6</td><td><span class="chip c-warn">чёт</span></td><td class="wide">двух узлов</td></tr>
+        <tr><td class="wk">7–9</td><td class="wide">+ Ставрополь (пилот)</td><td class="n">4</td><td><span class="chip c-warn">чёт</span></td><td class="wide">одного узла</td></tr>
+        <tr><td class="wk">10</td><td class="wide">+ Нижний Новгород</td><td class="n">5</td><td><span class="chip c-ok">нечёт</span></td><td class="wide">двух узлов</td></tr>
+        <tr><td class="wk">11–12</td><td class="wide">+ Славянск-на-Кубани — <b>конец этапа 1</b></td><td class="n">6</td><td><span class="chip c-warn">чёт</span></td><td class="wide">двух узлов</td></tr>
         <tr><td class="wk">13+</td><td class="wide">+ Воронеж — <b>итоговая схема</b></td><td class="n">7</td><td><span class="chip c-ok">нечёт</span></td><td class="wide">трёх узлов, ЦОД целиком</td></tr>
       </tbody>
     </table>
@@ -869,6 +869,7 @@ epm-set-site --sites out/sites.conf --apply --rebuild   <span class="cmt"># мо
             <tr><td class="wide">Фиксируем адресный план на семь узлов</td><td>ИТ</td><td class="wk">нед. 1</td></tr>
             <tr><td class="wide">Выделяем три ВМ: две в ЦОД (разные стойки) и одну под Ставрополь</td><td>виртуализация</td><td class="wk">нед. 1</td></tr>
             <tr><td class="wide">Заводим SIP-пользователей ВАТС на каждую площадку</td><td>ИТ</td><td class="wk">нед. 1–2</td></tr>
+            <tr><td class="wide"><b>Согласовываем порядок оповещения техподдержки</b> при отклонениях</td><td>ИТ + техподдержка</td><td class="wk">нед. 2</td></tr>
           </tbody>
         </table>
       </div>
@@ -878,6 +879,15 @@ epm-set-site --sites out/sites.conf --apply --rebuild   <span class="cmt"># мо
         она получает автономную АТС с транком до ЦОД. Всё остальное в этой задаче
         мы делаем сами и в своём темпе: площадки наши, стойки наши, машины на нашей
         виртуализации.</p>
+      </div>
+      <div class="note crit">
+        <span class="label">Оповещение техподдержки — до первых работ на боевой базе</span>
+        <p>Зафиксировать надо четыре вещи: <b>кто</b> поднимается по тревоге,
+        <b>по какому каналу</b>, <b>за какое время</b> обязан ответить и <b>что
+        считается инцидентом</b> — потеря регистраций на площадке, расхождение
+        узлов, недоступность панели управления. Порядок раздаётся всем участникам
+        работ, включая второго исполнителя. Договариваться об этом после первой
+        нештатной ситуации поздно.</p>
       </div>
       <p style="margin-top:1em">Воронеж трогаем уже здесь: RTT до него меряем и
       учётку заводим в первую неделю, хотя очередь — на неделе 13. <b>Машинам ЦОД</b>
@@ -977,7 +987,7 @@ asterisk-cluster-health</code></pre>
   <div class="stage">
     <div class="stage-no"><b>6</b>недели 7–8</div>
     <div class="stage-body">
-      <h3>Пилотный вынос — Нижний Новгород</h3>
+      <h3>Пилотный вынос — Ставрополь</h3>
       <div class="note ok">
         <span class="label">Почему он</span>
         <p>Воронеж по протоколу во втором этапе и пилотом быть не может. Ростов к
@@ -988,7 +998,7 @@ asterisk-cluster-health</code></pre>
       <p style="margin-top:1.2em"><b>Неделя наблюдения</b> под реальной нагрузкой:</p>
       <ul>
         <li>звонки внутри площадки, между площадками, наружу;</li>
-        <li>остановка Asterisk в НН → телефоны уходят в ЦОД за 10–60 с;</li>
+        <li>остановка Asterisk в Ставрополе → телефоны уходят в ЦОД за 10–60 с;</li>
         <li>возврат площадки → телефоны возвращаются;</li>
         <li>обрыв VPN → поведение кворума;</li>
         <li><code>wsrep_flow_control_paused</code> — не тормозит ли вынос запись всему кластеру.</li>
@@ -1128,9 +1138,9 @@ asterisk-cluster-health</code></pre>
         <table>
           <thead><tr><th class="n">Недели</th><th>Что</th><th>Куда</th><th class="n">Абонентов</th></tr></thead>
           <tbody>
-            <tr><td class="wk">8</td><td>ССЗ</td><td>Нижний Новгород</td><td class="n">39</td></tr>
-            <tr><td class="wk">9–10</td><td class="wide">Манитек, Семикаракорский, Цимлянский, Приманыческий</td><td>Ростов</td><td class="n">73</td></tr>
-            <tr><td class="wk">11</td><td>PBX локальный</td><td>ЦОД-1</td><td class="n">15</td></tr>
+            <tr><td class="wk">8–9</td><td class="wide">Манитек, Семикаракорский, Цимлянский, Приманыческий</td><td>Ростов</td><td class="n">73</td></tr>
+            <tr><td class="wk">11</td><td>ССЗ</td><td>Нижний Новгород</td><td class="n">39</td></tr>
+            <tr><td class="wk">12</td><td>PBX локальный</td><td>ЦОД-1</td><td class="n">15</td></tr>
           </tbody>
         </table>
       </div>
@@ -1153,9 +1163,10 @@ asterisk-cluster-health</code></pre>
         <table>
           <thead><tr><th class="n">Недели</th><th>Площадки</th><th class="n">Абонентов</th></tr></thead>
           <tbody>
-            <tr><td class="wk">6–9</td><td class="wide">Ростов, его мелкие площадки, Ставрополь</td><td class="n">426</td></tr>
-            <tr><td class="wk">7–9</td><td>Нижний Новгород, ССЗ</td><td class="n">161</td></tr>
-            <tr><td class="wk">9–11</td><td>Славянск-на-Кубани</td><td class="n">136</td></tr>
+            <tr><td class="wk">6–9</td><td class="wide">Ростов и его мелкие площадки</td><td class="n">352</td></tr>
+            <tr><td class="wk">8–9</td><td>Ставрополь</td><td class="n">74</td></tr>
+            <tr><td class="wk">10–12</td><td>Нижний Новгород и ССЗ</td><td class="n">164</td></tr>
+            <tr><td class="wk">11–12</td><td>Славянск-на-Кубани</td><td class="n">140</td></tr>
             <tr><td class="wk">10–12</td><td class="wide">Москва, снятие переадресаций</td><td class="n">80</td></tr>
           </tbody>
         </table>
@@ -1249,7 +1260,7 @@ epm-set-site --sites out/sites.conf --apply --rebuild</code></pre>
   <div class="stats">
     <div class="stat"><b>98</b><span>человеко-дней всего</span></div>
     <div class="stat"><b>68</b><span>инженер, задачи 1–8 и 11</span></div>
-    <div class="stat"><b>30</b><span>второй исполнитель</span></div>
+    <div class="stat"><b>30</b><span>Кириевская Е., задачи 9, 10, 12, 13</span></div>
     <div class="stat"><b>1 128 470 ₽</b><span>внутренних затрат без НДС</span></div>
     <div class="stat"><b>0 ₽</b><span>внешних затрат: ПО бесплатное, ВМ свои</span></div>
   </div>
